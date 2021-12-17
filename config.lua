@@ -1,5 +1,5 @@
 Config = {
-    developMode = false, -- you dor example start race alone and you will see the arena marker if you have enabled
+    developMode = false, -- you can for example start race alone and you will see the arena marker if you have enabled
     Locale = 'de',
     lobbyTimeInSec = 60, -- the time that players have to register
     useESX_XP = false, -- if you use esx_esp mod you have to set this value to true

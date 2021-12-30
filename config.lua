@@ -88,6 +88,7 @@ Config = {
             },
             raceVariations = {
                 {
+                    canUseWeapons = false, -- Player can use their own weapons if scenario was selected 
                     repairKits = { -- items that are spawn what can players collect and repair the vehicle
                         stopSpawnAfterTimeInSeconds = 60, -- Spawn items will not longer spawn after this time is exceeded
                         items = { -- you can configure as many items you want
@@ -361,6 +362,7 @@ Config = {
             },
             raceVariations = {
                 {
+                    canUseWeapons = false, -- Player can use their own weapons if scenario was selected 
                     displayName = "Set_Dystopian_01", -- must be unique
                     map = "Set_Dystopian_01",
                     scene = "dystopian",
@@ -501,6 +503,7 @@ Config = {
                     objectsToSpawnFile = 'track.xml', -- Put xml file into tracks folder. Change filename here, must be the same as you have in tracks folder. You can find tracks here. https://github.com/blattersturm/cfx-object-loader/tree/master/%5Bexamples%5D
                 },
                 {
+                    canUseWeapons = false, -- Player can use their own weapons if scenario was selected 
                     displayName = "Set_Dystopian_02",
                     map = "Set_Dystopian_02",
                     scene = "dystopian",

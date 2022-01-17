@@ -1,0 +1,76 @@
+Config = {
+    Locale = 'en',
+    useImages = true, -- you can add images in folder "view/items". The images names must be the same as in your items sql table. e.g. "drill.png"
+    handleWeaponsLikeItems = true,
+    esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
+    StoragePositions = {
+        {
+            name = "police", -- job name, must be the same as in your jobs table
+            coords = vector3(544.23150634766,-201.48489379883,53.493198394775), -- position of the location
+            enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+            blipLabel = "Mechanic Storage", -- -- Name of the Blip
+            display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+            sprite = 440, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+            scale = 1.2, -- scale of blip
+            color = 24, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+            radius = 2.0, -- Radius of the action to open the menu
+            viewZone = false, -- view register register zone in game, if true marker, rgba and subMarker is needed
+            marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+            rgba = { 120, 255, 120, 155 }, -- color of marker
+            subMarker = {
+                marker = 20, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+                posZ = 54.002, -- z position of the subMarker
+            },
+            enablePed = true, -- Enable the ped. pedModel and pedOrientation is needed if you enable this options
+            pedModel = "s_m_y_airworker", -- ped model, see https://docs.fivem.net/docs/game-references/ped-models/
+            pedOrientation = 65.981, -- orientation of the ped
+            level = { -- player can extend the storage. Define here the capacity and the price for the different levels.
+                { maxStorage = 500, price = 200000 },
+                { maxStorage = 1000, price = 400000 },
+                { maxStorage = 1500, price = 600000 },
+                { maxStorage = 2500, price = 1000000 },
+            },
+            useBlackMoneyForUpgrade = false, -- use black money instead of money to upgrade the store
+            policeJobNameInYourDatabase =  "police", -- config here the job name of your police job.
+            policeRolesThatCanAccess = { -- set here the police grade names
+                "captain",
+                "boss"
+            },
+            policeCanOpenStorage = false, -- enable or disable the access for cops. If enabled only configured grades can access
+        },
+        {
+            name = "aemechanic", -- job name, must be the same as in your jobs table
+            coords = vector3(147.45576477051,-1045.0551757812,28.368034362793), -- position of the location
+            enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+            name = "ADAC Storage", -- Name of the Blip
+            display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+            sprite = 440, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+            scale = 1.2, -- scale of blip
+            color = 24, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+            radius = 2.0, -- Radius of the action to open the menu
+            viewZone = false, -- view register register zone in game, if true marker, rgba and subMarker is needed
+            marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+            rgba = { 120, 255, 120, 155 }, -- color of marker
+            subMarker = {
+                marker = 20, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+                posZ = 29.002, -- z position of the subMarker
+            },
+            enablePed = true, -- Enable the ped. pedModel and pedOrientation is needed if you enable this options
+            pedModel = "s_m_y_airworker", -- ped model, see https://docs.fivem.net/docs/game-references/ped-models/
+            pedOrientation = 59.575, -- orientation of the ped
+            level = { -- player can extend the storage. Define here the capacity and the price for the different levels.
+                { maxStorage = 500, price = 200000 },
+                { maxStorage = 1000, price = 400000 },
+                { maxStorage = 1500, price = 600000 },
+                { maxStorage = 2500, price = 1000000 },
+            },
+            useBlackMoneyForUpgrade = false, -- use black money instead of money to upgrade the store
+            policeJobNameInYourDatabase =  "police", -- config here the job name of your police job.
+            policeRolesThatCanAccess = { -- set here the police grade names
+                "captain",
+                "boss"
+            },
+            policeCanOpenStorage = false, -- enable or disable the access for cops. If enabled only configured grades can access
+        }
+    }
+}

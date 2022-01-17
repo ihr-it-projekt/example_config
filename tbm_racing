@@ -1,0 +1,738 @@
+Config = {
+    Locale = 'de',
+    esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
+    lobbyTimeInSec = 30,
+    useESX_XP = false, -- if you use esx_esp mod you have to set this value to true
+    tracks = {
+        {
+            startRaceLocation = {
+                coordinate = vector3(-202.79821777344, 4190.3139648438, 43.058006286621), -- position of the location
+                enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+                display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+                sprite = 127, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+                scale = 1.0, -- scale of blip
+                color = 1, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+                name = 'Wild River (für 4 Spieler)', -- the name of the track, if you change this value you also have to change it in tbm_race database table, otherwise it will create new database entries
+                radius = 2.0, -- Radius of the action to register
+                marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                rgba = { 120, 255, 120, 155 }, -- color of marker
+                subMarker = {
+                    marker = 4, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+                    posZ = 4.66, -- z position of the subMarker
+                },
+                viewZone = true, -- view zone in game
+                enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
+                pedModel = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
+                pedHash = 0xDB134533, -- see https://docs.fivem.net/docs/game-references/ped-models/
+                pedOrientation = 96.0  -- the orientation of the ped
+            },
+            highScore = {
+                coordinate = vector3(-200.92852783203, 4194.7670898438, 43.212902069092), -- position of the location
+                enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+                display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+                sprite = 304, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+                scale = 1.0, -- scale of blip
+                color = 1, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+                name = 'Wild River Leaderboard', -- The blip name on map
+                radius = 2.0, -- Radius of the action to view the high score
+                viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
+                marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                rgba = { 120, 255, 120, 155 }, -- color of marker
+                subMarker = {
+                    marker = 29, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+                    posZ = 590.202, -- z position of the subMarker
+                },
+                enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
+                pedModel = "a_m_y_juggalo_01", -- ped model, see https://docs.fivem.net/docs/game-references/ped-models/
+                pedHash = 0x91CA3E2C, -- ped hash, see https://docs.fivem.net/docs/game-references/ped-models/
+                pedOrientation = 96.0 -- orientation of the ped
+            },
+            isSingleRace = false, -- if true only one player can do the race and you got an all time high score // if false so many player can do  multiple players can make the race. Player count depends on configured vehicle spawns
+            playerMustUseTheirOwnCar = false, -- if true players need to be in a vehicle to register for that race
+            showRouteOnMap = true, -- Display the track on map
+            roundCount = 1, -- how many rounds will have the race
+            raceStartCountdownLength = 3, -- length of countdown before race
+            raceFee = 5000, -- how mush the player must pay for the race
+            howManyPlayersGetWin = 3, -- if multiplayer race they can get a price. if you enter 3, 3 player will get a price.
+            itemsThatPlayerCanWin = { -- for single player races you need only one place to configure. Everybody that finish a track will get the configured items
+                { -- Place 1
+                    {
+                        name = "gold_ingot",
+                        isWeapon = false,
+                        amount = 1,
+                    },
+                    {
+                        name = "weapon_crowbar",
+                        isWeapon = true,
+                        amount = 1,
+                    }
+                },
+                { -- Place 2
+                    {
+                        name = "gold_ingot",
+                        isWeapon = false,
+                        amount = 1,
+                    },
+                    {
+                        name = "weapon_crowbar",
+                        isWeapon = true,
+                        amount = 1,
+                    }
+                },
+                { -- Place 3
+                    {
+                        name = "gold_ingot",
+                        isWeapon = false,
+                        amount = 1,
+                    },
+                    {
+                        name = "weapon_crowbar",
+                        isWeapon = true,
+                        amount = 1,
+                    }
+                },
+            },
+            winRate = 0.8, -- How high is the percentage of collected raceFees that a player can win.
+            maxRaceDurationInSeconds = 500, -- Max duration of an race. If the duration is reach. The race will for all left players stopped.
+            useOwnGameInstance = true, -- Use a separate game instance for the race. So race runs complete seperated!! No disturbing the other players
+            xp = 1000, -- if you use esx_esp mod you will get xp when you finish the track, first place will become 100% second place get 50%, third place 33% ... depends on howManyPlayersGetWin config
+            neededXP = 0, -- if you use esx_esp mod, players need this level of xp to can drive this track
+            checkPoints = {
+                coords = { -- coordinates of checkPoints
+                    vector3(-190.94186401367, 4266.6059570313, 29.937660217285),
+                    vector3(-270.32971191406, 4353.1376953125, 29.937660217285),
+                    vector3(-345.05218505859, 4413.7504882813, 29.937660217285),
+                    vector3(-440.5393371582, 4434.6186523438, 29.937660217285),
+                    vector3(-505.70001220703, 4449.8784179688, 29.937660217285),
+                    vector3(-605.01763916016, 4431.2768554688, 14.937660217285),
+                    vector3(-716.87091064453, 4445.3798828125, 14.937660217285),
+                    vector3(-797.22131347656, 4445.0883789063, 14.937660217285),
+                    vector3(-866.54888916016, 4422.2119140625, 14.937660217285),
+                    vector3(-924.1298828125, 4390.28125, 9.937660217285),
+                    vector3(-993.40521240234, 4375.9204101563, 9.937660217285),
+                    vector3(-1115.0010986328, 4400.2587890625, 9.937660217285),
+                    vector3(-1185.5451660156, 4390.9125976563, 4.9376602172852),
+                    vector3(-1286.6147460938, 4363.609375, 4.9376602172852),
+                    vector3(-1362.1046142578, 4329.5830078125, 1.9376602172852),
+                    vector3(-1483.6994628906, 4348.0205078125, 0.0),
+                    vector3(-1591.9044189453, 4385.62109375, 0.0),
+                    vector3(-1683.7098388672, 4474.4995117188, 0.0),
+                    vector3(-1854.7204589844, 4629.8432617188, 0.0),
+                    vector3(-1925.8786621094, 4768.0913085938, 0.0),
+                    vector3(-1890.7540283203, 4823.2075195313, 0.0),
+                    vector3(-1953.4895019531, 4888.599609375, 0.0),
+                    vector3(-2023.3355712891, 4937.021484375, 0.0),
+                    vector3(-2044.2463378906, 4842.76171875, 0.0),
+                    vector3(-1898.3629150391, 4680.2299804688, 0.0),
+                },
+                radiusToPass = 10.0, -- Radius of the action to register
+                style = {
+                    marker = 6, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                    scale = 10.0, -- scale of marker https://docs.fivem.net/docs/game-references/markers/
+                    rgba = { 120, 255, 120, 155 }, -- color of blip
+                },
+                maxDistanceToTrack = 500 -- max radius in meter that a player can be, has player a greater distance, the race will stop for this player
+            },
+            vehicles = {
+                {
+                    type = 'seashark3', -- vehicle type see https://wiki.rage.mp/index.php?title=Vehicles
+                    fuelLevel = 1000.0, -- the fuel level will be set at every checkpoint to this value
+                    mods = { -- Mods to apply to the racing vehicle.
+                        engine = 2,
+                        brakes = 2,
+                        transmission = 2,
+                        suspension = 3,
+                        turbo = true,
+                        livery = 0
+                    },
+                },
+                {
+                    type = 'seashark', -- vehicle type see https://wiki.rage.mp/index.php?title=Vehicles
+                    fuelLevel = 1000.0, -- the fuel level will be set at every checkpoint to this value
+                    mods = { -- Mods to apply to the racing vehicle.
+                        engine = 2,
+                        brakes = 2,
+                        transmission = 2,
+                        suspension = 3,
+                        turbo = true,
+                        livery = 0
+                    },
+                },
+                {
+                    type = 'seashark2', -- vehicle type see https://wiki.rage.mp/index.php?title=Vehicles
+                    fuelLevel = 1000.0, -- the fuel level will be set at every checkpoint to this value
+                    mods = { -- Mods to apply to the racing vehicle.
+                        engine = 2,
+                        brakes = 2,
+                        transmission = 2,
+                        suspension = 3,
+                        turbo = true,
+                        livery = 0
+                    },
+                }
+            },
+            vehicleSpawn = {  -- race starting position, if race is not a single race you can define so many you want
+                {
+                    coord = vector3(-80.0, 4161.0, 29.4), -- Coordinate of starting points, you can add so many as you want
+                    heading = 53.0,
+                },
+                {
+                    coord = vector3(-96.0, 4151.0, 29.4), -- Coordinate of starting points, you can add so many as you want
+                    heading = 53.0,
+                },
+                {
+                    coord = vector3(-87.0, 4173.0, 29.4), -- Coordinate of starting points, you can add so many as you want
+                    heading = 53.0,
+                }, {
+                    coord = vector3(-84.0, 4185.0, 29.4), -- Coordinate of starting points, you can add so many as you want
+                    heading = 53.0,
+                },
+            },
+            objectsToSpawn = { -- not required, if you want to spawn some objects only for the race
+                {
+                    coords = vector3(1057.5803222656, 103.69068908691, 81.261016845703),
+                    pitch = 0.0, -- The pitch of the object should be normally 0.0
+                    roll = 0.0, -- The roll of the object should be normally 0.0
+                    yaw = 60.0, -- rotation of the object
+                    name = "lts_prop_lts_offroad_tyres01", -- the model name, can be taken from: https://gta-objects.xyz/objects
+                }
+            },
+            objectsToSpawnFile = 'example.xml', -- Put xml file into tracks folder. Change filename here, must be the same as you have in tracks folder. You can find tracks here. https://github.com/blattersturm/cfx-object-loader/tree/master/%5Bexamples%5D
+        },
+        {
+            startRaceLocation = {
+                coordinate = vector3(151.42726135254, -984.93981933594, 29.69153213501), -- position of the location
+                enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+                display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+                sprite = 84, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+                scale = 1.0, -- scale of blip
+                color = 1, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+                name = 'HellRace (für 8 Spieler)', -- the name of the track, if you change this value you also have to change it in tbm_race database table, otherwise it will create new database entries
+                radius = 2.0, -- Radius of the action to register
+                marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                rgba = { 120, 255, 120, 155 }, -- color of marker
+                subMarker = {
+                    marker = 4, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+                    posZ = 4.66, -- z position of the subMarker
+                },
+                viewZone = true, -- view zone in game
+                enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
+                pedModel = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
+                pedHash = 0xDB134533, -- see https://docs.fivem.net/docs/game-references/ped-models/
+                pedOrientation = 204.320  -- the orientation of the ped
+            },
+            highScore = {
+                coordinate = vector3(171.74676513672, -992.55511474609, 29.691486358643), -- position of the location
+                enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+                display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+                sprite = 304, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+                scale = 1.0, -- scale of blip
+                color = 1, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+                name = 'Leaderboard', -- The blip name on map
+                radius = 2.0, -- Radius of the action to view the high score
+                viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
+                marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                rgba = { 120, 255, 120, 155 }, -- color of marker
+                subMarker = {
+                    marker = 29, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+                    posZ = 590.202, -- z position of the subMarker
+                },
+                enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
+                pedModel = "a_m_y_juggalo_01", -- ped model, see https://docs.fivem.net/docs/game-references/ped-models/
+                pedHash = 0x91CA3E2C, -- ped hash, see https://docs.fivem.net/docs/game-references/ped-models/
+                pedOrientation = 108.904 -- orientation of the ped
+            },
+            isSingleRace = false, -- if true only one player can do the race and you got an all time high score // if false so many player can do  multiple players can make the race. Player count depends on configured vehicle spawns
+            playerMustUseTheirOwnCar = false, -- if true players need to be in a vehicle to register for that race
+            showRouteOnMap = true, -- Display the track on map
+            roundCount = 1, -- how many rounds will have the race
+            raceStartCountdownLength = 5, -- length of countdown before race
+            raceFee = 1000, -- how mush the player must pay for the race
+            howManyPlayersGetWin = 3, -- if multiplayer race they can get a price. if you enter 3, 3 player will get a price.
+            itemsThatPlayerCanWin = { -- for single player races you need only one place to configure. Everybody that finish a track will get the configured items
+                { -- Place 1
+                    {
+                        name = "gold_ingot",
+                        isWeapon = false,
+                        amount = 1,
+                    },
+                    {
+                        name = "weapon_crowbar",
+                        isWeapon = true,
+                        amount = 1,
+                    }
+                },
+                { -- Place 2
+                    {
+                        name = "gold_ingot",
+                        isWeapon = false,
+                        amount = 1,
+                    },
+                    {
+                        name = "weapon_crowbar",
+                        isWeapon = true,
+                        amount = 1,
+                    }
+                },
+                { -- Place 3
+                    {
+                        name = "gold_ingot",
+                        isWeapon = false,
+                        amount = 1,
+                    },
+                    {
+                        name = "weapon_crowbar",
+                        isWeapon = true,
+                        amount = 1,
+                    }
+                },
+            },
+            winRate = 0.8, -- How high is the percentage of collected raceFees that a player can win.
+            maxRaceDurationInSeconds = 500, -- Max duration of an race. If the duration is reach. The race will for all left players stopped.
+            useOwnGameInstance = false, -- Use a separate game instance for the race. So race runs complete seperated!! No disturbing the other players
+            xp = 1000, -- if you use esx_esp mod you will get xp when you finish the track, first place will become 100% second place get 50%, third place 33% ... depends on howManyPlayersGetWin config
+            neededXP = 0, -- if you use esx_esp mod, players need this level of xp to can drive this track
+            checkPoints = {
+                coords = { -- coordinates of checkPoints
+                    vector3(528.22973632812, 5628.0903320312, 779.35736083984),
+                    vector3(564.6044921875, 5658.1162109375, 766.18505859375),
+                    vector3(618.85095214844, 5682.3286132812, 744.91461181641),
+                    vector3(679.45300292969, 5697.7719726562, 725.43237304688),
+                    vector3(793.44488525391, 5691.3715820312, 696.08459472656),
+                    vector3(870.00622558594, 5656.9858398438, 676.89410400391),
+                    vector3(924.57189941406, 5639.4052734375, 652.55163574219),
+                    vector3(979.50933837891, 5634.3793945312, 624.86340332031),
+                    vector3(1022.0500488281, 5612.3969726562, 606.18634033203),
+                    vector3(1080.8878173828, 5591.6630859375, 581.06872558594),
+                    vector3(1250.9442138672, 5562.015625, 499.81396484375),
+                    vector3(1324.681640625, 5555.6655273438, 477.23696899414),
+                    vector3(1399.0314941406, 5552.4990234375, 462.63027954102),
+                    vector3(1471.5191650391, 5536.8056640625, 438.32678222656),
+                    vector3(1537.9658203125, 5515.7719726562, 399.11386108398),
+                    vector3(1641.4793701172, 5482.8657226562, 335.31091308594),
+                    vector3(1716.7484130859, 5455.8530273438, 302.35733032227),
+                    vector3(1836.9112548828, 5410.783203125, 238.78756713867),
+                    vector3(1958.4864501953, 5382.53125, 185.63520812988),
+                    vector3(2028.3616943359, 5379.8134765625, 174.51055908203),
+                    vector3(2147.9558105469, 5379.7807617188, 165.03715515137),
+                    vector3(2241.3056640625, 5382.544921875, 144.50688171387),
+                    vector3(2358.1062011719, 5338.4555664062, 116.35399627686),
+                    vector3(2496.65625, 5308.4975585938, 63.989463806152),
+                    vector3(2501.2082519531, 5332.3583984375, 56.548728942871),
+                    vector3(2454.556640625, 5415.0463867188, 51.726348876953),
+                    vector3(2371.72265625, 5494.4565429688, 51.258560180664),
+                    vector3(2259.3371582031, 5544.0390625, 50.594654083252),
+                    vector3(2260.6848144531, 5628.8583984375, 54.910205841064),
+                    vector3(2289.9721679688, 5633.7490234375, 65.684936523438),
+                    vector3(2344.5363769531, 5639.3232421875, 85.492797851562),
+                    vector3(2310.6398925781, 5677.5385742188, 107.6088104248),
+                    vector3(2246.0085449219, 5739.4555664062, 143.99142456055),
+                    vector3(2180.5205078125, 5765.3842773438, 174.3094329834),
+                    vector3(2131.0871582031, 5769.6079101562, 191.3856048584),
+                    vector3(2053.7053222656, 5789.09765625, 222.12442016602),
+                    vector3(1991.7877197266, 5786.7822265625, 241.55851745605),
+                    vector3(1971.8843994141, 5793.8989257812, 252.5510559082),
+                    vector3(1938.1585693359, 5826.98046875, 274.63494873047),
+                    vector3(1890.5036621094, 5829.4931640625, 296.16717529297),
+                    vector3(1790.2869873047, 5828.1489257812, 346.02993774414),
+                    vector3(1720.3070068359, 5826.353515625, 366.26971435547),
+                    vector3(1639.9328613281, 5806.732421875, 393.7712097168),
+                    vector3(1603.7661132812, 5791.13671875, 404.87490844727),
+                    vector3(1495.6243896484, 5796.28515625, 430.27297973633),
+                    vector3(1441.8908691406, 5796.6650390625, 449.89279174805),
+                    vector3(1304.5227050781, 5808.1801757812, 474.13507080078),
+                    vector3(1227.5614013672, 5786.0122070312, 509.37112426758),
+                    vector3(1130.5480957031, 5757.095703125, 539.46008300781),
+                    vector3(1054.0118408203, 5712.630859375, 575.73797607422),
+                    vector3(992.54663085938, 5661.5380859375, 614.54895019531),
+                    vector3(924.83905029297, 5639.9755859375, 652.53796386719),
+                    vector3(885.96881103516, 5649.85546875, 671.2685546875),
+                    vector3(806.46069335938, 5688.7016601562, 695.53765869141),
+                    vector3(685.45922851562, 5697.9951171875, 723.40063476562),
+                    vector3(619.19226074219, 5682.884765625, 744.78674316406),
+                    vector3(564.43432617188, 5658.060546875, 766.23101806641),
+                    vector3(523.78912353516, 5605.4619140625, 780.40991210938),
+                },
+                radiusToPass = 10.0, -- Radius of the action to register
+                style = {
+                    marker = 6, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                    scale = 10.0, -- scale of marker https://docs.fivem.net/docs/game-references/markers/
+                    rgba = { 120, 255, 120, 155 }, -- color of blip
+                },
+                maxDistanceToTrack = 500 -- max radius in meter that a player can be, has player a greater distance, the race will stop for this player
+            },
+            vehicles = {
+                {
+                    type = 'sanchez', -- vehicle type see https://wiki.rage.mp/index.php?title=Vehicles
+                    fuelLevel = 1000.0, -- the fuel level will be set at every checkpoint to this value
+                    mods = { -- Mods to apply to the racing vehicle.
+                        engine = 2,
+                        brakes = 2,
+                        transmission = 2,
+                        suspension = 3,
+                        turbo = true,
+                        livery = 0
+                    },
+                }
+            },
+            vehicleSpawn = {  -- race starting position, if race is not a single race you can define so many you want
+                {
+                    coord = vector3(515.13092041016, 5581.0874023438, 781.63201904297), -- Coordinate of starting points, you can add so many as you want
+                    heading = 336.845,
+                },
+                {
+                    coord = vector3(517.34576416016, 5579.8598632812, 781.57952880859),
+                    heading = 334.299,
+                },
+                {
+                    coord = vector3(513.18481445312, 5576.947265625, 781.75671386719),
+                    heading = 327.748,
+                },
+                {
+                    coord = vector3(515.0634765625, 5575.740234375, 781.72277832031),
+                    heading = 330.078,
+                },
+                {
+                    coord = vector3(510.64846801758, 5573.13671875, 781.9677734375),
+                    heading = 321.914,
+                },
+                {
+                    coord = vector3(512.63208007812, 5571.68359375, 781.83654785156),
+                    heading = 326.329,
+                },
+                {
+                    coord = vector3(508.11431884766, 5569.4077148438, 782.07769775391),
+                    heading = 322.793,
+                },
+                {
+                    coord = vector3(510.39352416992, 5567.9580078125, 781.92163085938),
+                    heading = 327.577,
+                },
+            },
+            objectsToSpawn = { -- not required, if you want to spawn some objects only for the race
+                {
+                    coords = vector3(1057.5803222656, 103.69068908691, 81.261016845703),
+                    pitch = 0.0, -- The pitch of the object should be normally 0.0
+                    roll = 0.0, -- The roll of the object should be normally 0.0
+                    yaw = 60.0, -- rotation of the object
+                    name = "lts_prop_lts_offroad_tyres01", -- the model name, can be taken from: https://gta-objects.xyz/objects
+                }
+            },
+            objectsToSpawnFile = 'example.xml', -- Put xml file into tracks folder. Change filename here, must be the same as you have in tracks folder. You can find tracks here. https://github.com/blattersturm/cfx-object-loader/tree/master/%5Bexamples%5D
+        },
+        {
+            startRaceLocation = {
+                coordinate = vector3(-2246.6164550781, 4315.3950195312, 46.501408050537),
+                enableBlip = true,
+                display = 4,
+                sprite = 84,
+                scale = 1.0,
+                color = 1,
+                name = 'DeadlyCrossRace',
+                radius = 2.0,
+                marker = 27,
+                rgba = { 120, 255, 120, 155 },
+                subMarker = {
+                    marker = 4,
+                    posZ = 4.66,
+                },
+                viewZone = true,
+                enablePed = true,
+                pedModel = "mp_m_freemode_01",
+                pedHash = 0x705E61F2,
+                pedOrientation = 0.0
+            },
+            highScore = {
+                coordinate = vector3(-2264.4187011719, 4293.9130859375, 45.369538879395),
+                enableBlip = false,
+                display = 4,
+                sprite = 304,
+                scale = 1.0,
+                color = 84,
+                name = 'Cross-Leaderboard',
+                radius = 2.0,
+                viewZone = true, -- view zone in game
+                marker = 27,
+                rgba = { 120, 255, 120, 155 },
+                subMarker = {
+                    marker = 29,
+                    posZ = 4.66,
+                },
+                enablePed = true,
+                pedModel = "mp_m_freemode_01",
+                pedHash = 0x705E61F2,
+                pedOrientation = 0.0
+            },
+            isSingleRace = true,
+            playerMustUseTheirOwnCar = false,
+            showRouteOnMap = true,
+            roundCount = 1,
+            raceStartCountdownLength = 3,
+            raceFee = 1000,
+            howManyPlayersGetWin = 1,
+            itemsThatPlayerCanWin = { -- for single player races you need only one place to configure. Everybody that finish a track will get the configured items
+                { -- Place 1
+                    {
+                        name = "gold_ingot",
+                        isWeapon = false,
+                        amount = 1,
+                    },
+                    {
+                        name = "weapon_crowbar",
+                        isWeapon = true,
+                        amount = 1,
+                    }
+                },
+            },
+            maxRaceDurationInSeconds = 500,
+            useOwnGameInstance = false, -- Use a separate game instance for the race. So race runs complete seperated!! No disturbing the other players
+            winRate = 0.0,
+            xp = 1000, -- if you use esx_esp mod you will get xp when you finish the track, first place will become 100% second place get 50%, third place 33% ... depends on howManyPlayersGetWin config
+            neededXP = 0, -- if you use esx_esp mod, players need this level of xp to can drive this track
+            checkPoints = {
+                coords = {
+                    vector3(-2262.2106933594, 4352.1860351562, 43.671730041504),
+                    vector3(-2254.6423339844, 4424.064453125, 38.890975952148),
+                    vector3(-2170.0969238281, 4496.6713867188, 48.032669067383),
+                    vector3(-2108.1044921875, 4514.7407226562, 27.990114212036),
+                    vector3(-2042.2473144531, 4521.828125, 28.267343521118),
+                    vector3(-1937.5190429688, 4451.0869140625, 39.463813781738),
+                    vector3(-1807.5444335938, 4390.6328125, 51.12353515625),
+                    vector3(-1753.2645263672, 4334.17578125, 77.370246887207),
+                    vector3(-1694.515625, 4289.91015625, 71.09716796875),
+                    vector3(-1685.5129394531, 4223.3188476562, 82.171752929688),
+                    vector3(-1679.9150390625, 4139.5263671875, 147.28114318848),
+                    vector3(-1661.2761230469, 4148.1630859375, 143.24673461914),
+                    vector3(-1650.5703125, 4174.1982421875, 124.50553894043),
+                    vector3(-1629.5239257812, 4207.2456054688, 83.500274658203),
+                    vector3(-1569.5540771484, 4202.6489257812, 79.01042175293),
+                    vector3(-1495.4183349609, 4203.611328125, 77.238563537598),
+                    vector3(-1472.6115722656, 4194.6665039062, 77.421699523926),
+                    vector3(-1397.5391845703, 4175.8095703125, 49.127151489258),
+                    vector3(-1353.0714111328, 4127.279296875, 62.223876953125),
+                    vector3(-1322.3303222656, 4181.2734375, 62.671112060547),
+                    vector3(-1286.9056396484, 4276.2333984375, 65.86979675293),
+                    vector3(-1230.1743164062, 4273.3852539062, 82.600700378418),
+                    vector3(-1170.9816894531, 4275.380859375, 85.988876342773),
+                    vector3(-1121.0977783203, 4297.5146484375, 88.918350219727),
+                    vector3(-1082.9344482422, 4254.9047851562, 115.22743988037),
+                    vector3(-1060.4372558594, 4246.4204101562, 135.99186706543),
+                    vector3(-1030.5084228516, 4187.8803710938, 119.06956481934),
+                    vector3(-1008.4940795898, 4139.5952148438, 122.02401733398),
+                    vector3(-925.22216796875, 4151.3662109375, 147.63716125488),
+                    vector3(-914.24066162109, 4090.7138671875, 176.17842102051),
+                    vector3(-884.61901855469, 4097.9809570312, 162.93406677246),
+                    vector3(-825.31207275391, 4052.662109375, 163.11433410645),
+                    vector3(-780.52374267578, 4046.6047363281, 156.86923217773),
+                    vector3(-701.31091308594, 4011.44140625, 132.04672241211),
+                    vector3(-610.44055175781, 3976.6469726562, 118.34441375732),
+                    vector3(-497.7239074707, 3966.8818359375, 82.34455871582),
+                    vector3(-427.08529663086, 3945.10546875, 66.373428344727),
+                    vector3(-348.56829833984, 3955.3791503906, 67.111129760742),
+                    vector3(-270.53350830078, 3957.3171386719, 43.258102416992),
+                    vector3(-233.80613708496, 3896.3186035156, 37.035160064697),
+                },
+                radiusToPass = 4.0,
+                style = {
+                    marker = 6,
+                    scale = 4.0,
+                    rgba = { 120, 255, 120, 155 },
+                },
+                maxDistanceToTrack = 800
+            },
+            vehicles = {
+                {
+                    type = 'sanchez',
+                    fuelLevel = 1000.0,
+                    mods = {
+                        engine = 2,
+                        brakes = 2,
+                        transmission = 2,
+                        suspension = 3,
+                        turbo = true,
+                        livery = 0
+                    },
+                },
+            },
+            vehicleSpawn = {
+                {
+                    coord = vector3(-2256.4321289062, 4314.7124023438, 45.72891998291),
+                    heading = 2.475,
+                }
+            },
+            objectsToSpawn = { -- not required, if you want to spawn some objects only for the race
+                {
+                    coords = vector3(1057.5803222656, 103.69068908691, 81.261016845703),
+                    pitch = 0.0, -- The pitch of the object should be normally 0.0
+                    roll = 0.0, -- The roll of the object should be normally 0.0
+                    yaw = 60.0, -- rotation of the object
+                    name = "lts_prop_lts_offroad_tyres01", -- the model name, can be taken from: https://gta-objects.xyz/objects
+                }
+            },
+            objectsToSpawnFile = 'example.xml', -- Put xml file into tracks folder. Change filename here, must be the same as you have in tracks folder. You can find tracks here. https://github.com/blattersturm/cfx-object-loader/tree/master/%5Bexamples%5D
+        },
+        {
+            startRaceLocation = {
+                coordinate = vector3(1122.03515625, 65.77596282959, 79.890335083008), -- position of the location
+                enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+                display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+                sprite = 84, -- in circle of blib you can add sprite see: https://docs.fivem.net/docs/game-references/blips/
+                scale = 1.0, -- scale of blip
+                color = 1, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+                name = 'Duell Race', -- the name of the track, if you change this value you also have to change it in tbm_race database table, otherwise it will create new database entries
+                radius = 2.0, -- Radius of the action to register
+                marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                rgba = { 120, 255, 120, 155 }, -- color of marker
+                subMarker = {
+                    marker = 4, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+                    posZ = 4.66, -- z position of the subMarker
+                },
+                viewZone = true, -- view zone in game
+                enablePed = true, -- enable ped on map
+                pedModel = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
+                pedHash = 0xDB134533, -- see https://docs.fivem.net/docs/game-references/ped-models/
+                pedOrientation = 221.0
+            },
+            highScore = {
+                coordinate = vector3(1124.146484375, 69.515312194824, 79.890365600586), -- position of the location
+                enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+                display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+                sprite = 304, -- in circle of blib you can add sprite see: https://docs.fivem.net/docs/game-references/blips/
+                scale = 1.0, -- scale of blip
+                color = 84, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+                name = 'Duell Race Highscore', -- The blip name on map
+                radius = 2.0, -- Radius of the action to view the high score
+                viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
+                marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                rgba = { 120, 255, 120, 155 }, -- color of marker
+                subMarker = {
+                    marker = 29, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+                    posZ = 4.66, -- z position of the subMarker
+                },
+                enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
+                pedModel = "a_m_y_juggalo_01", -- ped model, see https://docs.fivem.net/docs/game-references/ped-models/
+                pedHash = 0x91CA3E2C, -- ped hash, see https://docs.fivem.net/docs/game-references/ped-models/
+                pedOrientation = 221.0 -- orientation of the ped
+            },
+            isSingleRace = false, -- if true only one player can do the race and you got an all time high score // if false so many player can do  multiple players can make the race. Player count depends on configured vehicle spawns
+            playerMustUseTheirOwnCar = false, -- if true players need to be in a vehicle to register for that race
+            showRouteOnMap = true, -- Display the track on map
+            roundCount = 1, -- how many rounds will the race have
+            raceFee = 1000, -- how mush the player must pay for the race
+            raceStartCountdownLength = 3, -- Duration of the start countdown
+            maxRaceDurationInSeconds = 500, -- Max duration of an race. If the duration is reach. The race will for all left players stopped.
+            useOwnGameInstance = true, -- Use a separate game instance for the race. So race runs complete seperated!! No disturbing the other players
+            howManyPlayersGetWin = 3, -- if multiplayer race they can get a price. if you enter 3, 3 player will get a price.
+            itemsThatPlayerCanWin = { -- for single player races you need only one place to configure. Everybody that finish a track will get the configured items
+                { -- Place 1
+                    {
+                        name = "gold_ingot",
+                        isWeapon = false,
+                        amount = 1,
+                    },
+                    {
+                        name = "weapon_crowbar",
+                        isWeapon = true,
+                        amount = 1,
+                    }
+                },
+                { -- Place 2
+                    {
+                        name = "gold_ingot",
+                        isWeapon = false,
+                        amount = 1,
+                    },
+                    {
+                        name = "weapon_crowbar",
+                        isWeapon = true,
+                        amount = 1,
+                    }
+                },
+                { -- Place 3
+                    {
+                        name = "gold_ingot",
+                        isWeapon = false,
+                        amount = 1,
+                    },
+                    {
+                        name = "weapon_crowbar",
+                        isWeapon = true,
+                        amount = 1,
+                    }
+                },
+            },
+            winRate = 0.8, -- How high is the percentage of collected raceFees that a player can win.
+            xp = 1000, -- if you use esx_esp mod you will get xp when you finish the track, first place will become 100% second place get 50%, third place 33% ... depends on howManyPlayersGetWin config
+            neededXP = 0, -- if you use esx_esp mod, players need this level of xp to can drive this track
+            checkPoints = {
+                coords = { -- coordinates of checkPoints
+                    vector3(1194.1247558594, 286.31033325195, 81.871559143066),
+                    vector3(1267.8872070312, 196.09803771973, 81.89665222168),
+                    vector3(1080.1022949219, -86.786079406738, 81.874984741211),
+                    vector3(1044.7482910156, 76.466667175293, 81.387725830078),
+                },
+                radiusToPass = 10.0, -- Radius of the action to register
+                style = {
+                    marker = 6, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                    scale = 10.0, -- scale of marker https://docs.fivem.net/docs/game-references/markers/
+                    rgba = { 120, 255, 120, 155 }, -- color of blip
+                },
+                maxDistanceToTrack = 500 -- max radius in meter that a player can be, has player a greater distance, the race will stop for this player
+            },
+            vehicles = {
+                {
+                    type = 'brawler', -- vehicle type see https://wiki.rage.mp/index.php?title=Vehicles
+                    fuelLevel = 10000.0, -- the fuel level will be set at every checkpoint to this value
+                    mods = { -- Mods to apply to the racing vehicle.
+                        engine = 2,
+                        brakes = 2,
+                        transmission = 2,
+                        suspension = 3,
+                        turbo = true,
+                        livery = 0
+                    },
+                },
+            },
+            vehicleSpawn = {  -- race starting position, if race is not a single race you can define so many you want
+                {
+                    coord = vector3(1042.7591552734, 87.303985595703, 81.631896972656), -- Coordinate of starting points, you can add so many as you want
+                    heading = 328.8,
+                },
+                {
+                    coord = vector3(1042.9072265625, 82.330726623535, 81.477951049805),
+                    heading = 329.5,
+                },
+                {
+                    coord = vector3(1043.6652832031, 79.222503662109, 81.412796020508),
+                    heading = 328.55,
+                },
+                {
+                    coord = vector3(1044.7482910156, 76.466667175293, 81.387725830078),
+                    heading = 324.15,
+                },
+                {
+                    coord = vector3(1046.1315917969, 73.901390075684, 81.443771362305),
+                    heading = 326.0,
+                },
+                {
+                    coord = vector3(1047.0466308594, 71.679145812988, 81.52424621582),
+                    heading = 326.3,
+                },
+                {
+                    coord = vector3(1048.2209472656, 69.556678771973, 81.652465820312),
+                    heading = 328.6,
+                },
+            },
+            objectsToSpawn = { -- not required, if you want to spawn some objects only for the race
+                {
+                    coords = vector3(1057.5803222656, 103.69068908691, 81.261016845703),
+                    pitch = 0.0, -- The pitch of the object should be normally 0.0
+                    roll = 0.0, -- The roll of the object should be normally 0.0
+                    yaw = 60.0, -- rotation of the object
+                    name = "lts_prop_lts_offroad_tyres01", -- the model name, can be taken from: https://gta-objects.xyz/objects
+                }
+            },
+            objectsToSpawnFile = 'example.xml', -- Put xml file into tracks folder. Change filename here, must be the same as you have in tracks folder. You can find tracks here. https://github.com/blattersturm/cfx-object-loader/tree/master/%5Bexamples%5D
+        },
+    }
+}

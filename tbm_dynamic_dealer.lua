@@ -6,6 +6,8 @@ Config.roundMoneyPositions = 0 -- if you use another currency system then esx de
 
 Config.esx_getSharedObject = 'esx:getSharedObject' -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
 
+Config.qbCoreExportName = 'qb-core' -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
+
 Config.useQbCore = false -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
 
 Config.qbCore = { -- only important if you are using qb core framework

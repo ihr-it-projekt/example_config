@@ -1,7 +1,8 @@
 Config = {
     Locale = 'de',
     useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
-    esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
+    esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have also change it in es_extended
+    qbCoreExportName = 'qb-core', -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
     enabledKeysWhenAnimation = { -- https://docs.fivem.net/docs/game-references/controls/
         --38, -- E
         23, -- F
@@ -15,7 +16,7 @@ Config = {
     },
     farmingArea = {
         {
-            coordinate = vector3(2224.2272949219, 5577.224609375, 53.838172912598), -- position of the Location
+            coordinate = vector3(2224.2272949219, 5577.224609375, 52.838172912598), -- position of the Location
             scale = 1.0, -- the scale of the blip
             enableBlip = false, -- enable Blip on map, if true, display, sprite, scale, color and name are required
             display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
@@ -37,8 +38,8 @@ Config = {
             pedOrientation = 127.24, -- the orientation of the ped
             objects = {
                 {
-                    name = "",
-                    coordinate = vector3(2224.2272949219, 5577.224609375, 53.838172912598)
+                    --name = "",
+                    --coordinate = vector3(2224.2272949219, 5577.224609375, 53.838172912598)
                 }
             },
             messages = {

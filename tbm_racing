@@ -1,8 +1,14 @@
 Config = {
     Locale = 'de',
     esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
-    lobbyTimeInSec = 30,
+    lobbyTimeInSec = 1,
     useESX_XP = false, -- if you use esx_esp mod you have to set this value to true
+    useQbCore = true, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
+    esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
+        setJob = 'esx:setJob',
+        playerLoaded = 'esx:playerLoaded',
+    },
+    qbCoreExportName = 'qb-core', -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
     tracks = {
         {
             startRaceLocation = {
@@ -52,7 +58,7 @@ Config = {
             showRouteOnMap = true, -- Display the track on map
             roundCount = 1, -- how many rounds will have the race
             raceStartCountdownLength = 3, -- length of countdown before race
-            raceFee = 5000, -- how mush the player must pay for the race
+            raceFee = 0, -- how mush the player must pay for the race
             howManyPlayersGetWin = 3, -- if multiplayer race they can get a price. if you enter 3, 3 player will get a price.
             itemsThatPlayerCanWin = { -- for single player races you need only one place to configure. Everybody that finish a track will get the configured items
                 { -- Place 1
@@ -618,7 +624,7 @@ Config = {
             playerMustUseTheirOwnCar = false, -- if true players need to be in a vehicle to register for that race
             showRouteOnMap = true, -- Display the track on map
             roundCount = 1, -- how many rounds will the race have
-            raceFee = 1000, -- how mush the player must pay for the race
+            raceFee = 1, -- how mush the player must pay for the race
             raceStartCountdownLength = 3, -- Duration of the start countdown
             maxRaceDurationInSeconds = 500, -- Max duration of an race. If the duration is reach. The race will for all left players stopped.
             useOwnGameInstance = true, -- Use a separate game instance for the race. So race runs complete seperated!! No disturbing the other players
@@ -667,9 +673,9 @@ Config = {
             checkPoints = {
                 coords = { -- coordinates of checkPoints
                     vector3(1194.1247558594, 286.31033325195, 81.871559143066),
-                    vector3(1267.8872070312, 196.09803771973, 81.89665222168),
-                    vector3(1080.1022949219, -86.786079406738, 81.874984741211),
-                    vector3(1044.7482910156, 76.466667175293, 81.387725830078),
+                    --vector3(1267.8872070312, 196.09803771973, 81.89665222168),
+                    --vector3(1080.1022949219, -86.786079406738, 81.874984741211),
+                    --vector3(1044.7482910156, 76.466667175293, 81.387725830078),
                 },
                 radiusToPass = 10.0, -- Radius of the action to register
                 style = {

@@ -14,6 +14,11 @@ Config.qbCore = { -- only important if you are using qb core framework
     blackMoneyName = 'black_money' -- Be sure you have configured black money in qb core
 }
 
+Config.esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
+    setJob = 'esx:setJob',
+    playerLoaded = 'esx:playerLoaded',
+}
+
 Config.TraderLocations = {
     {
         label = 'Drug Dealer', -- name of the dealer

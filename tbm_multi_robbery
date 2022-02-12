@@ -1,0 +1,394 @@
+Config = {
+    esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
+    useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
+    esxEventNames = { -- used esx events can here renamed, if you use for example a anti cheat tool
+        setJob = 'esx:setJob',
+        playerLoaded = 'esx:playerLoaded',
+        sendMessage = 'esx:showNotification',
+        addGroupCommand = 'es:addGroupCommand',
+    },
+    enabledKeysWhenAnimation = { -- The animation happens when player starts to take loot from one robbery position https://docs.fivem.net/docs/game-references/controls/
+        --38, -- E
+        23, -- F
+        1, --mouse controls
+        2, --mouse controls
+        3, --mouse controls
+        4, --mouse controls
+        5, --mouse controls
+        6, --mouse controls
+        7, --mouse controls
+    },
+    cancelRobActionKey = 73, -- Player can stop loot one robbery location by pressing the configured key Default is key x  https://docs.fivem.net/docs/game-references/controls/
+    countOfRobsAtSameTime = { -- how many robs at same time per rob category. You can add so many categories as you want.
+        -- ['nameOfTheCategory'] = Number -- cont of robs for this category at same time are possible
+        ['small'] = 1,
+        ['big'] = 1,
+    },
+    allRobsAtSameTime = 2, -- How many robs at same time for all rob categories can happen
+    globalTexts = { -- Text that the user see
+        toManyRobberies = "~r~A robbery is already in progress!", -- Message when the max count of active robberies at same time is reached
+        notEnoughCops = "~g~Too few ~r~cops ~g~ on duty!",  -- Message when not enough cops on duty
+    },
+    policeJobName = 'police', -- name of your police job
+    vehicleDeliveryPointBlipStyle = {  -- The style of the blip where the vehicle can delivered
+        display = 4,
+        sprite = 1,
+        scale = 1.0,
+        color = 5,
+        name = 'Delivery point',
+    },
+    vehicleRobbery = { -- Vehicle robber. Player get a car at point A and he must deliver to point B. A group of player can register for one rob.
+        {
+            category = 'small', -- category of rob. pay attention to "countOfRobsAtSameTime" config
+            startPositionCoordinate = vector3(759.01373291016, -3195.1799316406, 5.1683627128601), -- Where players can start the action
+            blip = { -- Blip for map
+                enable = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+                display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+                sprite = 665, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+                scale = 1.2, -- scale of blip
+                color = 1, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+                name = 'Vehicle theft', -- the name of the robbery
+            },
+            zone = { -- print a marker into game
+                enable = true, -- view zone in game
+                radius = 2.0, -- Radius that players must be to rob location
+                marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                rgba = { 255, 0, 0, 155 }, -- color of marker
+                subMarker = {
+                    marker = 4, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+                    posZ = 4.66, -- z position of the subMarker
+                },
+            },
+            ped = { -- place a ped into game
+                enabled = false, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
+                model = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
+                hash = 0xDB134533, -- see https://docs.fivem.net/docs/game-references/ped-models/
+                orientation = 96.0, -- the orientation of the ped
+            },
+            coolDownWhenSuccessfulInSeconds = 2700, -- this cool down starts when the rob was complete done
+            coolDownWhenAbortInSeconds = 1200, -- this cool down starts if the rob was started but was interrupted for some reasons
+            maxDurationTimeInSeconds = 900, -- How long a rob can take time in seconds. If the time is reached the rob stops and the abort cool down starts
+            coolDownCountAsActiveRob = 1200, -- How long a rob will count as active after a cool down has started
+            timeBeforeVehicleCanDeliveredInSeconds = 20, --After the player starts the rob an countdown starts. If the countdown is over the player gets the deliver location for the vehicle
+            requiredCountOfCops = 0, -- How many cops must be online for starting this rob
+            updateIntervalVehicleBlipForPoliceBeforeDeliverLocationIsKnownInSeconds = 10, -- Police get every configured seconds an position update of the vehicle
+            updateIntervalVehicleBlipForPoliceAfterDeliverLocationIsKnownInSecondsInSeconds = 3, -- Police get every configured seconds an position update of the vehicle
+            maxTimeInSecondsThatPlayerCanLeaveVehicle = 15, -- max time that no robber can be in the near of the vehicle
+            maxDistanceInMetersToVehicle = 5, -- how far the players can max be that the countdown "maxTimeInSecondsThatPlayerCanLeaveVehicle" starts
+            texts = {
+                startMessage = 'Press ~g~E ~w~for the theft.', -- the start message
+                robRuns = '~r~The robbery is already underway!', -- this message gets a player if a rob already runs
+                coolDownRuns = 'You still have to wait ~r~%s seconds ~w~.', -- This message get a player if a cool down runs
+                robNotActive = 'Raid is not active.', -- This message gets a player if he try to use a rob that is not active (most cases only for hackers)
+                robStarted = '~r~Alarm : ~b~Vehicle theft', -- This message will get the cops if a rob is started
+                robIsDone = '~g~Vehicle theft completed.', -- This message will get the cops if a rob is done
+                robWasUnsuccessful = '~b~vehicle theft ~r~aborted!', -- This message will get the cops if a rob was abort
+                robWasUnsuccessfulForYou = '~r~Vehicle theft was aborted!', -- This message will get the player if a rob was abort
+                youCanDeliverVehicle = '~g~ delivery point was marked.', -- if count down "timeBeforeVehicleCanDeliveredInSeconds" is over this message will be displayed to player
+                noRobberIsInNearOfVehicle = '~r~Go to the vehicle!', -- if player is to far from vehicle, he will get this message
+                robberIsInNearOfVehicle = '~g~Near enough to the vehicle.', -- if player is back to vehicle, he will get this message
+                locationToDeliverWillSearched = '~r~Delivery point is determined...' -- This message get the player when the rob starts
+            },
+            endPositions = { -- if count down "timeBeforeVehicleCanDeliveredInSeconds" is over, one of this locations will taken as deliver point
+                vector3(781.57574462891,-3221.61328125,5.9008178710938),
+                vector3(808.81451416016,-3200.1120605469,5.9008193016052),
+            },
+            endPositionRange = 3.0, -- How close the vehicle must be to the deliver point, vehicle will then successfully deliver
+            endPositionStyle = { -- style of the endposition
+                zone = { -- print a marker into game
+                    enable = true, -- view zone in game
+                    radius = 4.0, -- Radius that players must be to rob location
+                    marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                    rgba = { 255, 0, 0, 155 }, -- color of marker
+                    subMarker = {
+                        marker = 4, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+                        posZ = 4.66, -- z position of the subMarker
+                    },
+                },
+                ped = { -- creates a ped
+                    enabled = false, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
+                    model = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
+                    hash = 0xDB134533, -- see https://docs.fivem.net/docs/game-references/ped-models/
+                    orientation = 96.0, -- the orientation of the ped
+                },
+            },
+            vehicleHeading = 358.70, -- the heading of the vehicle when it spawns
+            vehicleSpawnPosition = vector3(771.59722900391, -3195.7397460938, 5.6554832458496), -- the spawn position of the vehicle
+            vehicles = {  -- what kind of vehicle can spawn
+                'police2',
+                'police3',
+            },
+            objects = { -- objects that will placed on map. You can leave it empty, if not needed
+                {
+                    name = "p_int_jewel_plant_02", -- the name of the object see for example: https://gta-objects.xyz/objects
+                    coordinate = vector3(-99.024681091309, 1910.0178222656, 195.59498596191), -- the position of object
+                    pitch = 0.0, -- The pitch of the object should be normally 0.0
+                    roll = 0.0, -- The roll of the object should be normally 0.0
+                    yaw = 60.0, -- rotation of the object
+                },
+            },
+            loot = { -- the loot that the player get when he deliver the vehicle
+                weapons = { -- optional, you can remove all entries
+                    amount = 1, -- how many weapons
+                    types = { -- if amount is 1, player get one random weapon. if amount is 2, player gets 2 random weapons... .
+                        {
+                            name = "weapon_smg",
+                            ammo = 0
+                        },
+                        {
+                            name = "weapon_assaultrifle",
+                            ammo = 0
+                        }
+                    }
+                },
+                items = { -- optional, you can remove all entries
+                    amount = 1, -- how many items
+                    types = { -- if amount is 1, player get one random items. if amount is 2, player gets 2 random items... .
+                        {
+                            name = "water",
+                            quantity = 2,
+                        },
+                        {
+                            name = "gold_ingot",
+                            quantity = 1,
+                        }
+                    }
+                },
+                money = { -- optional, you can remove all entries
+                    amount = 1,
+                    types = { -- if amount is 1, player get one random money/blackmoney. if amount is 2, player gets 2 random money/blackmoney... .
+                        {
+                            type = "blackmoney",
+                            amount = 200000
+                        },
+                        {
+                            type = "money",
+                            amount = 200000
+                        },
+                    }
+                },
+                cars = { -- optional, you can remove all entries
+                    types = {
+                        "police3",
+                    },
+                }
+            }
+        },
+    },
+    robberies = { -- A group of player can start the robber. They hav to go to different points and take the loot.
+        {
+            category = 'small', -- category of rob. pay attention to "countOfRobsAtSameTime" config
+            startPositionCoordinate = vector3(1730.0705566406, 6416.8208007813, 34.137265777588), -- position of the start location
+            blip = {
+                enable = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+                display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+                sprite = 110, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+                scale = 1.0, -- scale of blip
+                color = 1, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+                name = 'Ladenraub', -- the name of the robbery
+            },
+            zone = {
+                enable = true, -- view zone in game
+                radius = 2.0, -- Radius that players must be to rob location
+                marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                rgba = { 255, 0, 0, 155 }, -- color of marker
+                subMarker = {
+                    marker = 4, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+                    posZ = 4.66, -- z position of the subMarker
+                },
+            },
+            ped = {
+                enabled = false, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
+                model = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
+                hash = 0xDB134533, -- see https://docs.fivem.net/docs/game-references/ped-models/
+                orientation = 96.0, -- the orientation of the ped
+            },
+            coolDownWhenSuccessfulInSeconds = 2700, -- this cool down starts when the rob was complete done
+            coolDownWhenAbortInSeconds = 1200, -- this cool down starts if the rob was started but was interrupted for some reasons
+            coolDownCountAsActiveRob = 1200, -- this cool down controls if a finished rob counts in as active
+            maxDurationTimeInSeconds = 600, -- How long a rob can take time
+            requiredCountOfCops = 1, -- How many cops must be online for starting this rob
+            maxRangeToAnyPositionOfThisRob = 5, -- How far a player can be from start position, if player is to far, rob stops for this player
+            texts = {
+                startMessage = 'Press ~g~E~w~ to start the raid.', -- the start message for the rob
+                breakRob = 'Press X to cancel.',  -- this message gets a player if a rob already runs
+                robRuns = '~r~A robbery is already in progress.', -- This message get a player if a cool down runs
+                coolDownRuns = 'You still have to wait ~r~%s seconds~w~.', -- This message get a player if a cool down runs
+                breakLocation = 'Press ~g~E~w~ to steal the money.', -- the start message for a loot location
+                robNotActive = 'Raid is not active.', -- This message gets a player if he try to use a rob that is not active (most cases only for hackers)
+                anotherLocationIsInProgress = 'Another picture is being unscrewed.', -- another lot location is in progress (most cases only for hackers)
+                locationAlreadyEmpty = 'The loot is already gone.', -- Lot location was already robt (most cases only for hackers)
+                youAreNotARobber = '~r~You are not involved in this robbery.', -- Player is not involved in rob (most cases only for hackers)
+                robStarted = '~r~Alarm : ~b~Shop', -- This message will get the cops if a rob is started
+                robIsDone = '~r~The shop is now empty!', -- This message will get the cops if a rob is done
+                robWasUnsuccessful = '~b~Shop robbery ~r~ aborted!', -- This message will get the cops if a rob was abort
+                robWasUnsuccessfulForYou = '~r~Robbery is aborted for you!',  -- This message will get the player if a rob was abort
+                stopRobLocation = 'Press ~r~X~w~ to cancel.', -- When a player lot
+            },
+            objects = { -- objects that will placed on map. You can leave it empty, if not needed
+                {
+                    name = "p_int_jewel_plant_02", -- the name of the object see for example: https://gta-objects.xyz/objects
+                    coordinate = vector3(-99.024681091309, 1910.0178222656, 195.59498596191), -- the position of object
+                    pitch = 0.0, -- The pitch of the object should be normally 0.0
+                    roll = 0.0, -- The roll of the object should be normally 0.0
+                    yaw = 60.0, -- rotation of the object
+                },
+            },
+            positionsToRob = { -- at this positions the player can start looting
+                {
+                    coordinate = vector3(1734.8729248047, 6420.8637695313, 34.137265777588), -- position of the location
+                    zone = {
+                        radius = 1.0, -- Radius that players must be to rob location
+                        marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                        rgba = { 255, 0, 0, 155 }, -- color of marker
+                        subMarker = {
+                            marker = 4, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+                            posZ = 4.66, -- z position of the subMarker
+                        },
+                        enable = true, -- view zone in game
+                    },
+                    ped = {
+                        enabled = false, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
+                        model = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
+                        hash = 0xDB134533, -- see https://docs.fivem.net/docs/game-references/ped-models/
+                        orientation = 96.0, -- the orientation of the ped
+                    },
+                    animation = {  -- Animation config
+                        directory = "mini@repair", -- See animation types: https://github.com/KoningJesper/GTA-V-Animation-List/blob/master/Animation%201-999
+                        name = "fixing_a_ped", -- The name from animation
+                        repeatInMilliseconds = 6000, -- when should the animation repeated
+                    },
+                    duration = {
+                        minTimeInSeconds = 20, -- the min duration to loot one location
+                        maxTimeInSeconds = 30, -- the max duration to loot one location
+                    },
+                    loot = {
+                        weapons = { -- optional, you can remove all entries
+                            amount = 2, -- how many weapons
+                            types = { -- if amount is 1, player get one random weapon. if amount is 2, player gets 2 random weapons... .
+                                {
+                                    name = "weapon_crowbar",
+                                    ammo = 0
+                                },
+                                {
+                                    name = "weapon_crowbar",
+                                    ammo = 0
+                                }
+                            }
+                        },
+                        items = { -- optional, you can remove all entries
+                            amount = 1, -- how many items
+                            types = { -- if amount is 1, player get one random items. if amount is 2, player gets 2 random items... .
+                                {
+                                    name = "water",
+                                    quantity = 2,
+                                },
+                                {
+                                    name = "gold_ingot",
+                                    quantity = 1,
+                                }
+                            }
+                        },
+                        money = { -- optional, you can remove all entries
+                            amount = 1,
+                            types = { -- if amount is 1, player get one random money/blackmoney. if amount is 2, player gets 2 random money/blackmoney... .
+                                {
+                                    type = "blackmoney",
+                                    amount = 200000
+                                },
+                                {
+                                    type = "money",
+                                    amount = 200000
+                                },
+                            }
+                        },
+                        cars = { -- optional, you can remove all entries
+                            --    types = {
+                            --        "police3",
+                            --    },
+                            --    spawnPosition = vector3(-1624.1815185547,-1074.3209228516,13.027159690857),
+                            --    heading = 100.0
+                            --}
+                        }
+                    },
+                },
+                {
+                    coordinate = vector3(1736.7224121094,6419.5043945313,34.037216186523), -- position of the location
+                    zone = {
+                        radius = 1.0, -- Radius that players must be to rob location
+                        marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                        rgba = { 255, 0, 0, 155 }, -- color of marker
+                        subMarker = {
+                            marker = 4, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+                            posZ = 4.66, -- z position of the subMarker
+                        },
+                        enable = true, -- view zone in game
+                    },
+                    ped = {
+                        enabled = false, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
+                        model = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
+                        hash = 0xDB134533, -- see https://docs.fivem.net/docs/game-references/ped-models/
+                        orientation = 96.0, -- the orientation of the ped
+                    },
+                    animation = {  -- Animation config
+                        directory = "mini@repair", -- See animation types: https://github.com/KoningJesper/GTA-V-Animation-List/blob/master/Animation%201-999
+                        name = "fixing_a_ped", -- The name from animation
+                        repeatInMilliseconds = 6000, -- when should the animation repeated
+                    },
+                    duration = {
+                        minTimeInSeconds = 20, -- the min duration to loot one location
+                        maxTimeInSeconds = 30, -- the max duration to loot one location
+                    },
+                    loot = {
+                        weapons = { -- optional, you can remove all entries
+                            amount = 1, -- how many weapons
+                            types = { -- if amount is 1, player get one random weapon. if amount is 2, player gets 2 random weapons... .
+                                {
+                                    name = "weapon_crowbar",
+                                    ammo = 0
+                                },
+                                {
+                                    name = "weapon_crowbar",
+                                    ammo = 0
+                                }
+                            }
+                        },
+                        items = { -- optional, you can remove all entries
+                            amount = 1, -- how many items
+                            types = { -- if amount is 1, player get one random items. if amount is 2, player gets 2 random items... .
+                                {
+                                    name = "water",
+                                    quantity = 2,
+                                },
+                                {
+                                    name = "gold_ingot",
+                                    quantity = 1,
+                                }
+                            }
+                        },
+                        money = { -- optional, you can remove all entries
+                            amount = 1,
+                            types = { -- if amount is 1, player get one random money/blackmoney. if amount is 2, player gets 2 random money/blackmoney... .
+                                {
+                                    type = "blackmoney",
+                                    amount = 200000
+                                },
+                                {
+                                    type = "money",
+                                    amount = 200000
+                                },
+                            }
+                        },
+                        cars = { -- optional, you can remove all entries
+                            --types = {
+                            --    "police3",
+                            --},
+                            --spawnPosition = vector3(-1624.1815185547,-1074.3209228516,13.027159690857),
+                            --heading = 100.0
+                        }
+                    }
+                },
+            },
+        },
+    },
+}

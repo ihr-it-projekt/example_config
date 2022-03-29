@@ -11,8 +11,9 @@ Config = {
       }
     },
     Locale = 'de',
-    lobbyTimeInSec = 10, -- the time that players have to register
+    lobbyTimeInSec = 60, -- the time that players have to register
     useESX_XP = false, -- if you use esx_esp mod you have to set this value to true
+    useLegacyFuel = false, -- if you are using Legacy fuel mod, you have to set this value to true
     repairItemsCheckInSeconds = 30, -- how often repairKits will check, if they exist and new ones spawn
     events = {
         esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
@@ -88,7 +89,7 @@ Config = {
             },
             raceVariations = {
                 {
-                    canUseWeapons = false, -- Player can use their own weapons if scenario was selected 
+                    canUseWeapons = false, -- Player can use their own weapons if scenario was selected
                     repairKits = { -- items that are spawn what can players collect and repair the vehicle
                         stopSpawnAfterTimeInSeconds = 60, -- Spawn items will not longer spawn after this time is exceeded
                         items = { -- you can configure as many items you want
@@ -265,7 +266,8 @@ Config = {
                 enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
                 pedModel = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
                 pedHash = 0xDB134533, -- see https://docs.fivem.net/docs/game-references/ped-models/
-                pedOrientation = 170.0  -- the orientation of the ped
+                pedOrientation = 170.0,  -- the orientation of the ped
+                isInArena = true, -- Ped is placed in arena
             },
             startRaceLocation = { --Where players can start the race
                 coordinate = vector3(2842.162109375, -3910.6218261719, 151.0086517334), -- position of the location
@@ -286,7 +288,8 @@ Config = {
                 enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
                 pedModel = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
                 pedHash = 0xDB134533, -- see https://docs.fivem.net/docs/game-references/ped-models/
-                pedOrientation = 84.0  -- the orientation of the ped
+                pedOrientation = 84.0,  -- the orientation of the ped
+                isInArena = true, -- Ped is placed in arena
             },
             enterPoint = { -- is optional but needed when you use leavePoint, can be used to teleport players into a building
                 coordinate = vector3(-278.54107666016, -1919.0435791016, 28.946044921875), -- position of the location
@@ -307,7 +310,7 @@ Config = {
                 enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
                 pedModel = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
                 pedHash = 0xDB134533, -- see https://docs.fivem.net/docs/game-references/ped-models/
-                pedOrientation = 339.0  -- the orientation of the ped
+                pedOrientation = 339.0,  -- the orientation of the ped
             },
             leavePoint = { -- optional, but needed if you use enterPoint, teleports player back to entrypoint
                 coordinate = vector3(2840.0615234375, -3917.3295898438, 155.87657165527), -- position of the location
@@ -328,7 +331,8 @@ Config = {
                 enablePed = false, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
                 pedModel = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
                 pedHash = 0xDB134533, -- see https://docs.fivem.net/docs/game-references/ped-models/
-                pedOrientation = 84.0  -- the orientation of the ped
+                pedOrientation = 84.0,  -- the orientation of the ped
+                isInArena = true, -- Ped is placed in arena
             },
             highScore = { -- Where player can see her race results
                 coordinate = vector3(2835.6101074219, -3910.6064453125, 151.00854492188), -- position of the location
@@ -349,7 +353,8 @@ Config = {
                 enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
                 pedModel = "a_m_y_juggalo_01", -- ped model, see https://docs.fivem.net/docs/game-references/ped-models/
                 pedHash = 0x91CA3E2C, -- ped hash, see https://docs.fivem.net/docs/game-references/ped-models/
-                pedOrientation = 272.0 -- orientation of the ped
+                pedOrientation = 272.0, -- orientation of the ped
+                isInArena = true, -- Ped is placed in arena
             },
             arena = { -- The place where the race happens
                 coordinate = vector3(2799.7351074219, -3799.8552246094, 144.1003036499), -- should be the midpoint of the location
@@ -362,7 +367,7 @@ Config = {
             },
             raceVariations = {
                 {
-                    canUseWeapons = false, -- Player can use their own weapons if scenario was selected 
+                    canUseWeapons = false, -- Player can use their own weapons if scenario was selected
                     displayName = "Set_Dystopian_01", -- must be unique
                     map = "Set_Dystopian_01",
                     scene = "dystopian",
@@ -503,7 +508,7 @@ Config = {
                     objectsToSpawnFile = 'track.xml', -- Put xml file into tracks folder. Change filename here, must be the same as you have in tracks folder. You can find tracks here. https://github.com/blattersturm/cfx-object-loader/tree/master/%5Bexamples%5D
                 },
                 {
-                    canUseWeapons = false, -- Player can use their own weapons if scenario was selected 
+                    canUseWeapons = false, -- Player can use their own weapons if scenario was selected
                     displayName = "Set_Dystopian_02",
                     map = "Set_Dystopian_02",
                     scene = "dystopian",

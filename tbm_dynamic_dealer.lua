@@ -14,10 +14,17 @@ Config.qbCore = { -- only important if you are using qb core framework
     blackMoneyName = 'black_money' -- Be sure you have configured black money in qb core
 }
 
+Config.useOxmysql = false -- if you are using https://github.com/overextended/oxmysql
+
 Config.esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
     setJob = 'esx:setJob',
     playerLoaded = 'esx:playerLoaded',
+    sendMessage = 'esx:showNotification',
 }
+
+Config.viewRangeForMarkers = 100 -- Player must be in this range that all markers will be rendered
+
+Config.policeJobName = 'police' -- Name of your police job
 
 Config.TraderLocations = {
     {
@@ -28,7 +35,7 @@ Config.TraderLocations = {
         sprite = 378,-- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
         marker = 23, -- marker type see https://docs.fivem.net/docs/game-references/blips/
         scale = 1.0, -- scale of blip
-        radius = 1.0, -- Radius of the action to open the dealer
+        radius = 10.0, -- Radius of the action to open the dealer
         viewZone = true, -- view zone in game
         rgba = { 120, 255, 120, 155 }, -- color of marker
         subMarker = {
@@ -49,14 +56,22 @@ Config.TraderLocations = {
                 playerCanNotBuy = false, -- player can not buy the item if value is true
             }
         },
-        enablePed = false, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
+        enablePed = false, -- Enable the ped. pedModel and pedOrientation is needed if you enable this options
         pedModel = "mp_m_freemode_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
-        pedHash = 0x705E61F2, -- see https://docs.fivem.net/docs/game-references/ped-models/
         pedOrientation = 0.0,  -- the orientation of the ped
         useMoneyFrom = { -- options are "player" and "bank", the order is important. First account will always taken for first action
             player = false, -- enable this option with true, disable with false
             bank = true, -- enable this option with true, disable with false
-        }
+        },
+        isJobTrader = false, -- is this trader only for a job ?
+        job = "police", -- what is the job when trade is a job a job trader
+        jobGradesExclude = { -- which job grades have no access to the trader, if it is empty, every job grad from configured job can access
+            "recruit",
+        },
+        useJobMoneyAccountWhenPlayerSell = true, -- this option enable when player sell items, the money will transferred to job bank account
+        jobAccountName = 'police', -- the job account name
+        onlyJobAccountRelatedPlayerCanSell = false, -- only player who has the job can sell items here
+        requiredCountOfCops = 1, -- how many cops must be online that player can trade at that location
     },
     {
         label = 'Usage items',
@@ -66,7 +81,7 @@ Config.TraderLocations = {
         sprite = 162,
         marker = 23,
         scale = 4.0,
-        radius = 1.0,
+        radius = 2.0,
         viewZone = false,
         rgba = { 120, 255, 120, 155 },
         subMarker = {
@@ -87,7 +102,6 @@ Config.TraderLocations = {
         },
         enablePed = true, -- enable peds on trade location
         pedModel = "mp_m_freemode_01",
-        pedHash = 0x705E61F2,
         pedOrientation = 120.0,
         useMoneyFrom = { -- options are "player" and "bank", the order is important. First account will always taken for first action
             player = true, -- enable this option with true, disable with false
@@ -97,7 +111,8 @@ Config.TraderLocations = {
         job = "police", -- what is the job when trade is a job a job trader
         jobGradesExclude = { -- which job grades have no access to the trader, if it is empty, every job grad from configured job can access
             "recruit",
-        }
+        },
+        requiredCountOfCops = 0, -- how many cops must be online that player can trade at that location
     }
 }
 

@@ -1,27 +1,35 @@
 Config = {
     developMode = false, -- you for example start race alone and you will see the arena marker, objects, start locations and repair kit locations
     developModeConfig = {
-      tracks = {
-          {
-              raceVariationIndex = 1
-          },
-          {
-              raceVariationIndex = 2
-          }
-      }
+        tracks = {
+            {
+                raceVariationIndex = 1
+            },
+            {
+                raceVariationIndex = 1
+            }
+        }
     },
-    Locale = 'de',
-    lobbyTimeInSec = 60, -- the time that players have to register
+    viewRangeForMarkers = 200, -- Player must be in this range that all markers will be rendered
+    Locale = 'en',
+    lobbyTimeInSec = 5, -- the time that players have to register
     useESX_XP = false, -- if you use esx_esp mod you have to set this value to true
     useLegacyFuel = false, -- if you are using Legacy fuel mod, you have to set this value to true
     repairItemsCheckInSeconds = 30, -- how often repairKits will check, if they exist and new ones spawn
+    useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
+    qbCoreExportName = 'qb-core', -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
     events = {
         esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
         stopRealisticVehicleDamage = 'TBM_DD::StopRealisticVehicleDamage',
         startRealisticVehicleDamage = 'TBM_DD::StartRealisticVehicleDamage',
         seatBeltPlayer = 'TBM_DD::SeatBeltPlayer',
     },
-
+    esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
+        setJob = 'esx:setJob',
+        playerLoaded = 'esx:playerLoaded',
+        sendMessage = 'esx:showNotification',
+        addGroupCommand = 'es:addGroupCommand',
+    },
     tracks = {
         {
             canUseTeleportToArenaLeavePoint = false, -- there is an emergency teleport that players can use in arena area, if they have not started the race to teleport to leave point of arena.
@@ -29,11 +37,11 @@ Config = {
             minCountOfPlayers = 2, -- How many players are needed for the race
             playerMustUseTheirOwnCar = false, -- if true players need to be in a vehicle to register for that race, not recommended if you use a location where players can not escape with her vehicle
             raceStartCountdownLength = 3, -- length of countdown before race
-            raceFee = 5000, -- how mush the player must pay for the race
+            raceFee = 10000, -- how mush the player must pay for the race
             howManyPlayersGetWin = 2, -- if multiplayer race they can get a price. if you enter 3, 3 player will get a price.
             winRate = 0.8, -- How high is the percentage of collected raceFees that a player can win.
             maxRaceDurationInSeconds = 900, -- Max duration of an race. If the duration is reach. The race will for all left players stopped.
-            useOwnGameInstance = true, -- Use a separate game instance for the race. So race runs complete seperated!! No disturbing the other players
+            useOwnGameInstance = false, -- Use a separate game instance for the race. So race runs complete seperated!! No disturbing the other players
             xp = 1000, -- if you use esx_esp mod you will get xp when you finish the track, first place will become 100% second place get 50%, third place 33% ... depends on howManyPlayersGetWin config
             neededXP = 0, -- if you use esx_esp mod, players need this level of xp to can drive this track
             startRaceLocation = { --Where players can start the race
@@ -238,9 +246,9 @@ Config = {
             maxPortHeightRange = 40,
             minCountOfPlayers = 2, -- How many players are needed for the race
             playerMustUseTheirOwnCar = false, -- if true players need to be in a vehicle to register for that race, not recommended if you use a location where players can not escape with her vehicle
-            raceStartCountdownLength = 3, -- length of countdown before race
-            raceFee = 5000, -- how mush the player must pay for the race
-            howManyPlayersGetWin = 2, -- if multiplayer race they can get a price. if you enter 3, 3 player will get a price.
+            raceStartCountdownLength = 5, -- length of countdown before race
+            raceFee = 10000, -- how mush the player must pay for the race
+            howManyPlayersGetWin = 0, -- if multiplayer race they can get a price. if you enter 3, 3 player will get a price.
             winRate = 0.8, -- How high is the percentage of collected raceFees that a player can win.
             maxRaceDurationInSeconds = 900, -- Max duration of an race. If the duration is reach. The race will for all left players stopped.
             useOwnGameInstance = false, -- Use a separate game instance for the race. So race runs complete seperated!! No disturbing the other players
@@ -310,7 +318,7 @@ Config = {
                 enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
                 pedModel = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
                 pedHash = 0xDB134533, -- see https://docs.fivem.net/docs/game-references/ped-models/
-                pedOrientation = 339.0,  -- the orientation of the ped
+                pedOrientation = 339.0, -- the orientation of the ped
             },
             leavePoint = { -- optional, but needed if you use enterPoint, teleports player back to entrypoint
                 coordinate = vector3(2840.0615234375, -3917.3295898438, 155.87657165527), -- position of the location
@@ -319,7 +327,7 @@ Config = {
                 sprite = 127, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
                 scale = 1.0, -- scale of blip
                 color = 1, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
-                name = 'Big Arena Enter', -- the name of the track, if you change this value you also have to change it in tbm_race database table, otherwise it will create new database entries
+                name = 'Arena Ausgang', -- the name of the track, if you change this value you also have to change it in tbm_race database table, otherwise it will create new database entries
                 radius = 2.0, -- Radius of the action to register
                 marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/markers/
                 rgba = { 120, 255, 120, 155 }, -- color of marker
@@ -331,7 +339,7 @@ Config = {
                 enablePed = false, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
                 pedModel = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
                 pedHash = 0xDB134533, -- see https://docs.fivem.net/docs/game-references/ped-models/
-                pedOrientation = 84.0,  -- the orientation of the ped
+                pedOrientation = 84.0, -- the orientation of the ped
                 isInArena = true, -- Ped is placed in arena
             },
             highScore = { -- Where player can see her race results
@@ -372,7 +380,7 @@ Config = {
                     map = "Set_Dystopian_01",
                     scene = "dystopian",
                     repairKits = { -- items that are spawn what can players collect and repair the vehicle
-                        stopSpawnAfterTimeInSeconds = 60, -- Spawn items will not longer spawn after this time is exceeded
+                        stopSpawnAfterTimeInSeconds = 120, -- Spawn items will not longer spawn after this time is exceeded
                         items = { -- you can configure as many items you want
                             {
                                 maxValue = 50, -- max repair value of vehicle. Highest health of vehicle is 1000.0
@@ -431,70 +439,26 @@ Config = {
                         },
                     },
                     vehicleSpawn = {  -- race starting position
-                        {
-                            coord = vector3(2917.0405273438, -3867.8869628906, 139.82719421387), -- Coordinate of starting points, you can add so many as you want
-                            heading = 76.3,
-                        },
-                        {
-                            coord = vector3(2925.2810058594, -3807.7954101563, 138.29689025879), -- Coordinate of starting points, you can add so many as you want
-                            heading = 82.0,
-                        },
-                        {
-                            coord = vector3(2658.9555664063, -3810.0908203125, 127.84578704834), -- Coordinate of starting points, you can add so many as you want
-                            heading = 191.0,
-                        },
-                        {
-                            coord = vector3(2921.7604980469, -3737.0571289063, 139.82232666016), -- Coordinate of starting points, you can add so many as you want
-                            heading = 92.0,
-                        },
-                        {
-                            coord = vector3(2694.7937011719, -3734.1938476563, 139.82333374023), -- Coordinate of starting points, you can add so many as you want
-                            heading = 267.0,
-                        },
-                        {
-                            coord = vector3(2667.3493652344, -3801.65625, 139.02680969238), -- Coordinate of starting points, you can add so many as you want
-                            heading = 269.0,
-                        },
-                        {
-                            coord = vector3(2693.8315429688, -3866.3071289063, 139.82327270508), -- Coordinate of starting points, you can add so many as you want
-                            heading = 280.0,
-                        },
-                        {
-                            coord = vector3(2738.591796875, -3800.0815429688, 106.46014404297), -- Coordinate of starting points, you can add so many as you want
-                            heading = 183.0,
-                        },
-                        {
-                            coord = vector3(2930.408203125, -3796.3122558594, 127.83016967773), -- Coordinate of starting points, you can add so many as you want
-                            heading = 17.0,
-                        },
-                        {
-                            coord = vector3(2811.7243652344, -3801.5053710938, 103.83113861084), -- Coordinate of starting points, you can add so many as you want
-                            heading = 88.0,
-                        },
-                        {
-                            coord = vector3(2861.3002929688, -3802.8835449219, 106.4937286377), -- Coordinate of starting points, you can add so many as you want
-                            heading = 179.0,
-                        },
-                        {
-                            coord = vector3(2794.8093261719, -3912.9006347656, 139.48294067383), -- Coordinate of starting points, you can add so many as you want
-                            heading = 0.0,
-                        },
-                        {
-                            coord = vector3(2764.62890625, -3912.7858886719, 139.482849121093), -- Coordinate of starting points, you can add so many as you want
-                            heading = 0.0,
-                        },
-                        {
-                            coord = vector3(2765.1176757813, -3687.2468261719, 139.74066162109), -- Coordinate of starting points, you can add so many as you want
-                            heading = 180.0,
-                        },
-                        {
-                            coord = vector3(2805.1870117188, -3687.2629394531, 139.7409362793), -- Coordinate of starting points, you can add so many as you want
-                            heading = 180.0,
-                        },
-                        {
-                            coord = vector3(2835.1240234375, -3687.2194824219, 139.74090576172), -- Coordinate of starting points, you can add so many as you want
-                            heading = 180.0,
-                        },
+                        { coord = vector3(2844.9890136719, -3913.4768066406, 140.0), heading = 351.49606323242 },
+                        { coord = vector3(2835.1911621094, -3913.1472167969, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2824.8000488281, -3913.0681152344, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2814.9494628906, -3912.8308105469, 140.0), heading = 354.33071899414 },
+                        { coord = vector3(2804.9538574219, -3912.8439941406, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2795.0241699219, -3912.9890136719, 140.0), heading = 354.33071899414 },
+                        { coord = vector3(2784.8571777344, -3913.0021972656, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2775.0856933594, -3912.5935058594, 140.0), heading = 0.0 },
+                        { coord = vector3(2765.0637207031, -3912.7253417969, 140.0), heading = 0.0 },
+                        { coord = vector3(2755.0681152344, -3912.7648925781, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2754.8439941406, -3687.2175292969, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2765.0241699219, -3687.2966308594, 140.0), heading = 175.74803161621 },
+                        { coord = vector3(2775.0197753906, -3687.1120605469, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2784.9890136719, -3687.1779785156, 140.0), heading = 170.07873535156 },
+                        { coord = vector3(2794.9846191406, -3687.1516113281, 140.0), heading = 167.24407958984 },
+                        { coord = vector3(2805.0197753906, -3687.1516113281, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2815.0285644531, -3687.0725097656, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2824.9055175781, -3687.1516113281, 140.0), heading = 175.74803161621 },
+                        { coord = vector3(2834.9802246094, -3686.9934082031, 140.0), heading = 167.24407958984 },
+                        { coord = vector3(2844.8703613281, -3687.0725097656, 140.0), heading = 184.25196838379 },
                     },
                     objectsToSpawn = { -- not required, if you want to spawn some objects only for the race
                         --    {
@@ -513,7 +477,7 @@ Config = {
                     map = "Set_Dystopian_02",
                     scene = "dystopian",
                     repairKits = { -- items that are spawn what can players collect and repair the vehicle
-                        stopSpawnAfterTimeInSeconds = 60, -- Spawn items will not longer spawn after this time is exceeded
+                        stopSpawnAfterTimeInSeconds = 120, -- Spawn items will not longer spawn after this time is exceeded
                         items = { -- you can configure as many items you want
                             {
                                 maxValue = 50, -- max repair value of vehicle. Highest health of vehicle is 1000.0
@@ -527,15 +491,15 @@ Config = {
                             },
                         },
                         repairKitPositions = { -- positions of the repair items
-                            vector3(2884.3647460938,-3813.0593261719,142.00512695312),
-                            vector3(2823.9296875,-3812.0043945312,140.45495605469),
-                            vector3(2860.7604980469,-3872.8220214844,139.66296386719),
-                            vector3(2750.6506347656,-3782.5847167969,139.66296386719),
-                            vector3(2722.1274414062,-3813.0461425781,141.31433105469),
-                            vector3(2765.4196777344,-3875.578125,139.73034667969),
-                            vector3(2951.3669433594,-3759.3889160156,140.16845703125),
-                            vector3(2636.5187988281,-3783.8901367188,140.01684570312),
-                            vector3(2686.4968261719,-3746.0834960938,140.25280761719),
+                            vector3(2884.3647460938, -3813.0593261719, 142.00512695312),
+                            vector3(2823.9296875, -3812.0043945312, 140.45495605469),
+                            vector3(2860.7604980469, -3872.8220214844, 139.66296386719),
+                            vector3(2750.6506347656, -3782.5847167969, 139.66296386719),
+                            vector3(2722.1274414062, -3813.0461425781, 141.31433105469),
+                            vector3(2765.4196777344, -3875.578125, 139.73034667969),
+                            vector3(2951.3669433594, -3759.3889160156, 140.16845703125),
+                            vector3(2636.5187988281, -3783.8901367188, 140.01684570312),
+                            vector3(2686.4968261719, -3746.0834960938, 140.25280761719),
                         },
                         maxRepairItemsAtSameTime = 1, -- The max. number of repairKits at the same time
                     },
@@ -568,32 +532,26 @@ Config = {
                         },
                     },
                     vehicleSpawn = {  -- race starting position
-                        {coord = vector3(2681.7495117188,-3777.3625488281,144.54943847656), heading = 133.22833251953},
-                        {coord = vector3(2924.6242675781,-3807.4416503906,146.72302246094), heading = 124.72441101074},
-                        {coord = vector3(2717.8022460938,-3724.6945800781,139.54504394531), heading = 85.039367675781},
-                        {coord = vector3(2775.0856933594,-3688.03515625,140.0), heading = 181.41732788086},
-                        {coord = vector3(2764.5627441406,-3685.7670898438,140.0), heading = 175.74803161621},
-                        {coord = vector3(2784.369140625,-3688.4438476562,140.0), heading = 172.91339111328},
-                        {coord = vector3(2795.0769042969,-3687.1252441406,140.0), heading = 167.24407958984},
-                        {coord = vector3(2805.1252441406,-3687.2834472656,140.0), heading = 170.07873535156},
-                        {coord = vector3(2815.2922363281,-3687.2175292969,140.0), heading = 170.07873535156},
-                        {coord = vector3(2824.9582519531,-3687.4680175781,140.0), heading = 172.91339111328},
-                        {coord = vector3(2901.7978515625,-3730.9318847656,140.21899414062), heading = 133.22833251953},
-                        {coord = vector3(2835.3625488281,-3686.9011230469,140.0), heading = 181.41732788086},
-                        {coord = vector3(2844.7912597656,-3686.8483886719,140.0), heading = 184.25196838379},
-                        {coord = vector3(2844.9626464844,-3913.3054199219,140.0), heading = 354.33071899414},
-                        {coord = vector3(2804.6770019531,-3789.771484375,139.10693359375), heading = 215.43309020996},
-                        {coord = vector3(2648.1494140625,-3844.6945800781,140.11791992188), heading = 280.62991333008},
-                        {coord = vector3(2835.0856933594,-3912.9890136719,140.0), heading = 345.82678222656},
-                        {coord = vector3(2824.9450683594,-3911.7495117188,140.0), heading = 357.16534423828},
-                        {coord = vector3(2814.7780761719,-3912.1977539062,140.0), heading = 0.0},
-                        {coord = vector3(2804.9934082031,-3911.89453125,140.0), heading = 357.16534423828},
-                        {coord = vector3(2794.9450683594,-3912.8967285156,140.0), heading = 357.16534423828},
-                        {coord = vector3(2784.9890136719,-3912.5407714844,140.0), heading = 2.8346455097198},
-                        {coord = vector3(2775.0065917969,-3912.7517089844,140.0), heading = 357.16534423828},
-                        {coord = vector3(2764.9055175781,-3912.7912597656,140.0), heading = 357.16534423828},
-                        {coord = vector3(2754.9099121094,-3912.7780761719,140.0), heading = 354.33071899414},
-
+                        { coord = vector3(2844.9890136719, -3913.4768066406, 140.0), heading = 351.49606323242 },
+                        { coord = vector3(2835.1911621094, -3913.1472167969, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2824.8000488281, -3913.0681152344, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2814.9494628906, -3912.8308105469, 140.0), heading = 354.33071899414 },
+                        { coord = vector3(2804.9538574219, -3912.8439941406, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2795.0241699219, -3912.9890136719, 140.0), heading = 354.33071899414 },
+                        { coord = vector3(2784.8571777344, -3913.0021972656, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2775.0856933594, -3912.5935058594, 140.0), heading = 0.0 },
+                        { coord = vector3(2765.0637207031, -3912.7253417969, 140.0), heading = 0.0 },
+                        { coord = vector3(2755.0681152344, -3912.7648925781, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2754.8439941406, -3687.2175292969, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2765.0241699219, -3687.2966308594, 140.0), heading = 175.74803161621 },
+                        { coord = vector3(2775.0197753906, -3687.1120605469, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2784.9890136719, -3687.1779785156, 140.0), heading = 170.07873535156 },
+                        { coord = vector3(2794.9846191406, -3687.1516113281, 140.0), heading = 167.24407958984 },
+                        { coord = vector3(2805.0197753906, -3687.1516113281, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2815.0285644531, -3687.0725097656, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2824.9055175781, -3687.1516113281, 140.0), heading = 175.74803161621 },
+                        { coord = vector3(2834.9802246094, -3686.9934082031, 140.0), heading = 167.24407958984 },
+                        { coord = vector3(2844.8703613281, -3687.0725097656, 140.0), heading = 184.25196838379 },
                     },
                     objectsToSpawn = { -- not required, if you want to spawn some objects only for the race
                         --    {
@@ -605,7 +563,362 @@ Config = {
                         --    }
                     },
                     objectsToSpawnFile = 'track.xml', -- Put xml file into tracks folder. Change filename here, must be the same as you have in tracks folder. You can find tracks here. https://github.com/blattersturm/cfx-object-loader/tree/master/%5Bexamples%5D
-                }
+                },
+                {
+                    canUseWeapons = false, -- Player can use their own weapons if scenario was selected
+                    displayName = "Set_Dystopian_03",
+                    map = "Set_Dystopian_03",
+                    scene = "dystopian",
+                    repairKits = { -- items that are spawn what can players collect and repair the vehicle
+                        stopSpawnAfterTimeInSeconds = 120, -- Spawn items will not longer spawn after this time is exceeded
+                        items = { -- you can configure as many items you want
+                            {
+                                maxValue = 50, -- max repair value of vehicle. Highest health of vehicle is 1000.0
+                                minValue = 10, -- min repair value of vehicle. Highest health of vehicle is 1000.0
+                                marker = 3, -- checkpoints type see https://docs.fivem.net/docs/game-references/checkpoints/
+                                style = {
+                                    scale = 2.0, -- radius of marker and the near that the player must have to take the item
+                                    rgba = { 10, 29, 200, 155 }, -- color of marker
+                                },
+                                viewZone = true -- make the marker invisible
+                            },
+                        },
+                        repairKitPositions = {
+                            vector3(2838.8571777344,-3875.525390625,143.01611328125),
+                            vector3(2741.578125,-3877.3317871094,144.88647460938),
+                            vector3(2773.4240722656,-3796.1669921875,159.30993652344),
+                            vector3(2836.8923339844,-3796.8000488281,159.04028320312),
+                            vector3(2857.7407226562,-3724.3515625,143.63952636719),
+                            vector3(2800.5759277344,-3801.7583007812,137.75903320312),
+                            vector3(2652.3955078125,-3761.6440429688,144.111328125),
+                            vector3(2764.0747070312,-3720.9758300781,145.44250488281),
+                            vector3(2888.3471679688,-3849.8901367188,140.87622070312),
+                            vector3(2746.2856445312,-3830.5187988281,140.97729492188),
+                            vector3(2715.5078125,-3776.5451660156,144.33044433594),
+                            vector3(2753.525390625,-3774.7253417969,144.16186523438),
+                            vector3(2920.4438476562,-3765.1779785156,142.34216308594),
+                        },
+                        maxRepairItemsAtSameTime = 1, -- The max. number of repairKits at the same time
+                    },
+                    vehicles = {
+                        {
+                            type = 'marshall', -- vehicle type see https://wiki.rage.mp/index.php?title=Vehicles
+                            fuelLevel = 1000.0, -- the fuel level will be set at every checkpoint to this value
+                            mods = { -- Mods to apply to the racing vehicle.
+                                engine = 2,
+                                brakes = 2,
+                                transmission = 2,
+                                suspension = 3,
+                                turbo = true,
+                                livery = 0
+                            },
+                            canLeaveVehicle = false, -- is recommended to set to true if you use a motorcycle, attention players can die at the race
+                        },
+                        {
+                            type = 'monster', -- vehicle type see https://wiki.rage.mp/index.php?title=Vehicles
+                            fuelLevel = 1000.0, -- the fuel level will be set at every checkpoint to this value
+                            mods = { -- Mods to apply to the racing vehicle.
+                                engine = 2,
+                                brakes = 2,
+                                transmission = 2,
+                                suspension = 3,
+                                turbo = true,
+                                livery = 0
+                            },
+                            canLeaveVehicle = false, -- is recommended to set to true if you use a motorcycle, attention players can die at the race
+                        },
+                    },
+                    vehicleSpawn = {  -- race starting position
+                        { coord = vector3(2844.9890136719, -3913.4768066406, 140.0), heading = 351.49606323242 },
+                        { coord = vector3(2835.1911621094, -3913.1472167969, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2824.8000488281, -3913.0681152344, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2814.9494628906, -3912.8308105469, 140.0), heading = 354.33071899414 },
+                        { coord = vector3(2804.9538574219, -3912.8439941406, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2795.0241699219, -3912.9890136719, 140.0), heading = 354.33071899414 },
+                        { coord = vector3(2784.8571777344, -3913.0021972656, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2775.0856933594, -3912.5935058594, 140.0), heading = 0.0 },
+                        { coord = vector3(2765.0637207031, -3912.7253417969, 140.0), heading = 0.0 },
+                        { coord = vector3(2755.0681152344, -3912.7648925781, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2754.8439941406, -3687.2175292969, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2765.0241699219, -3687.2966308594, 140.0), heading = 175.74803161621 },
+                        { coord = vector3(2775.0197753906, -3687.1120605469, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2784.9890136719, -3687.1779785156, 140.0), heading = 170.07873535156 },
+                        { coord = vector3(2794.9846191406, -3687.1516113281, 140.0), heading = 167.24407958984 },
+                        { coord = vector3(2805.0197753906, -3687.1516113281, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2815.0285644531, -3687.0725097656, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2824.9055175781, -3687.1516113281, 140.0), heading = 175.74803161621 },
+                        { coord = vector3(2834.9802246094, -3686.9934082031, 140.0), heading = 167.24407958984 },
+                        { coord = vector3(2844.8703613281, -3687.0725097656, 140.0), heading = 184.25196838379 },
+                    },
+                    objectsToSpawn = { -- not required, if you want to spawn some objects only for the race
+                        --    {
+                        --        coords = vector3(1057.5803222656, 103.69068908691, 81.261016845703),
+                        --        pitch = 0.0, -- The pitch of the object should be normally 0.0
+                        --        roll = 0.0, -- The roll of the object should be normally 0.0
+                        --        yaw = 60.0, -- rotation of the object
+                        --        name = "lts_prop_lts_offroad_tyres01", -- the model name, can be taken from: https://gta-objects.xyz/objects
+                        --    }
+                    },
+                    objectsToSpawnFile = 'track.xml', -- Put xml file into tracks folder. Change filename here, must be the same as you have in tracks folder. You can find tracks here. https://github.com/blattersturm/cfx-object-loader/tree/master/%5Bexamples%5D
+                },
+                {
+                    canUseWeapons = false, -- Player can use their own weapons if scenario was selected
+                    displayName = "Set_Dystopian_05",
+                    map = "Set_Dystopian_05",
+                    scene = "dystopian",
+                    repairKits = { -- items that are spawn what can players collect and repair the vehicle
+                        stopSpawnAfterTimeInSeconds = 120, -- Spawn items will not longer spawn after this time is exceeded
+                        items = { -- you can configure as many items you want
+                            {
+                                maxValue = 50, -- max repair value of vehicle. Highest health of vehicle is 1000.0
+                                minValue = 10, -- min repair value of vehicle. Highest health of vehicle is 1000.0
+                                marker = 3, -- checkpoints type see https://docs.fivem.net/docs/game-references/checkpoints/
+                                style = {
+                                    scale = 2.0, -- radius of marker and the near that the player must have to take the item
+                                    rgba = { 10, 29, 200, 155 }, -- color of marker
+                                },
+                                viewZone = true -- make the marker invisible
+                            },
+                        },
+                        repairKitPositions = {
+                            vector3(2750.439453125,-3874.4174804688,140.28649902344),
+                            vector3(2703.9033203125,-3849.2834472656,139.91577148438),
+                            vector3(2838.3295898438,-3725.0637207031,140.03369140625),
+                            vector3(2922.9890136719,-3760.7209472656,140.18530273438),
+                            vector3(2814.0659179688,-3808.1538085938,132.95678710938),
+                            vector3(2691.4548339844,-3745.3054199219,142.76342773438),
+                            vector3(2923.6879882812,-3854.0439453125,139.91577148438),
+                            vector3(2803.859375,-3915.0725097656,140.0),
+                            vector3(2775.4946289062,-3687.6396484375,140.0),
+                            vector3(2777.2087402344,-3754.0747070312,135.72009277344),
+                        },
+                        maxRepairItemsAtSameTime = 1, -- The max. number of repairKits at the same time
+                    },
+                    vehicles = {
+                        {
+                            type = 'marshall', -- vehicle type see https://wiki.rage.mp/index.php?title=Vehicles
+                            fuelLevel = 1000.0, -- the fuel level will be set at every checkpoint to this value
+                            mods = { -- Mods to apply to the racing vehicle.
+                                engine = 2,
+                                brakes = 2,
+                                transmission = 2,
+                                suspension = 3,
+                                turbo = true,
+                                livery = 0
+                            },
+                            canLeaveVehicle = false, -- is recommended to set to true if you use a motorcycle, attention players can die at the race
+                        },
+                        {
+                            type = 'monster', -- vehicle type see https://wiki.rage.mp/index.php?title=Vehicles
+                            fuelLevel = 1000.0, -- the fuel level will be set at every checkpoint to this value
+                            mods = { -- Mods to apply to the racing vehicle.
+                                engine = 2,
+                                brakes = 2,
+                                transmission = 2,
+                                suspension = 3,
+                                turbo = true,
+                                livery = 0
+                            },
+                            canLeaveVehicle = false, -- is recommended to set to true if you use a motorcycle, attention players can die at the race
+                        },
+                    },
+                    vehicleSpawn = {  -- race starting position
+                        { coord = vector3(2844.9890136719, -3913.4768066406, 140.0), heading = 351.49606323242 },
+                        { coord = vector3(2835.1911621094, -3913.1472167969, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2824.8000488281, -3913.0681152344, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2814.9494628906, -3912.8308105469, 140.0), heading = 354.33071899414 },
+                        { coord = vector3(2804.9538574219, -3912.8439941406, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2795.0241699219, -3912.9890136719, 140.0), heading = 354.33071899414 },
+                        { coord = vector3(2784.8571777344, -3913.0021972656, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2775.0856933594, -3912.5935058594, 140.0), heading = 0.0 },
+                        { coord = vector3(2765.0637207031, -3912.7253417969, 140.0), heading = 0.0 },
+                        { coord = vector3(2755.0681152344, -3912.7648925781, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2754.8439941406, -3687.2175292969, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2765.0241699219, -3687.2966308594, 140.0), heading = 175.74803161621 },
+                        { coord = vector3(2775.0197753906, -3687.1120605469, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2784.9890136719, -3687.1779785156, 140.0), heading = 170.07873535156 },
+                        { coord = vector3(2794.9846191406, -3687.1516113281, 140.0), heading = 167.24407958984 },
+                        { coord = vector3(2805.0197753906, -3687.1516113281, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2815.0285644531, -3687.0725097656, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2824.9055175781, -3687.1516113281, 140.0), heading = 175.74803161621 },
+                        { coord = vector3(2834.9802246094, -3686.9934082031, 140.0), heading = 167.24407958984 },
+                        { coord = vector3(2844.8703613281, -3687.0725097656, 140.0), heading = 184.25196838379 },
+                    },
+                    objectsToSpawn = { -- not required, if you want to spawn some objects only for the race
+                        --    {
+                        --        coords = vector3(1057.5803222656, 103.69068908691, 81.261016845703),
+                        --        pitch = 0.0, -- The pitch of the object should be normally 0.0
+                        --        roll = 0.0, -- The roll of the object should be normally 0.0
+                        --        yaw = 60.0, -- rotation of the object
+                        --        name = "lts_prop_lts_offroad_tyres01", -- the model name, can be taken from: https://gta-objects.xyz/objects
+                        --    }
+                    },
+                    objectsToSpawnFile = 'track.xml', -- Put xml file into tracks folder. Change filename here, must be the same as you have in tracks folder. You can find tracks here. https://github.com/blattersturm/cfx-object-loader/tree/master/%5Bexamples%5D
+                },
+                {
+                    canUseWeapons = false, -- Player can use their own weapons if scenario was selected
+                    displayName = "Set_Scifi_03",
+                    map = "Set_Scifi_03",
+                    scene = "scifi",
+                    repairKits = { -- items that are spawn what can players collect and repair the vehicle
+                        stopSpawnAfterTimeInSeconds = 120, -- Spawn items will not longer spawn after this time is exceeded
+                        items = { -- you can configure as many items you want
+                            {
+                                maxValue = 50, -- max repair value of vehicle. Highest health of vehicle is 1000.0
+                                minValue = 10, -- min repair value of vehicle. Highest health of vehicle is 1000.0
+                                marker = 3, -- checkpoints type see https://docs.fivem.net/docs/game-references/checkpoints/
+                                style = {
+                                    scale = 2.0, -- radius of marker and the near that the player must have to take the item
+                                    rgba = { 10, 29, 200, 155 }, -- color of marker
+                                },
+                                viewZone = true -- make the marker invisible
+                            },
+                        },
+                        repairKitPositions = {
+                            vector3(2652.6726074219,-3800.4658203125,140.10107421875),
+                            vector3(2800.3515625,-3799.912109375,140.0),
+                            vector3(2827.0285644531,-3739.806640625,140.01684570312),
+                            vector3(2836.2329101562,-3800.2680664062,127.98608398438),
+                            vector3(2746.4702148438,-3830.3208007812,127.98608398438),
+                            vector3(2722.193359375,-3885.6264648438,139.98315429688),
+                            vector3(2761.9516601562,-3714.7648925781,139.98315429688),
+                            vector3(2947.4636230469,-3800.7561035156,140.10107421875),
+                            vector3(2875.8198242188,-3838.03515625,134.08569335938),
+                            vector3(2729.9340820312,-3799.595703125,139.98315429688),
+                            vector3(2869.8198242188,-3799.7275390625,139.98315429688),
+                            vector3(2879.3537597656,-3755.947265625,140.0),
+                            vector3(2903.8022460938,-3791.4196777344,127.98608398438),
+                        },
+                        maxRepairItemsAtSameTime = 1, -- The max. number of repairKits at the same time
+                    },
+                    vehicles = {
+                        {
+                            type = 'Buffalo3', -- vehicle type see https://wiki.rage.mp/index.php?title=Vehicles
+                            fuelLevel = 1000.0, -- the fuel level will be set at every checkpoint to this value
+                            mods = { -- Mods to apply to the racing vehicle.
+                                engine = 2,
+                                brakes = 2,
+                                transmission = 2,
+                                suspension = 3,
+                                turbo = true,
+                                livery = 0
+                            },
+                            canLeaveVehicle = false, -- is recommended to set to true if you use a motorcycle, attention players can die at the race
+                        }
+                    },
+                    vehicleSpawn = {  -- race starting position
+                        { coord = vector3(2844.9890136719, -3913.4768066406, 140.0), heading = 351.49606323242 },
+                        { coord = vector3(2835.1911621094, -3913.1472167969, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2824.8000488281, -3913.0681152344, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2814.9494628906, -3912.8308105469, 140.0), heading = 354.33071899414 },
+                        { coord = vector3(2804.9538574219, -3912.8439941406, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2795.0241699219, -3912.9890136719, 140.0), heading = 354.33071899414 },
+                        { coord = vector3(2784.8571777344, -3913.0021972656, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2775.0856933594, -3912.5935058594, 140.0), heading = 0.0 },
+                        { coord = vector3(2765.0637207031, -3912.7253417969, 140.0), heading = 0.0 },
+                        { coord = vector3(2755.0681152344, -3912.7648925781, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2754.8439941406, -3687.2175292969, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2765.0241699219, -3687.2966308594, 140.0), heading = 175.74803161621 },
+                        { coord = vector3(2775.0197753906, -3687.1120605469, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2784.9890136719, -3687.1779785156, 140.0), heading = 170.07873535156 },
+                        { coord = vector3(2794.9846191406, -3687.1516113281, 140.0), heading = 167.24407958984 },
+                        { coord = vector3(2805.0197753906, -3687.1516113281, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2815.0285644531, -3687.0725097656, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2824.9055175781, -3687.1516113281, 140.0), heading = 175.74803161621 },
+                        { coord = vector3(2834.9802246094, -3686.9934082031, 140.0), heading = 167.24407958984 },
+                        { coord = vector3(2844.8703613281, -3687.0725097656, 140.0), heading = 184.25196838379 },
+                    },
+                    objectsToSpawn = { -- not required, if you want to spawn some objects only for the race
+                        --    {
+                        --        coords = vector3(1057.5803222656, 103.69068908691, 81.261016845703),
+                        --        pitch = 0.0, -- The pitch of the object should be normally 0.0
+                        --        roll = 0.0, -- The roll of the object should be normally 0.0
+                        --        yaw = 60.0, -- rotation of the object
+                        --        name = "lts_prop_lts_offroad_tyres01", -- the model name, can be taken from: https://gta-objects.xyz/objects
+                        --    }
+                    },
+                    objectsToSpawnFile = 'track.xml', -- Put xml file into tracks folder. Change filename here, must be the same as you have in tracks folder. You can find tracks here. https://github.com/blattersturm/cfx-object-loader/tree/master/%5Bexamples%5D
+                },
+                {
+                    canUseWeapons = false, -- Player can use their own weapons if scenario was selected
+                    displayName = "Set_Wasteland_05",
+                    map = "Set_Wasteland_05",
+                    scene = "wasteland",
+                    repairKits = { -- items that are spawn what can players collect and repair the vehicle
+                        stopSpawnAfterTimeInSeconds = 120, -- Spawn items will not longer spawn after this time is exceeded
+                        items = { -- you can configure as many items you want
+                            {
+                                maxValue = 50, -- max repair value of vehicle. Highest health of vehicle is 1000.0
+                                minValue = 10, -- min repair value of vehicle. Highest health of vehicle is 1000.0
+                                marker = 3, -- checkpoints type see https://docs.fivem.net/docs/game-references/checkpoints/
+                                style = {
+                                    scale = 2.0, -- radius of marker and the near that the player must have to take the item
+                                    rgba = { 10, 29, 200, 155 }, -- color of marker
+                                },
+                                viewZone = true -- make the marker invisible
+                            },
+                        },
+                        repairKitPositions = {
+                            vector3(2934.6330566406,-3799.9252929688,140.16845703125),
+                            vector3(2665.4768066406,-3800.9011230469,140.05053710938),
+                            vector3(2751.0856933594,-3752.9406738281,136.04028320312),
+                            vector3(2840.3208007812,-3846.4350585938,135.72009277344),
+                            vector3(2860.7341308594,-3751.2395019531,141.31433105469),
+                            vector3(2650.3779296875,-3856.1142578125,152.83959960938),
+                            vector3(2652.2504882812,-3747.3757324219,150.78393554688),
+                            vector3(2970.9362792969,-3792.9099121094,155.67028808594),
+                            vector3(2809.2526855469,-3793.5825195312,132.88940429688),
+                        },
+                        maxRepairItemsAtSameTime = 1, -- The max. number of repairKits at the same time
+                    },
+                    vehicles = {
+                        {
+                            type = 'Massacro2', -- vehicle type see https://wiki.rage.mp/index.php?title=Vehicles
+                            fuelLevel = 1000.0, -- the fuel level will be set at every checkpoint to this value
+                            mods = { -- Mods to apply to the racing vehicle.
+                                engine = 2,
+                                brakes = 2,
+                                transmission = 2,
+                                suspension = 3,
+                                turbo = true,
+                                livery = 0
+                            },
+                            canLeaveVehicle = false, -- is recommended to set to true if you use a motorcycle, attention players can die at the race
+                        },
+                    },
+                    vehicleSpawn = {  -- race starting position
+                        { coord = vector3(2844.9890136719, -3913.4768066406, 140.0), heading = 351.49606323242 },
+                        { coord = vector3(2835.1911621094, -3913.1472167969, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2824.8000488281, -3913.0681152344, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2814.9494628906, -3912.8308105469, 140.0), heading = 354.33071899414 },
+                        { coord = vector3(2804.9538574219, -3912.8439941406, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2795.0241699219, -3912.9890136719, 140.0), heading = 354.33071899414 },
+                        { coord = vector3(2784.8571777344, -3913.0021972656, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2775.0856933594, -3912.5935058594, 140.0), heading = 0.0 },
+                        { coord = vector3(2765.0637207031, -3912.7253417969, 140.0), heading = 0.0 },
+                        { coord = vector3(2755.0681152344, -3912.7648925781, 140.0), heading = 357.16534423828 },
+                        { coord = vector3(2754.8439941406, -3687.2175292969, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2765.0241699219, -3687.2966308594, 140.0), heading = 175.74803161621 },
+                        { coord = vector3(2775.0197753906, -3687.1120605469, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2784.9890136719, -3687.1779785156, 140.0), heading = 170.07873535156 },
+                        { coord = vector3(2794.9846191406, -3687.1516113281, 140.0), heading = 167.24407958984 },
+                        { coord = vector3(2805.0197753906, -3687.1516113281, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2815.0285644531, -3687.0725097656, 140.0), heading = 172.91339111328 },
+                        { coord = vector3(2824.9055175781, -3687.1516113281, 140.0), heading = 175.74803161621 },
+                        { coord = vector3(2834.9802246094, -3686.9934082031, 140.0), heading = 167.24407958984 },
+                        { coord = vector3(2844.8703613281, -3687.0725097656, 140.0), heading = 184.25196838379 },
+                    },
+                    objectsToSpawn = { -- not required, if you want to spawn some objects only for the race
+                        --    {
+                        --        coords = vector3(1057.5803222656, 103.69068908691, 81.261016845703),
+                        --        pitch = 0.0, -- The pitch of the object should be normally 0.0
+                        --        roll = 0.0, -- The roll of the object should be normally 0.0
+                        --        yaw = 60.0, -- rotation of the object
+                        --        name = "lts_prop_lts_offroad_tyres01", -- the model name, can be taken from: https://gta-objects.xyz/objects
+                        --    }
+                    },
+                    objectsToSpawnFile = 'track.xml', -- Put xml file into tracks folder. Change filename here, must be the same as you have in tracks folder. You can find tracks here. https://github.com/blattersturm/cfx-object-loader/tree/master/%5Bexamples%5D
+                },
             }
         },
     }

@@ -26,6 +26,8 @@ Config.viewRangeForMarkers = 100 -- Player must be in this range that all marker
 
 Config.policeJobName = 'police' -- Name of your police job
 
+Config.weaponsAreItems = false -- You have a Server where your weapons are items, set this value to true and put your weapons in TraderLocations.items section instead of TraderLocations.weapons
+
 Config.TraderLocations = {
     {
         label = 'Drug Dealer', -- name of the dealer
@@ -48,6 +50,11 @@ Config.TraderLocations = {
                 playerCanNotSell = false, -- player can not sale the item if value is true
                 playerCanNotBuy = false, -- player can not buy the item if value is true
             },
+            --{ -- Example if you have option Config.weaponsAreItems  = true, then you have to remove the weapons in weapons section
+            --    name = "weapon_dagger",
+            --    playerCanNotSell = false, -- player can not sale the item if value is true
+            --    playerCanNotBuy = false, -- player can not buy the item if value is true
+            --}
         },
         weapons = {
             {

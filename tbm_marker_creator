@@ -12,7 +12,6 @@ Config = {
         {
             coordinate = vector3(-190.26338195801, -1272.0236816406, 31.277589797974), -- position of the Location
             scale = 0.8, -- scale for marker
-            radius = 2.0, -- action radius
             marker = 39, -- marker type see https://docs.fivem.net/docs/game-references/markers/
             job = "", -- you can leave it blank if no job is required
             rgba = { 255, 0, 0, 155 }, -- color of marker
@@ -20,18 +19,43 @@ Config = {
                 marker = 4, -- marker type see https://docs.fivem.net/docs/game-references/markers/
                 posZ = 4.66, -- z position of the subMarker
             },
+            enableMarker = true,
+            -- blip section
+            enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+            scaleForBlip = 0.8, -- scale for marker
+            name = 'Point A', -- the name of the blip
+            display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+            sprite = 127, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+            color = 1, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+            -- ped section
+            enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
+            pedModel = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
+            pedOrientation = 84.0,  -- the orientation of the ped
+            pedCoordinate = vector3(-190.26338195801, -1272.0236816406, 30.277589797974), -- position of the Location
         },
         {
             coordinate = vector3(-216.13519287109, -1324.1403808594, 30.497203826904), -- position of the Location
             scale = 0.8, -- scale for marker
-            radius = 2.0, -- action radius
             marker = 39, -- marker type see https://docs.fivem.net/docs/game-references/markers/
-            job = "", -- you can leave it blank if no job is required
+            job = "taxi", -- you can leave it blank if no job is required
             rgba = { 255, 0, 0, 155 }, -- color of marker
             subMarker = {
                 marker = 4, -- marker type see https://docs.fivem.net/docs/game-references/markers/
                 posZ = 4.66, -- z position of the subMarker
             },
+            enableMarker = true,
+            -- blip section
+            enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+            scaleForBlip = 0.8, -- scale for marker
+            name = 'Point A', -- the name of the blip
+            display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+            sprite = 127, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+            color = 1, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+            -- ped section
+            enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
+            pedModel = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
+            pedOrientation = 84.0,  -- the orientation of the ped
+            pedCoordinate = vector3(-216.13519287109, -1324.1403808594, 30.497203826904), -- position of the Location
         },
     },
 }

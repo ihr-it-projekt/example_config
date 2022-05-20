@@ -50,6 +50,19 @@ Config = {
                         placement = { 0.0700, 0.0900, 0.0, -120.0, -20.0 }
                     }
                 },
+            },
+            -- object section
+            objects = {
+                {
+                    name = "prop_pooltable_02",
+                    coordinate = vector3(222.88128662109, -910.85589599609, 29.692092895508),
+                    rotation = vector3(0, 0, 235.50),
+                },
+                {
+                    name = "prop_pool_rack_01",
+                    coordinate = vector3(227.39865539551, -911.31826171875, 30.692012786865),
+                    rotation = vector3(0, 0, 235.50),
+                },
             }
         },
         {

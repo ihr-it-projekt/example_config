@@ -1,0 +1,86 @@
+Config = {
+    Locale = 'en',
+    esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
+    esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
+        setJob = 'esx:setJob',
+        playerLoaded = 'esx:playerLoaded',
+    },
+    viewRangeForMarkers = 100, -- Player must be in this range that all markers will be rendered
+    useLegacyFuel = false, -- if you are using Legacy fuel mod, you have to set this value to true
+    priceSlotUpdate = 100000, -- Price per garage update
+    maxSlotsPerGarage = -1, -- -1 = unlimited garages slots per garage
+    playerCanParkOutAndInEveryWhere = true, -- player can park out his vehicle every where
+    useParkControl = true, -- if you have another mod for parking vehicle you can disable the implemented park control
+    updateIntervalOfParkedVehicleInDatabaseInSeconds = 60, -- How often vehicles will updated in database
+    updateIntervalOfParkedVehicleFromDatabaseInSeconds = 60, -- How often a check should happen if vehicles in database parked out but the vehicle is not on map
+    updateIntervalCheckForNewVehicles = 10, -- How often a check happens for new spawned vehicles
+    useTBMPlayerGarage = true, -- enable if you are using tbm player garage
+    blackListCars = {  -- cars who can not be sold see https://wiki.rage.mp/index.php?title=Vehicles
+        --"police3",
+        --"PDF1502",
+        --"riot",
+        --"bearcat",
+        --"SDF150",
+        --"SDCharger18",
+        --"fbi",
+        --"stockade",
+        --"pbus",
+        --"predator",
+        --"polamggtr",
+        --"polmav",
+    },
+    intervalThatVehiclePositionWillBeUpdated = 20, -- How often positions of vehicles will be updated on server database
+    maxSpawnDistanceOfVehicleToPlayer = 150, -- If a player is closer then this value, not parked cars will be spawned
+    deleteTime = { -- Take a time where your server makes a regular restart. Vehicles will deleted on map and got the flag, that the car was parked in
+        { 20, 00 }, -- hour, minute
+        { 08, 00 }, -- hour, minute
+    },
+    ignoreVehiclesWhenOwnerColonHasValueLike = { -- if you are using another mod like an impound script, they often rename the owner. If one of these values are in owner colon then the vehicle will complete ignored
+        'Impound',
+        'Char'
+    },
+    positionConfig = {
+        { -- example job garage
+            publicId = 1, -- this must be a unique id. If you change this id and option "playerCanParkOutAndInEveryWhere" is false then the cars from players can not longer accessed. So never change this ID if a car is already parked in in this garage.
+            coords = vector3(79.92, 6369.85, 31.22), -- position of garage. Here happens park in, park out of vehicles and the blip on map
+            parkOutParkInCords = vector3(73.776466369629, 6362.8793945313, 31.229372024536), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+            name = "Police Garage", -- Name of the Blip
+            display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+            sprite = 473, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+            scale = 0.8, -- scale of blip
+            color = 0, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+            radius = 5.0, -- Radius of the action to open the market
+            viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
+            marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+            rgba = { 030, 144, 255, 155 }, -- color of marker
+            subMarker = {
+                marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+            },
+            heading = 13.00, -- The heading of a vehicle when park out
+            job = 'police', -- Optional, if set, the garage is only for named job.
+        },
+        { -- example no job garage
+            publicId = 2, -- this must be a unique id. If you change this id and option "playerCanParkOutAndInEveryWhere" is false then the cars from players can not longer accessed. So never change this ID if a car is already parked in in this garage.
+            coords = vector3(1960.77, 3770.22, 32.19), -- position of garage. Here happens park in, park out of vehicles and the blip on map
+            enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+            name = "Garage", -- Name of the Blip
+            display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+            sprite = 473, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+            scale = 0.8, -- scale of blip
+            color = 0, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+            radius = 5.0, -- Radius of the action to open the market
+            viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
+            marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+            rgba = { 030, 144, 255, 155 }, -- color of marker
+            subMarker = {
+                marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+            },
+            heading = 31.07, -- The heading of a vehicle when park out
+        },
+    },
+}
+
+
+
+

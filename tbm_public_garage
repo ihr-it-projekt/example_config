@@ -1,5 +1,5 @@
 Config = {
-    Locale = 'en',
+    Locale = 'de',
     esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
     esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
         setJob = 'esx:setJob',
@@ -8,7 +8,8 @@ Config = {
     viewRangeForMarkers = 100, -- Player must be in this range that all markers will be rendered
     useLegacyFuel = false, -- if you are using Legacy fuel mod, you have to set this value to true
     priceSlotUpdate = 100000, -- Price per garage update
-    maxSlotsPerGarage = -1, -- -1 = unlimited garages slots per garage
+    maxSlotsPerGarage = 1000, -- -1 = unlimited garages slots per garage he does not can extend his garage in that case
+    startSlotsCount = 2, -- Start slots that the player get
     playerCanParkOutAndInEveryWhere = true, -- player can park out his vehicle every where
     useParkControl = true, -- if you have another mod for parking vehicle you can disable the implemented park control
     updateIntervalOfParkedVehicleInDatabaseInSeconds = 60, -- How often vehicles will updated in database
@@ -42,32 +43,14 @@ Config = {
     positionConfig = {
         { -- example job garage
             publicId = 1, -- this must be a unique id. If you change this id and option "playerCanParkOutAndInEveryWhere" is false then the cars from players can not longer accessed. So never change this ID if a car is already parked in in this garage.
-            coords = vector3(79.92, 6369.85, 31.22), -- position of garage. Here happens park in, park out of vehicles and the blip on map
-            parkOutParkInCords = vector3(73.776466369629, 6362.8793945313, 31.229372024536), -- optional position where vehicle will spawn, if not set the coords location will be taken
-            enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
-            name = "Police Garage", -- Name of the Blip
-            display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
-            sprite = 473, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
-            scale = 0.8, -- scale of blip
-            color = 0, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
-            radius = 5.0, -- Radius of the action to open the market
-            viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
-            marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
-            rgba = { 030, 144, 255, 155 }, -- color of marker
-            subMarker = {
-                marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/markers/
-            },
-            heading = 13.00, -- The heading of a vehicle when park out
-            job = 'police', -- Optional, if set, the garage is only for named job.
-        },
-        { -- example no job garage
-            publicId = 2, -- this must be a unique id. If you change this id and option "playerCanParkOutAndInEveryWhere" is false then the cars from players can not longer accessed. So never change this ID if a car is already parked in in this garage.
-            coords = vector3(1960.77, 3770.22, 32.19), -- position of garage. Here happens park in, park out of vehicles and the blip on map
+            coords = vector3(213.29191589355, -808.94732666016, 31.014886856079), -- position of garage. Here happens park in, park out of vehicles and the blip on map
+            parkOutParkInCords = vector3(232.39268493652, -790.4072265625, 30.217691421509), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            previewPoint = vector3(252.51129150391, -716.52947998047, 44.685214996338), -- optional position where vehicle will spawn, if not set the coords location will be taken
             enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
             name = "Garage", -- Name of the Blip
             display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
             sprite = 473, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
-            scale = 0.8, -- scale of blip
+            scale = 0.7, -- scale of blip
             color = 0, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
             radius = 5.0, -- Radius of the action to open the market
             viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
@@ -76,7 +59,176 @@ Config = {
             subMarker = {
                 marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/markers/
             },
-            heading = 31.07, -- The heading of a vehicle when park out
+            heading = 159.83, -- The heading of a vehicle when park out
+            job = 'police', -- Optional, if set, the garage is only for named job.
+        },
+        { -- example public garage
+            publicId = 2, -- this must be a unique id. If you change this id and option "playerCanParkOutAndInEveryWhere" is false then the cars from players can not longer accessed. So never change this ID if a car is already parked in in this garage.
+            coords = vector3(-1274.4825439453, -3318.7233886719, 13.945053100586), -- position of garage. Here happens park in, park out of vehicles and the blip on map
+            parkOutParkInCords = vector3(-1296.2518310547, -3319.1159667969, 13.552901268005), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            --previewPoint = vector3(252.51129150391, -716.52947998047, 44.685214996338), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+            name = "Garage", -- Name of the Blip
+            display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+            sprite = 473, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+            scale = 0.7, -- scale of blip
+            color = 0, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+            radius = 5.0, -- Radius of the action to open the market
+            viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
+            marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+            rgba = { 030, 144, 255, 155 }, -- color of marker
+            subMarker = {
+                marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+            },
+            heading = 329.31, -- The heading of a vehicle when park out
+            --job = 'police', -- Optional, if set, the garage is only for named job.
+        },
+        {
+            publicId = 3, -- this must be a unique id. If you change this id and option "playerCanParkOutAndInEveryWhere" is false then the cars from players can not longer accessed. So never change this ID if a car is already parked in in this garage.
+            coords = vector3(-2980.0668945313, 327.36981201172, 14.926733970642), -- position of garage. Here happens park in, park out of vehicles and the blip on map
+            parkOutParkInCords = vector3(-2976.6413574219, 343.99014282227, 14.387915611267), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            --previewPoint = vector3(252.51129150391, -716.52947998047, 44.685214996338), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+            name = "Garage", -- Name of the Blip
+            display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+            sprite = 473, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+            scale = 0.7, -- scale of blip
+            color = 0, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+            radius = 5.0, -- Radius of the action to open the market
+            viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
+            marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+            rgba = { 030, 144, 255, 155 }, -- color of marker
+            subMarker = {
+                marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+            },
+            heading = 157.73, -- The heading of a vehicle when park out
+            --job = 'police', -- Optional, if set, the garage is only for named job.
+        },
+        {
+            publicId = 4, -- this must be a unique id. If you change this id and option "playerCanParkOutAndInEveryWhere" is false then the cars from players can not longer accessed. So never change this ID if a car is already parked in in this garage.
+            coords = vector3(2764.13671875, 3505.2265625, 55.246940612793), -- position of garage. Here happens park in, park out of vehicles and the blip on map
+            parkOutParkInCords = vector3(2771.1740722656, 3497.5134277344, 54.839889526367), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            --previewPoint = vector3(252.51129150391, -716.52947998047, 44.685214996338), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+            name = "Garage", -- Name of the Blip
+            display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+            sprite = 473, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+            scale = 0.7, -- scale of blip
+            color = 0, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+            radius = 5.0, -- Radius of the action to open the market
+            viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
+            marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+            rgba = { 030, 144, 255, 155 }, -- color of marker
+            subMarker = {
+                marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+            },
+            heading = 353.73, -- The heading of a vehicle when park out
+            --job = 'police', -- Optional, if set, the garage is only for named job.
+        },
+        {
+            publicId = 5, -- this must be a unique id. If you change this id and option "playerCanParkOutAndInEveryWhere" is false then the cars from players can not longer accessed. So never change this ID if a car is already parked in in this garage.
+            coords = vector3(90.097030639648, 6364.63671875, 31.225757598877), -- position of garage. Here happens park in, park out of vehicles and the blip on map
+            parkOutParkInCords = vector3(84.654602050781, 6373.95703125, 30.836526870728), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            --previewPoint = vector3(252.51129150391, -716.52947998047, 44.685214996338), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+            name = "Garage", -- Name of the Blip
+            display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+            sprite = 473, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+            scale = 0.7, -- scale of blip
+            color = 0, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+            radius = 5.0, -- Radius of the action to open the market
+            viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
+            marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+            rgba = { 030, 144, 255, 155 }, -- color of marker
+            subMarker = {
+                marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+            },
+            heading = 303.70, -- The heading of a vehicle when park out
+            --job = 'police', -- Optional, if set, the garage is only for named job.
+        },
+        {
+            publicId = 6, -- this must be a unique id. If you change this id and option "playerCanParkOutAndInEveryWhere" is false then the cars from players can not longer accessed. So never change this ID if a car is already parked in in this garage.
+            coords = vector3(2579.7836914063, 431.49328613281, 108.45644378662), -- position of garage. Here happens park in, park out of vehicles and the blip on map
+            parkOutParkInCords = vector3(2579.5588378906, 417.14736938477, 108.0641784668), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            --previewPoint = vector3(252.51129150391, -716.52947998047, 44.685214996338), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+            name = "Garage", -- Name of the Blip
+            display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+            sprite = 473, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+            scale = 0.7, -- scale of blip
+            color = 0, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+            radius = 5.0, -- Radius of the action to open the market
+            viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
+            marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+            rgba = { 030, 144, 255, 155 }, -- color of marker
+            subMarker = {
+                marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+            },
+            heading = 179.56, -- The heading of a vehicle when park out
+            --job = 'police', -- Optional, if set, the garage is only for named job.
+        },
+        {
+            publicId = 7, -- this must be a unique id. If you change this id and option "playerCanParkOutAndInEveryWhere" is false then the cars from players can not longer accessed. So never change this ID if a car is already parked in in this garage.
+            coords = vector3(-174.1727142334, -1289.5255126953, 31.295955657959), -- position of garage. Here happens park in, park out of vehicles and the blip on map
+            parkOutParkInCords = vector3(-184.14938354492, -1293.8991699219, 31.111097335815), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            --previewPoint = vector3(252.51129150391, -716.52947998047, 44.685214996338), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+            name = "Garage", -- Name of the Blip
+            display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+            sprite = 473, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+            scale = 0.7, -- scale of blip
+            color = 0, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+            radius = 5.0, -- Radius of the action to open the market
+            viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
+            marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+            rgba = { 030, 144, 255, 155 }, -- color of marker
+            subMarker = {
+                marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+            },
+            heading = 178.37, -- The heading of a vehicle when park out
+            --job = 'police', -- Optional, if set, the garage is only for named job.
+        },
+        {
+            publicId = 8, -- this must be a unique id. If you change this id and option "playerCanParkOutAndInEveryWhere" is false then the cars from players can not longer accessed. So never change this ID if a car is already parked in in this garage.
+            coords = vector3(-1927.4875488281, 2059.4877929688, 140.83622741699), -- position of garage. Here happens park in, park out of vehicles and the blip on map
+            parkOutParkInCords = vector3(-1923.5850830078, 2071.412109375, 140.51489257813), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            --previewPoint = vector3(252.51129150391, -716.52947998047, 44.685214996338), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+            name = "Garage", -- Name of the Blip
+            display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+            sprite = 473, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+            scale = 0.7, -- scale of blip
+            color = 0, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+            radius = 5.0, -- Radius of the action to open the market
+            viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
+            marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+            rgba = { 030, 144, 255, 155 }, -- color of marker
+            subMarker = {
+                marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+            },
+            heading = 176.21, -- The heading of a vehicle when park out
+            --job = 'police', -- Optional, if set, the garage is only for named job.
+        },
+        {
+            publicId = 9, -- this must be a unique id. If you change this id and option "playerCanParkOutAndInEveryWhere" is false then the cars from players can not longer accessed. So never change this ID if a car is already parked in in this garage.
+            coords = vector3(1112.9237060547, 2643.9750976563, 38.143695831299), -- position of garage. Here happens park in, park out of vehicles and the blip on map
+            parkOutParkInCords = vector3(1112.0209960938, 2651.3928222656, 37.60237121582), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            --previewPoint = vector3(252.51129150391, -716.52947998047, 44.685214996338), -- optional position where vehicle will spawn, if not set the coords location will be taken
+            enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+            name = "Garage", -- Name of the Blip
+            display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+            sprite = 473, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+            scale = 0.7, -- scale of blip
+            color = 0, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+            radius = 5.0, -- Radius of the action to open the market
+            viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
+            marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+            rgba = { 030, 144, 255, 155 }, -- color of marker
+            subMarker = {
+                marker = 36, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+            },
+            heading = 359.68, -- The heading of a vehicle when park out
+            --job = 'police', -- Optional, if set, the garage is only for named job.
         },
     },
 }

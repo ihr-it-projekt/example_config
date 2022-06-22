@@ -59,6 +59,7 @@ Config = {
                 pedOrientation = 96.0 -- orientation of the ped
             },
             isSingleRace = false, -- if true only one player can do the race and you got an all time high score // if false so many player can do  multiple players can make the race. Player count depends on configured vehicle spawns
+            playerCanNotUseWeapons = true, -- if enabled, players can not use any weapon at race time
             playerMustUseTheirOwnCar = false, -- if true players need to be in a vehicle to register for that race
             showRouteOnMap = true, -- Display the track on map
             roundCount = 1, -- how many rounds will have the race

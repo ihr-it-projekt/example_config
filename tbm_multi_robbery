@@ -225,6 +225,7 @@ Config = {
                 robWasUnsuccessful = '~b~Shop robbery ~r~ aborted!', -- This message will get the cops if a rob was abort
                 robWasUnsuccessfulForYou = '~r~Robbery is aborted for you!',  -- This message will get the player if a rob was abort
                 stopRobLocation = 'Press ~r~X~w~ to cancel.', -- When a player lot
+                robHasStartedMessage = '~r~Rob has started ! Find the rob location.', -- When players has starts the robbery he got a confirmation message
             },
             objects = { -- objects that will placed on map. You can leave it empty, if not needed
                 {

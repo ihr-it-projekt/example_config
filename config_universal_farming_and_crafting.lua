@@ -2,7 +2,12 @@ Config = {
     Locale = 'de',
     useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
     esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have also change it in es_extended
+    esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
+        setJob = 'esx:setJob',
+        playerLoaded = 'esx:playerLoaded',
+    },
     qbCoreExportName = 'qb-core', -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
+    viewRangeForMarkers = 100, -- Player must be in this range that all markers will be rendered
     enabledKeysWhenAnimation = { -- https://docs.fivem.net/docs/game-references/controls/
         --38, -- E
         23, -- F
@@ -46,14 +51,19 @@ Config = {
                 start_message = 'Drück E um Hanf zu farmen.', -- will displayed if player enter the zone
                 has_not_all_needed_items = 'Du hast keine Lizens !', -- will displayed, if player has not all needed items
                 you_can_not_take_so_much_items = 'Du hast kein Platz mehr !', -- will displayed, if player has to less space.
+                used_item_was_broken = "Dein Werkzeug ist kaput gegangen !", -- will displayed, if items that you need was destroyed
+                got_no_item_from_harvest = "Herstellung ist fehlgeschlagen !", -- will displayed, if harvest item was not produced related to chanceToGetItem config
             },
             itemsNeeded = { -- items that is needed to start process can be empty
                 --{
                     --count = 1, -- how many items are needed
                     --name = "water", -- what kind of items is needed
                     --removeAfterProcess = false, -- should the item remove after process
+                    --breakChance = 100, -- chance that the item will destroyed on use 0 = zero destroy 100 = will destroyed
                 --}
             },
+            howManyItemsPlayerCanGet = 1,
+            chanceToGetItem = 100,
             harvestItems = { -- the items that the player get after process, can be multiple items
                 {
                     name = "cannabis",
@@ -101,18 +111,27 @@ Config = {
             messages = {
                 start_message = 'Drück E um Hanf zu verarbeiten.',
                 has_not_all_needed_items = 'Du hast kein Cannabis !',
-                you_can_not_take_so_much_items = 'Du hast kein Platz mehr !'
+                you_can_not_take_so_much_items = 'Du hast kein Platz mehr !',
+                used_item_was_broken = "Dein Werkzeug ist kaput gegangen !",
+                got_no_item_from_harvest = "Herstellung ist fehlgeschlagen !",
             },
             itemsNeeded = {
                 {
                     count = 1,
                     name = "cannabis",
                     removeAfterProcess = true,
+                    breakChance = 0,
                 }
             },
+            howManyItemsPlayerCanGet = 1,
+            chanceToGetItem = 100,
             harvestItems = {
                 {
                     name = "marijuana",
+                    count = 1,
+                },
+                {
+                    name = "stone",
                     count = 1,
                 }
             },
@@ -146,24 +165,29 @@ Config = {
             pedOrientation = 127.24,
             objects = {
                 {
-                    name = "p_int_jewel_plant_02",
+                    name = "prop_arcade_01",
                     coordinate = vector3(-99.024681091309, 1910.0178222656, 195.59498596191),
+                    rotation = vector3(0.0, 0.0, 0.0),
                 },
                 {
                     name = "p_int_jewel_plant_02",
                     coordinate = vector3(-103.30090332031, 1909.8846435547, 195.59498596191),
+                    rotation = vector3(0.0, 0.0, 0.0),
                 },
                 {
                     name = "p_int_jewel_plant_02",
                     coordinate = vector3(-99.479530334473, 1907.2567138672, 195.59498596191),
+                    rotation = vector3(0.0, 0.0, 0.0),
                 },
                 {
                     name = "p_int_jewel_plant_02",
                     coordinate = vector3(-99.084983825684, 1912.8758544922, 195.59498596191),
+                    rotation = vector3(0.0, 0.0, 0.0),
                 },
                 {
                     name = "p_int_jewel_plant_02",
                     coordinate = vector3(-96.571075439453, 1910.2009277344, 195.59498596191),
+                    rotation = vector3(0.0, 0.0, 0.0),
                 }
             },
             messages = {
@@ -176,8 +200,11 @@ Config = {
                     count = 0,
                     name = "water",
                     removeAfterProcess = false,
+                    breakChance = 0,
                 }
             },
+            howManyItemsPlayerCanGet = 1,
+            chanceToGetItem = 100,
             harvestItems = {
                 {
                     name = "coco_leaf",
@@ -228,8 +255,11 @@ Config = {
                     count = 1,
                     name = "coco_leaf",
                     removeAfterProcess = true,
+                    breakChance = 0,
                 }
             },
+            howManyItemsPlayerCanGet = 1,
+            chanceToGetItem = 100,
             harvestItems = {
                 {
                     name = "coco",
@@ -280,8 +310,11 @@ Config = {
                     count = 0,
                     name = "chemicalslisence",
                     removeAfterProcess = false,
+                    breakChance = 0,
                 }
             },
+            howManyItemsPlayerCanGet = 1,
+            chanceToGetItem = 100,
             harvestItems = {
                 {
                     name = "chemicals",
@@ -332,8 +365,11 @@ Config = {
                     count = 1,
                     name = "chemicals",
                     removeAfterProcess = true,
+                    breakChance = 0,
                 }
             },
+            howManyItemsPlayerCanGet = 1,
+            chanceToGetItem = 100,
             harvestItems = {
                 {
                     name = "lsd",
@@ -372,22 +408,27 @@ Config = {
                 {
                     name = "prop_plant_fern_01b",
                     coordinate = vector3(3285.3647460938, 5183.478515625, 17.115351867676),
+                    rotation = vector3(0.0, 0.0, 0.0),
                 },
                 {
                     name = "prop_plant_fern_01b",
                     coordinate = vector3(3284.4663085938, 5182.484375, 17.115351867676),
+                    rotation = vector3(0.0, 0.0, 0.0),
                 },
                 {
                     name = "prop_plant_fern_01b",
                     coordinate = vector3(3286.1435546875, 5184.5190429688, 17.115351867676),
+                    rotation = vector3(0.0, 0.0, 0.0),
                 },
                 {
                     name = "prop_plant_fern_01b",
                     coordinate = vector3(3286.4040527344, 5182.6430664063, 17.115351867676),
+                    rotation = vector3(0.0, 0.0, 0.0),
                 },
                 {
                     name = "prop_plant_fern_01b",
                     coordinate = vector3(3284.5698242188, 5184.4677734375, 17.115351867676),
+                    rotation = vector3(0.0, 0.0, 0.0),
                 }
             },
             messages = {
@@ -400,8 +441,11 @@ Config = {
                     count = 0,
                     name = "chemicallicence",
                     removeAfterProcess = false,
+                    breakChance = 0,
                 }
             },
+            howManyItemsPlayerCanGet = 1,
+            chanceToGetItem = 100,
             harvestItems = {
                 {
                     name = "poppyresin",
@@ -452,8 +496,11 @@ Config = {
                     count = 1,
                     name = "poppyresin",
                     removeAfterProcess = true,
+                    breakChance = 0,
                 }
             },
+            howManyItemsPlayerCanGet = 1,
+            chanceToGetItem = 100,
             harvestItems = {
                 {
                     name = "heroin",

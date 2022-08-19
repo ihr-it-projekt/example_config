@@ -1,7 +1,19 @@
 Config = {}
 Config.Locale = 'en'
-Config.useQBCore = false
+Config.useQBCore = true
 Config.EventsThatShouldTriggerAfterSuccessfulWhitelist = { -- you can add here as many events you want. The event receiver get always as first parameter the source of the white listed player
+    {
+        sendTo = 'client', -- Value can be client or server
+        name = 'exampleClientEventName', -- The event name
+        active = false, -- enable or disable sending values are true or false
+    },
+    {
+        sendTo = 'server', -- Value can be client or server
+        name = 'exampleServerEventName', -- The event name
+        active = false, -- enable or disable sending values are true or false
+    },
+}
+Config.EventsThatShouldTriggerAfterConnectionWhenPlayerWasAlreadyWhitelisted = {  -- you can add here as many events you want. The event receiver get always as first parameter the source of the white listed player
     {
         sendTo = 'client', -- Value can be client or server
         name = 'exampleClientEventName', -- The event name
@@ -24,12 +36,12 @@ Config.adminIds = { -- this players can use the admin commands
 }
 
 Config.discord = {
-    useDiscordRoleCheck = true, -- if players rejoin your server after whitelist the discord role will assigned
+    useDiscordRoleCheck = false, -- if players rejoin your server after whitelist the discord role will assigned
     useDiscordRoleAssignment = true, -- if true then the roles whitelistRoles below will assigned
     useDiscordRoleRemove = true, -- if true then the roles in rolesToRemoveWhenWhitelisted below will removed
     guildId = 000000000, -- add your guild id here
     botToken = "some token", -- copy that token from boot creation
-    enablePreCheckForDiscordRule = true, -- pre check rule enable
+    enablePreCheckForDiscordRule = false, -- pre check rule enable
     preCheckRules = { -- must have one of that roles before player can start whitelist
         "0",
         "1",

@@ -1,6 +1,15 @@
 Config = {
     Locale = 'en',
-    esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
+    useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
+    qbCoreExportName = 'qb-core', -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
+    esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
+        esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
+        setJob = 'esx:setJob',
+        playerLoaded = 'esx:playerLoaded',
+        sendMessage = 'esx:showNotification',
+        addGroupCommand = 'es:addGroupCommand',
+    },
+    viewRangeForMarkers = 100, -- how far ranges of markers are visible
     blackListCars = {  -- cars who can not be sold see https://wiki.rage.mp/index.php?title=Vehicles
         "Prairie",
         "bison",

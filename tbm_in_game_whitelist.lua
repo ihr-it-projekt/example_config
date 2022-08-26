@@ -1,6 +1,7 @@
 Config = {}
 Config.Locale = 'en'
 Config.useQBCore = true
+Config.WaitBeforeWhitelistCheck = 5000 -- this time is needed to wait that everything is loaded on client side. After that period of time the whitelist check will be executed
 Config.EventsThatShouldTriggerAfterSuccessfulWhitelist = { -- you can add here as many events you want. The event receiver get always as first parameter the source of the white listed player
     {
         sendTo = 'client', -- Value can be client or server

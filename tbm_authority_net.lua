@@ -1,6 +1,6 @@
 Config = {
     language = 'en',
-    useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
+    useQbCore = true, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
     qbCoreExportName = 'qb-core', -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
     esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
         esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
@@ -18,63 +18,6 @@ Config = {
     },
     police = { -- On Duty configuration
         jobName = 'police', -- what is the name of the police job, default is police
-        jobGrades = { -- order is important. Please order from lowest grade to highest grade
-            {
-                name = 'recruit',
-                label = 'Rekrut',
-                grade = 0,
-            },
-            {
-                name = 'officer',
-                label = 'Officer 1',
-                grade = 1,
-            },
-            {
-                name = 'detective',
-                label = 'Officer 2',
-                grade = 2,
-            },
-            {
-                name = 'detective',
-                label = 'Officer 3',
-                grade = 3,
-            },
-            {
-                name = 'detective',
-                label = 'Detective',
-                grade = 4,
-            },
-            {
-                name = 'sergeant',
-                label = 'Sergeant 1',
-                grade = 5,
-            },
-            {
-                name = 'sergeant',
-                label = 'Sergeant 2',
-                grade = 6,
-            },
-            {
-                name = 'lieutenant',
-                label = 'Lieutenant',
-                grade = 7,
-            },
-            {
-                name = 'captain',
-                label = 'Captain',
-                grade = 8,
-            },
-            {
-                name = 'boss',
-                label = 'Co Chief',
-                grade = 9,
-            },
-            {
-                name = 'boss',
-                label = 'Chief',
-                grade = 10,
-            },
-        },
         canOpenEverywhere = true, -- can open Authority Net from everywhere
         inEmergencyVehicle = true, -- can open only in emergency vehicles
         positionsStyleConfig = { -- If you want to open Authority Net on PC, you can configure it here

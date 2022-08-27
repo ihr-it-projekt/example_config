@@ -12,7 +12,7 @@ Config = {
     },
     viewRangeForMarkers = 200, -- Player must be in this range that all markers will be rendered
     Locale = 'en',
-    lobbyTimeInSec = 5, -- the time that players have to register
+    lobbyTimeInSec = 30, -- the time that players have to register
     useESX_XP = false, -- if you use esx_esp mod you have to set this value to true
     useLegacyFuel = false, -- if you are using Legacy fuel mod, you have to set this value to true
     useLIFuel = false, -- if you are using lj-fuel mod, you have to set this value to true
@@ -31,6 +31,7 @@ Config = {
         sendMessage = 'esx:showNotification',
         addGroupCommand = 'es:addGroupCommand',
     },
+    playerWithHighestHealthWinWhenRaceTimedOut = false, -- if maxRaceDurationInSeconds config value is over
     tracks = {
         {
             canUseTeleportToArenaLeavePoint = false, -- there is an emergency teleport that players can use in arena area, if they have not started the race to teleport to leave point of arena.

@@ -9,7 +9,7 @@ Config = {
     qbCoreExportName = 'qb-core', -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
     viewRangeForMarkers = 50,
     positions = {
-        {
+        { -- start first position
             coordinate = vector3(-190.26338195801, -1272.0236816406, 31.277589797974), -- position of the Location
             scale = 0.8, -- scale for marker
             marker = 39, -- marker type see https://docs.fivem.net/docs/game-references/markers/
@@ -65,7 +65,7 @@ Config = {
                 },
             }
         },
-        {
+        { -- start second position
             coordinate = vector3(-182.96853637695, -1294.1085205078, 31.295984268188), -- position of the Location
             scale = 0.8, -- scale for marker
             marker = 39, -- marker type see https://docs.fivem.net/docs/game-references/markers/
@@ -188,4 +188,5 @@ Config = {
         },
         --End Band
     },
+    -- Add here a new position
 }

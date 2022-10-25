@@ -4,7 +4,7 @@ Config.Locale = 'en'
 
 Config.roundMoneyPositions = 0 -- if you use another currency system then esx default. 0 means you only have number like 1, number like 2 means float values like 1.22
 
-Config.esx_getSharedObject = 'esx:getSharedObject' -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
+Config.esxExtendedName = 'es_extended' -- How you have named your es_extended mod, if you have renamed it.
 
 Config.qbCoreExportName = 'qb-core' -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
 

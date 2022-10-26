@@ -1,6 +1,6 @@
 Config = {
     Locale = 'de',
-    esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
+    esxExtendedName = 'es_extended', -- How you have named your es_extended mod, if you have renamed it.
     blackListCars = {  -- cars who can not be sold see https://wiki.rage.mp/index.php?title=Vehicles
         "police3",
         "PDF1502",

@@ -1,10 +1,6 @@
 Config = {
     useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
-    esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have also change it in es_extended
-    esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
-        setJob = 'esx:setJob',
-        playerLoaded = 'esx:playerLoaded',
-    },
+	esxExtendedName = 'es_extended', -- How you have named your es_extended mod, if you have renamed it.
     isSandAlone = false, -- if you are using that you can not create markers for jobs
     qbCoreExportName = 'qb-core', -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
     viewRangeForMarkers = 50,

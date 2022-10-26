@@ -1,7 +1,7 @@
 Config = {
     Locale = 'de',
     useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
-    esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have also change it in es_extended
+    esxExtendedName = 'es_extended', -- How you have named your es_extended mod, if you have renamed it.
     esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
         setJob = 'esx:setJob',
         playerLoaded = 'esx:playerLoaded',

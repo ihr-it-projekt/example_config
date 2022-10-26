@@ -1,6 +1,6 @@
 Config = {
     Locale = 'en',
-    esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
+    esxExtendedName = 'es_extended', -- How you have named your es_extended mod, if you have renamed it.
     useLegacyFuel = false, -- if you are using Legacy fuel mod, you have to set this value to true
     lobbyTimeInSec = 30,
     viewRangeForMarkers = 100, -- Player must be in this range that all markers will be rendered

@@ -9,8 +9,8 @@ Config = {
         playerLoaded = 'esx:playerLoaded',
         sendMessage = 'esx:showNotification',
         addGroupCommand = 'es:addGroupCommand',
-        esx_getSharedObject = 'esx:getSharedObject', -- for security reasons you can customise the esx:getSharedObject event name. Attention if you change it, be sure you have als change it in es_extended
     },
+    esxExtendedName = 'es_extended', -- How you have named your es_extended mod, if you have renamed it.
     useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
     qbCoreExportName = 'qb-core', -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
     tracks = {
@@ -92,6 +92,7 @@ Config = {
                         max = 1050, -- max value 10000
                     },
                     speedChangeTimeInSeconds = 3,
+                    roundTimeOutInSeconds = 240, -- if this value (roundTimeOutInSeconds * rounds) is reached, the race will stopped and all players get the money back. Set it higher than a round normally takes
                 },
                 {
                     label = 'Wolf',
@@ -107,6 +108,7 @@ Config = {
                         max = 1050, -- max value 10000
                     },
                     speedChangeTimeInSeconds = 3,
+                    roundTimeOutInSeconds = 240, -- if this value (roundTimeOutInSeconds * rounds) is reached, the race will stopped and all players get the money back. Set it higher than a round normally takes
                 },
                 {
                     label = 'Cow',
@@ -122,6 +124,7 @@ Config = {
                         max = 1050, -- max value 10000
                     },
                     speedChangeTimeInSeconds = 3,
+                    roundTimeOutInSeconds = 240, -- if this value (roundTimeOutInSeconds * rounds) is reached, the race will stopped and all players get the money back. Set it higher than a round normally takes
                 },
                 {
                     label = 'Pig',
@@ -137,6 +140,7 @@ Config = {
                         max = 1050, -- max value 10000
                     },
                     speedChangeTimeInSeconds = 3,
+                    roundTimeOutInSeconds = 240, -- if this value (roundTimeOutInSeconds * rounds) is reached, the race will stopped and all players get the money back. Set it higher than a round normally takes
                 },
             },
             objectsToSpawn = { -- not required, if you want to spawn some objects only for the race

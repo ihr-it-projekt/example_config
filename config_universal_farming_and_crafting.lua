@@ -2,10 +2,6 @@ Config = {
     Locale = 'de',
     useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
     esxExtendedName = 'es_extended', -- How you have named your es_extended mod, if you have renamed it.
-    esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
-        setJob = 'esx:setJob',
-        playerLoaded = 'esx:playerLoaded',
-    },
     qbCoreExportName = 'qb-core', -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
     viewRangeForMarkers = 100, -- Player must be in this range that all markers will be rendered
     enabledKeysWhenAnimation = { -- https://docs.fivem.net/docs/game-references/controls/
@@ -53,13 +49,14 @@ Config = {
                 you_can_not_take_so_much_items = 'Du hast kein Platz mehr !', -- will displayed, if player has to less space.
                 used_item_was_broken = "Dein Werkzeug ist kaput gegangen !", -- will displayed, if items that you need was destroyed
                 got_no_item_from_harvest = "Herstellung ist fehlgeschlagen !", -- will displayed, if harvest item was not produced related to chanceToGetItem config
+                not_enough_player_in_range = 'Ihr seid zu wenig', -- will displayed when not enough players in range, check minCountOfPlayer and minCountOfPlayerRange config value
             },
             itemsNeeded = { -- items that is needed to start process can be empty
                 --{
-                    --count = 1, -- how many items are needed
-                    --name = "water", -- what kind of items is needed
-                    --removeAfterProcess = false, -- should the item remove after process
-                    --breakChance = 100, -- chance that the item will destroyed on use 0 = zero destroy 100 = will destroyed
+                --count = 1, -- how many items are needed
+                --name = "water", -- what kind of items is needed
+                --removeAfterProcess = false, -- should the item remove after process
+                --breakChance = 100, -- chance that the item will destroyed on use 0 = zero destroy 100 = will destroyed
                 --}
             },
             howManyItemsPlayerCanGet = 1,
@@ -74,31 +71,33 @@ Config = {
                 --    count = 1,
                 --},
             },
-            animation = {  -- Animation config 
+            animation = {  -- Animation config
                 directory = "amb@world_human_gardener_plant@male@idle_a", -- See animation types: https://github.com/KoningJesper/GTA-V-Animation-List/blob/master/Animation%201-999
                 name = "idle_b", -- The name from animation
                 repeatInMilliseconds = 1000, -- when should the animation repeated
-                duration = 6000 -- how long the animation and the farming process take in milliseconds 
+                duration = 6000 -- how long the animation and the farming process take in milliseconds
             },
+            minCountOfPlayer = 2,
+            minCountOfPlayerRange = 10.0,
         },
         {
             coordinate = vector3(2191.8310546875, 5595.8837890625, 52.768230438232),
             scale = 1.0,
-            enableBlip = false, 
-            display = 4, 
-            sprite = 127, 
+            enableBlip = false,
+            display = 4,
+            sprite = 127,
             scale = 1.0,
             color = 1,
-            name = 'weed verarbeiter', 
-            radius = 2.5, 
+            name = 'weed verarbeiter',
+            radius = 2.5,
             marker = 27,
-            rgba = { 120, 255, 120, 155 }, 
+            rgba = { 120, 255, 120, 155 },
             subMarker = {
-                marker = 4, 
-                posZ = 4.66, 
+                marker = 4,
+                posZ = 4.66,
             },
-            viewZone = false, 
-            enablePed = true, 
+            viewZone = false,
+            enablePed = true,
             pedModel = "g_m_y_ballasout_01",
             pedHash = 0x23B88069,
             pedOrientation = 250.67,
@@ -114,6 +113,7 @@ Config = {
                 you_can_not_take_so_much_items = 'Du hast kein Platz mehr !',
                 used_item_was_broken = "Dein Werkzeug ist kaput gegangen !",
                 got_no_item_from_harvest = "Herstellung ist fehlgeschlagen !",
+                not_enough_player_in_range = 'Ihr seid zu wenig',
             },
             itemsNeeded = {
                 {
@@ -136,30 +136,32 @@ Config = {
                 }
             },
             animation = {
-                directory = "mini@repair", 
+                directory = "mini@repair",
                 name = "fixing_a_ped",
                 repeatInMilliseconds = 6000,
                 duration = 6000
             },
+            minCountOfPlayer = 1,
+            minCountOfPlayerRange = 3.0
         },
         {
             coordinate = vector3(-99.235343933105, 1910.2657470703, 197.01683044434),
             scale = 1.0,
-            enableBlip = false, 
-            display = 4, 
-            sprite = 127, 
+            enableBlip = false,
+            display = 4,
+            sprite = 127,
             scale = 1.0,
             color = 1,
-            name = 'kokafield', 
-            radius = 5.0, 
+            name = 'kokafield',
+            radius = 5.0,
             marker = 27,
-            rgba = { 120, 255, 120, 155 }, 
+            rgba = { 120, 255, 120, 155 },
             subMarker = {
-                marker = 4, 
-                posZ = 4.66, 
+                marker = 4,
+                posZ = 4.66,
             },
-            viewZone = false, 
-            enablePed = false, 
+            viewZone = false,
+            enablePed = false,
             pedModel = "csb_car3guy2",
             pedHash = 0x1383A508,
             pedOrientation = 127.24,
@@ -193,7 +195,8 @@ Config = {
             messages = {
                 start_message = 'Drück E um Kokablatt zu farmen.',
                 has_not_all_needed_items = 'Du hast keine Lizens !',
-                you_can_not_take_so_much_items = 'Du hast kein Platz mehr !'
+                you_can_not_take_so_much_items = 'Du hast kein Platz mehr !',
+                not_enough_player_in_range = 'Ihr seid zu wenig',
             },
             itemsNeeded = {
                 {
@@ -212,30 +215,32 @@ Config = {
                 }
             },
             animation = {
-                directory = "amb@world_human_gardener_plant@male@idle_a", 
+                directory = "amb@world_human_gardener_plant@male@idle_a",
                 name = "idle_b",
                 repeatInMilliseconds = 1000,
                 duration = 6000
             },
+            minCountOfPlayer = 1,
+            minCountOfPlayerRange = 3.0
         },
         {
             coordinate = vector3(-52.83910369873, 1905.63671875, 194.36154174805),
             scale = 1.0,
-            enableBlip = false, 
-            display = 4, 
-            sprite = 127, 
+            enableBlip = false,
+            display = 4,
+            sprite = 127,
             scale = 1.0,
             color = 1,
-            name = 'koka verarbeiter', 
-            radius = 3.0, 
+            name = 'koka verarbeiter',
+            radius = 3.0,
             marker = 27,
-            rgba = { 120, 255, 120, 155 }, 
+            rgba = { 120, 255, 120, 155 },
             subMarker = {
-                marker = 4, 
-                posZ = 4.66, 
+                marker = 4,
+                posZ = 4.66,
             },
-            viewZone = false, 
-            enablePed = true, 
+            viewZone = false,
+            enablePed = true,
             pedModel = "a_m_m_hillbilly_01",
             pedHash = 0x6C9B2849,
             pedOrientation = 89.53,
@@ -248,7 +253,8 @@ Config = {
             messages = {
                 start_message = 'Drück E um Kokablatt zu verarbeiten.',
                 has_not_all_needed_items = 'Du hast kein Kokablatt !',
-                you_can_not_take_so_much_items = 'Du hast kein Platz mehr !'
+                you_can_not_take_so_much_items = 'Du hast kein Platz mehr !',
+                not_enough_player_in_range = 'Ihr seid zu wenig',
             },
             itemsNeeded = {
                 {
@@ -267,30 +273,32 @@ Config = {
                 }
             },
             animation = {
-                directory = "mini@repair", 
+                directory = "mini@repair",
                 name = "fixing_a_ped",
                 repeatInMilliseconds = 6000,
                 duration = 6000
             },
+            minCountOfPlayer = 1,
+            minCountOfPlayerRange = 3.0
         },
         {
             coordinate = vector3(136.0007019043, -3078.9677734375, 5.8963189125061),
             scale = 1.0,
-            enableBlip = false, 
-            display = 4, 
-            sprite = 127, 
+            enableBlip = false,
+            display = 4,
+            sprite = 127,
             scale = 1.0,
             color = 1,
-            name = 'chemie 10071', 
-            radius = 4.0, 
+            name = 'chemie 10071',
+            radius = 4.0,
             marker = 27,
-            rgba = { 120, 255, 120, 155 }, 
+            rgba = { 120, 255, 120, 155 },
             subMarker = {
-                marker = 4, 
-                posZ = 4.66, 
+                marker = 4,
+                posZ = 4.66,
             },
-            viewZone = false, 
-            enablePed = false, 
+            viewZone = false,
+            enablePed = false,
             pedModel = "csb_car3guy2",
             pedHash = 0x1383A508,
             pedOrientation = 127.24,
@@ -303,7 +311,8 @@ Config = {
             messages = {
                 start_message = 'Drück E um Chemikalien zu farmen.',
                 has_not_all_needed_items = 'Du hast keine Lizens !',
-                you_can_not_take_so_much_items = 'Du hast kein Platz mehr !'
+                you_can_not_take_so_much_items = 'Du hast kein Platz mehr !',
+                not_enough_player_in_range = 'Ihr seid zu wenig',
             },
             itemsNeeded = {
                 {
@@ -322,30 +331,32 @@ Config = {
                 }
             },
             animation = {
-                directory = "mini@repair", 
+                directory = "mini@repair",
                 name = "fixing_a_ped",
                 repeatInMilliseconds = 6000,
                 duration = 6000
             },
+            minCountOfPlayer = 1,
+            minCountOfPlayerRange = 3.0
         },
         {
             coordinate = vector3(126.45768737793, -3113.2836914063, 4.9408769607544),
             scale = 1.0,
-            enableBlip = false, 
-            display = 4, 
-            sprite = 127, 
+            enableBlip = false,
+            display = 4,
+            sprite = 127,
             scale = 1.0,
             color = 1,
-            name = '2057 chemie verarbeiter', 
-            radius = 5.0, 
+            name = '2057 chemie verarbeiter',
+            radius = 5.0,
             marker = 27,
-            rgba = { 120, 255, 120, 155 }, 
+            rgba = { 120, 255, 120, 155 },
             subMarker = {
-                marker = 4, 
-                posZ = 4.66, 
+                marker = 4,
+                posZ = 4.66,
             },
-            viewZone = false, 
-            enablePed = true, 
+            viewZone = false,
+            enablePed = true,
             pedModel = "s_m_y_pestcont_01",
             pedHash = 0x48114518,
             pedOrientation = 316.55,
@@ -358,7 +369,8 @@ Config = {
             messages = {
                 start_message = 'Drück E um Chemikalien zu verarbeiten.',
                 has_not_all_needed_items = 'Du hast keine Chemikalien !',
-                you_can_not_take_so_much_items = 'Du hast kein Platz mehr !'
+                you_can_not_take_so_much_items = 'Du hast kein Platz mehr !',
+                not_enough_player_in_range = 'Ihr seid zu wenig',
             },
             itemsNeeded = {
                 {
@@ -377,30 +389,32 @@ Config = {
                 }
             },
             animation = {
-                directory = "mini@repair", 
+                directory = "mini@repair",
                 name = "fixing_a_ped",
                 repeatInMilliseconds = 6000,
                 duration = 6000
             },
+            minCountOfPlayer = 1,
+            minCountOfPlayerRange = 3.0
         },
         {
             coordinate = vector3(3285.3647460938, 5183.478515625, 17.415351867676),
             scale = 1.0,
-            enableBlip = false, 
-            display = 4, 
-            sprite = 127, 
+            enableBlip = false,
+            display = 4,
+            sprite = 127,
             scale = 1.0,
             color = 1,
-            name = 'mohn 2057', 
-            radius = 4.0, 
+            name = 'mohn 2057',
+            radius = 4.0,
             marker = 27,
-            rgba = { 120, 255, 120, 155 }, 
+            rgba = { 120, 255, 120, 155 },
             subMarker = {
-                marker = 4, 
-                posZ = 4.66, 
+                marker = 4,
+                posZ = 4.66,
             },
-            viewZone = false, 
-            enablePed = false, 
+            viewZone = false,
+            enablePed = false,
             pedModel = "csb_car3guy2",
             pedHash = 0x1383A508,
             pedOrientation = 127.24,
@@ -434,7 +448,8 @@ Config = {
             messages = {
                 start_message = 'Drück E um Mohn zu farmen.',
                 has_not_all_needed_items = 'Du hast keine Lizens !',
-                you_can_not_take_so_much_items = 'Du hast kein Platz mehr !'
+                you_can_not_take_so_much_items = 'Du hast kein Platz mehr !',
+                not_enough_player_in_range = 'Ihr seid zu wenig',
             },
             itemsNeeded = {
                 {
@@ -453,30 +468,32 @@ Config = {
                 }
             },
             animation = {
-                directory = "amb@world_human_gardener_plant@male@idle_a", 
+                directory = "amb@world_human_gardener_plant@male@idle_a",
                 name = "idle_b",
                 repeatInMilliseconds = 1000,
                 duration = 6000
             },
+            minCountOfPlayer = 1,
+            minCountOfPlayerRange = 3.0
         },
         {
             coordinate = vector3(3333.1950683594, 5165.1694335938, 17.302536010742),
             scale = 1.0,
-            enableBlip = false, 
-            display = 4, 
-            sprite = 127, 
+            enableBlip = false,
+            display = 4,
+            sprite = 127,
             scale = 1.0,
             color = 1,
-            name = '2057 mohn verarbeiter', 
-            radius = 4.0, 
+            name = '2057 mohn verarbeiter',
+            radius = 4.0,
             marker = 27,
-            rgba = { 120, 255, 120, 155 }, 
+            rgba = { 120, 255, 120, 155 },
             subMarker = {
-                marker = 4, 
-                posZ = 4.66, 
+                marker = 4,
+                posZ = 4.66,
             },
-            viewZone = false, 
-            enablePed = true, 
+            viewZone = false,
+            enablePed = true,
             pedModel = "a_m_m_hillbilly_02",
             pedHash = 0x7B0E452F,
             pedOrientation = 186.13,
@@ -489,7 +506,8 @@ Config = {
             messages = {
                 start_message = 'Drück E um Mohn zu verarbeiten.',
                 has_not_all_needed_items = 'Du hast kein Mohn !',
-                you_can_not_take_so_much_items = 'Du hast kein Platz mehr !'
+                you_can_not_take_so_much_items = 'Du hast kein Platz mehr !',
+                not_enough_player_in_range = 'Ihr seid zu wenig',
             },
             itemsNeeded = {
                 {
@@ -508,11 +526,13 @@ Config = {
                 }
             },
             animation = {
-                directory = "mini@repair", 
+                directory = "mini@repair",
                 name = "fixing_a_ped",
                 repeatInMilliseconds = 6000,
                 duration = 6000
             },
+            minCountOfPlayer = 1,
+            minCountOfPlayerRange = 3.0
         },
     },
 }

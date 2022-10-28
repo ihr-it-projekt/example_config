@@ -5,8 +5,6 @@ Config = {
     viewRangeForPedNumbers = 100,
     radiusToOpenMenu = 2.0,
     esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
-        setJob = 'esx:setJob',
-        playerLoaded = 'esx:playerLoaded',
         sendMessage = 'esx:showNotification',
         addGroupCommand = 'es:addGroupCommand',
     },

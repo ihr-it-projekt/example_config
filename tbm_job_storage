@@ -6,6 +6,9 @@ Config = {
     ignoreMoney = false,
     useOxmysql = true, -- if you are using https://github.com/overextended/oxmysql otherwise mysql-async will be used
     ignoreBlackMoney = false,
+    globalBlacklistItemsWeapons = { -- This items/weapons will ignored in all locations here are used regular expressions. See for example https://www.educba.com/lua-regex/
+        'water',
+    },
     StoragePositions = {
         {
             name = "police", -- job name, must be the same as in your jobs table
@@ -40,6 +43,9 @@ Config = {
                 "boss"
             },
             policeCanOpenStorage = false, -- enable or disable the access for cops. If enabled only configured grades can access
+            locationBlacklistItemsWeapons = {  -- this items/weapons will only ignored at this position here are used regular expressions. See for example https://www.educba.com/lua-regex/
+                'weapon_', -- if you write like thees, all weapons will ignored
+            }
         },
         {
             name = "aemechanic", -- job name, must be the same as in your jobs table
@@ -74,6 +80,9 @@ Config = {
                 "boss"
             },
             policeCanOpenStorage = false, -- enable or disable the access for cops. If enabled only configured grades can access
+            locationBlacklistItemsWeapons = {  -- this items/weapons will only ignored at this position here are used regular expressions. See for example https://www.educba.com/lua-regex/
+                'weapon_', -- if you write like thees, all weapons will ignored
+            }
         }
     }
 }

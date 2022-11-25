@@ -1,10 +1,13 @@
 Config = {
-    Locale = 'de',
+    Locale = 'en',
     esxExtendedName = 'es_extended', -- How you have named your es_extended mod, if you have renamed it.
     useImages = true, -- you can add images in folder "view/items". The images names must be the same as in your items sql table. e.g. "drill.png"
     handleWeaponsLikeItems = true,
     ignoreMoney = false,
     ignoreBlackMoney = false,
+    globalBlacklistItemsWeapons = { -- This items/weapons will ignored in all locations here are used regular expressions. See for example https://www.educba.com/lua-regex/
+        'water',
+    },
     StoragePositions = {
         {
             coords = vector3(311.83392333984,-283.37976074219,53.1647605896), -- position of the location
@@ -34,6 +37,9 @@ Config = {
             useBlackMoneyForUpgrade = false, -- use black money instead of money to upgrade the store
             activatePIN = true, -- if storage can shared via PIN function
             pricePinUpdate = 500000, -- price for update that player can use PIN
+            locationBlacklistItemsWeapons = {  -- this items/weapons will only ignored at this position here are used regular expressions. See for example https://www.educba.com/lua-regex/
+                'weapon_', -- if you write like thees, all weapons will ignored
+            }
         },
         {
             coords = vector3(147.45576477051,-1045.0551757812,28.368034362793), -- position of the location
@@ -63,6 +69,9 @@ Config = {
             useBlackMoneyForUpgrade = false, -- use black money instead of money to upgrade the store
             activatePIN = true, -- if storage can shared via PIN function
             pricePinUpdate = 500000, -- price for update that player can use PIN
+            locationBlacklistItemsWeapons = {  -- this items/weapons will only ignored at this position here are used regular expressions. See for example https://www.educba.com/lua-regex/
+                'weapon_', -- if you write like thees, all weapons will ignored
+            }
         },
         {
             coords = vector3(254.00442504883,225.1383972168,100.87567901611), -- position of the location
@@ -92,6 +101,9 @@ Config = {
             useBlackMoneyForUpgrade = false, -- use black money instead of money to upgrade the store
             activatePIN = true, -- if storage can shared via PIN function
             pricePinUpdate = 500000, -- price for update that player can use PIN
+            locationBlacklistItemsWeapons = {  -- this items/weapons will only ignored at this position here are used regular expressions. See for example https://www.educba.com/lua-regex/
+                'weapon_', -- if you write like thees, all weapons will ignored
+            }
         },
         {
             coords = vector3(-2957.6552734375,481.93200683594,14.697039604187), -- position of the location
@@ -121,6 +133,9 @@ Config = {
             useBlackMoneyForUpgrade = false, -- use black money instead of money to upgrade the store
             activatePIN = true, -- if storage can shared via PIN function
             pricePinUpdate = 500000, -- price for update that player can use PIN
+            locationBlacklistItemsWeapons = {  -- this items/weapons will only ignored at this position here are used regular expressions. See for example https://www.educba.com/lua-regex/
+                'weapon_', -- if you write like thees, all weapons will ignored
+            }
         },
         {
             coords = vector3(-107.65087127686,6475.611328125,30.62672996521), -- position of the location
@@ -150,6 +165,9 @@ Config = {
             useBlackMoneyForUpgrade = false, -- use black money instead of money to upgrade the store
             activatePIN = true, -- if storage can shared via PIN function
             pricePinUpdate = 500000, -- price for update that player can use PIN
+            locationBlacklistItemsWeapons = {  -- this items/weapons will only ignored at this position here are used regular expressions. See for example https://www.educba.com/lua-regex/
+                'weapon_', -- if you write like thees, all weapons will ignored
+            }
         },
         {
             coords = vector3(1175.8284912109,2711.6635742188,37.088008880615), -- position of the location
@@ -179,6 +197,9 @@ Config = {
             useBlackMoneyForUpgrade = false, -- use black money instead of money to upgrade the store
             activatePIN = true, -- if storage can shared via PIN function
             pricePinUpdate = 500000, -- price for update that player can use PIN
+            locationBlacklistItemsWeapons = {  -- this items/weapons will only ignored at this position here are used regular expressions. See for example https://www.educba.com/lua-regex/
+                'weapon_', -- if you write like thees, all weapons will ignored
+            }
         },
     }
 }

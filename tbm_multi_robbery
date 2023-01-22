@@ -9,6 +9,7 @@ Config = {
         addGroupCommand = 'es:addGroupCommand',
     },
     viewRangeForMarkers = 100, -- Player must be in this range that all markers will be rendered
+    enableKeyWhenAnimation = false, -- if this is true, player can use all keys when he robs a position
     enabledKeysWhenAnimation = { -- The animation happens when player starts to take loot from one robbery position https://docs.fivem.net/docs/game-references/controls/
         --38, -- E
         23, -- F

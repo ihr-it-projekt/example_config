@@ -8,7 +8,7 @@ Config.esxExtendedName = 'es_extended' -- How you have named your es_extended mo
 
 Config.qbCoreExportName = 'qb-core' -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
 Config.qbCoreInventoryExportName = 'qb-inventory' -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
-Config.useQbCoreAddRemoveItems = false -- if you want to use Player.Functions.RemoveItem and Player.Functions.AddItem (Older QB-Core Version Versions) set this value to true. If true (recommended) the qb inventory Add and RemoveItem functions will used
+Config.useQbCoreAddRemoveItems = false -- if you want to use Player.Functions.RemoveItem and Player.Functions.AddItem (Older QB-Core Version Versions) set this value to true. If false (recommended) the qb inventory Add and RemoveItem functions will used
 Config.useQbCore = true -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
 Config.qbCore = { -- only important if you are using qb core framework
     blackMoneyName = 'black_money' -- Be sure you have configured black money in qb core

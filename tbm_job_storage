@@ -2,6 +2,16 @@ Config = {
     Locale = 'en',
     useImages = true, -- you can add images in folder "view/items". The images names must be the same as in your items sql table. e.g. "drill.png"
     handleWeaponsLikeItems = true,
+    useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
+    qbCoreExportName = 'qb-core', -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
+    qbCore = { -- only important if you are using qb core framework
+        useQbCoreAddRemoveItems = false, -- if you are using qb-inventory set this value to true
+        blackMoneyName = 'black_money', -- Be sure you have configured black money in qb core
+        qbCoreInventoryExportName = 'qb-inventory' -- for security reasons you can customise the qb-inventory export name. Attention if you change it, be sure you have also change it in qbCore
+    },
+    esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
+        sendMessage = 'esx:showNotification',
+    },
     esxExtendedName = 'es_extended', -- How you have named your es_extended mod, if you have renamed it.
     ignoreMoney = false,
     useOxmysql = true, -- if you are using https://github.com/overextended/oxmysql otherwise mysql-async will be used
@@ -14,7 +24,7 @@ Config = {
             name = "police", -- job name, must be the same as in your jobs table
             coords = vector3(536.5675, -192.0792, 53.1330), -- position of the location
             enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
-            blipLabel = "Mechanic Storage", -- -- Name of the Blip
+            blipLabel = "Police Storage", -- -- Name of the Blip
             display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
             sprite = 440, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
             scale = 1.2, -- scale of blip

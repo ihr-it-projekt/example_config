@@ -1,6 +1,17 @@
 Config = {
     Locale = 'en',
+    useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
+    qbCoreExportName = 'qb-core', -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
+    qbCore = { -- only important if you are using qb core framework
+        useQbCoreAddRemoveItems = false, -- if you are using qb-inventory set this value to true
+        blackMoneyName = 'black_money', -- Be sure you have configured black money in qb core, if you want to use it
+        qbCoreInventoryExportName = 'qb-inventory' -- for security reasons you can customise the qb-inventory export name. Attention if you change it, be sure you have also change it in qbCore
+    },
     esxExtendedName = 'es_extended', -- How you have named your es_extended mod, if you have renamed it.
+    esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
+        sendMessage = 'esx:showNotification',
+    },
+    viewRangeForMarkers = 100, -- how far ranges of markers are visible
     useImages = true, -- you can add images in folder "view/items". The images names must be the same as in your items sql table. e.g. "drill.png"
     handleWeaponsLikeItems = true,
     ignoreMoney = false,

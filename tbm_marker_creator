@@ -1,9 +1,9 @@
 Config = {
     useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
-	esxExtendedName = 'es_extended', -- How you have named your es_extended mod, if you have renamed it.
+    esxExtendedName = 'es_extended', -- How you have named your es_extended mod, if you have renamed it.
     isSandAlone = false, -- if you are using that you can not create markers for jobs
     qbCoreExportName = 'qb-core', -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
-    viewRangeForMarkers = 50,
+    viewRangeForMarkers = 25,
     positions = {
         { -- start first position
             coordinate = vector3(-190.26338195801, -1272.0236816406, 31.277589797974), -- position of the Location
@@ -11,9 +11,12 @@ Config = {
             marker = 39, -- marker type see https://docs.fivem.net/docs/game-references/markers/
             customMarker = "", -- enter the name of your custom marker, if you dont want to use is, let it blank
             job = "", -- you can leave it blank if no job is required
+            jobBlacklist = {  -- thees jobs can not see the markers
+                "police",
+            },
             rgba = { 255, 0, 0, 155 }, -- color of marker
             subMarker = {
-                customMarker= "", -- enter the name of your custom marker, if you dont want to use is, let it blank
+                customMarker= nil, -- enter the name of your custom marker, if you dont want to use is, let it blank
                 marker = 4, -- marker type see https://docs.fivem.net/docs/game-references/markers/
                 posZ = 4.66, -- z position of the subMarker
             },
@@ -26,7 +29,7 @@ Config = {
             sprite = 127, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
             color = 1, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
             -- ped section
-            enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
+            enablePed = false, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
             pedModel = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
             pedOrientation = 84.0, -- the orientation of the ped
             pedCoordinate = vector3(-190.26338195801, -1272.0236816406, 30.277589797974), -- position of the Location
@@ -68,6 +71,8 @@ Config = {
             scale = 0.8, -- scale for marker
             marker = 39, -- marker type see https://docs.fivem.net/docs/game-references/markers/
             job = "", -- you can leave it blank if no job is required
+            jobBlacklist = {  -- thees jobs can not see the markers
+            },
             rgba = { 255, 0, 0, 155 }, -- color of marker
             subMarker = {
                 marker = 4, -- marker type see https://docs.fivem.net/docs/game-references/markers/

@@ -17,6 +17,11 @@ Config = {
     useOxmysql = true, -- if you are using https://github.com/overextended/oxmysql otherwise mysql-async will be used
     ignoreBlackMoney = true,
     viewRangeForMarkers= 20.0, -- Range to see the markers
+    discordLog = {
+      webhookUrl = '',  -- add your discord webhookUrl
+      isEnabled = true, -- enable or disable discord log when player add or remove items from storage
+      enableOnlineMessage = false, -- enable or disable the mod is online message in discord
+    },
     globalBlacklistItemsWeapons = { -- This items/weapons will ignored in all locations here are used regular expressions. See for example https://www.educba.com/lua-regex/
         --'water',
     },

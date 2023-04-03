@@ -9,13 +9,10 @@ Config = {
         blackMoneyName = 'black_money', -- Be sure you have configured black money in qb core
         qbCoreInventoryExportName = 'qb-inventory' -- for security reasons you can customise the qb-inventory export name. Attention if you change it, be sure you have also change it in qbCore
     },
-    esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
-        sendMessage = 'esx:showNotification',
-    },
     esxExtendedName = 'es_extended', -- How you have named your es_extended mod, if you have renamed it.
     ignoreMoney = false,
     useOxmysql = true, -- if you are using https://github.com/overextended/oxmysql otherwise mysql-async will be used
-    ignoreBlackMoney = true,
+    ignoreBlackMoney = false,
     viewRangeForMarkers= 20.0, -- Range to see the markers
     discordLog = {
       webhookUrl = '',  -- add your discord webhookUrl

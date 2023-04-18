@@ -63,15 +63,26 @@ Questions = {
             "18 years (this is correct)",
             "21 years"
         },
-        correctAnswer = 2
+        correctAnswer = 2,
+        timeForQuestionInSeconds = 2 -- this is an optional value. If the value is 0 or not set then the time will be unlimited
     },
     {
-        question = "Lorem ipsum",
+        question = "Lorem ipsum 2",
         answers = {
             "lorem ipsum <b>answer</b> 1 (this is correct)",
             "lorem ipsum answer 2"
         },
-        correctAnswer = 1
+        correctAnswer = 1,
+        timeForQuestionInSeconds = 0 -- this is an optional value. If the value is 0 or not set then the time will be unlimited
+    },
+    {
+        question = "Lorem ipsum 3",
+        answers = {
+            "lorem ipsum <b>answer</b> 1 (this is correct)",
+            "lorem ipsum answer 3"
+        },
+        correctAnswer = 1,
+        timeForQuestionInSeconds = 2 -- this is an optional value. If the value is 0 or not set then the time will be unlimited
     },
 }
 
@@ -82,14 +93,25 @@ StaticQuestionsAtTheEnd = {
             "I confirm",
             "No, iam not.",
         },
-        correctAnswer = 1
+        correctAnswer = 1,
+        timeForQuestionInSeconds = 10 -- this is an optional value. If the value is 0 or not set then the time will be unlimited
     },
     {
-        question = "Lorem ipsum",
+        question = "Lorem ipsum static 1",
         answers = {
             "lorem ipsum <b>answer</b> 1 (this is correct)",
             "lorem ipsum answer 2"
         },
-        correctAnswer = 1
+        correctAnswer = 1,
+        timeForQuestionInSeconds = 0 -- this is an optional value. If the value is 0 or not set then the time will be unlimited
+    },
+    {
+        question = "Lorem ipsum static 2",
+        answers = {
+            "lorem ipsum <b>answer</b> 1 (this is correct)",
+            "lorem ipsum answer 2"
+        },
+        correctAnswer = 1,
+        timeForQuestionInSeconds = 10 -- this is an optional value. If the value is 0 or not set then the time will be unlimited
     },
 }

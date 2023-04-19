@@ -1,5 +1,4 @@
 Config = {
-    Locale = 'de',
     useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
     esxExtendedName = 'es_extended', -- How you have named your es_extended mod, if you have renamed it.
     qbCoreExportName = 'qb-core', -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
@@ -79,6 +78,11 @@ Config = {
             },
             minCountOfPlayer = 2,
             minCountOfPlayerRange = 10.0,
+            jobs = { -- jobs that can use this location, if empty all jobs can use this location
+                police = {
+                    "boss" -- grades of the job who can use this location, if empty every grade can use it
+                }
+            },
         },
         {
             coordinate = vector3(2191.8310546875, 5595.8837890625, 52.768230438232),
@@ -142,7 +146,10 @@ Config = {
                 duration = 6000
             },
             minCountOfPlayer = 1,
-            minCountOfPlayerRange = 3.0
+            minCountOfPlayerRange = 3.0,
+            jobs = { -- jobs that can use this location, if empty all jobs can use this location
+                police = {},
+            },
         },
         {
             coordinate = vector3(-99.235343933105, 1910.2657470703, 197.01683044434),
@@ -221,7 +228,9 @@ Config = {
                 duration = 6000
             },
             minCountOfPlayer = 1,
-            minCountOfPlayerRange = 3.0
+            minCountOfPlayerRange = 3.0,
+            jobs = { -- jobs that can use this location, if empty all jobs can use this location
+            },
         },
         {
             coordinate = vector3(-52.83910369873, 1905.63671875, 194.36154174805),
@@ -279,7 +288,9 @@ Config = {
                 duration = 6000
             },
             minCountOfPlayer = 1,
-            minCountOfPlayerRange = 3.0
+            minCountOfPlayerRange = 3.0,
+            jobs = { -- jobs that can use this location, if empty all jobs can use this location
+            },
         },
         {
             coordinate = vector3(136.0007019043, -3078.9677734375, 5.8963189125061),
@@ -337,7 +348,9 @@ Config = {
                 duration = 6000
             },
             minCountOfPlayer = 1,
-            minCountOfPlayerRange = 3.0
+            minCountOfPlayerRange = 3.0,
+            jobs = { -- jobs that can use this location, if empty all jobs can use this location
+            },
         },
         {
             coordinate = vector3(126.45768737793, -3113.2836914063, 4.9408769607544),
@@ -395,7 +408,9 @@ Config = {
                 duration = 6000
             },
             minCountOfPlayer = 1,
-            minCountOfPlayerRange = 3.0
+            minCountOfPlayerRange = 3.0,
+            jobs = { -- jobs that can use this location, if empty all jobs can use this location
+            },
         },
         {
             coordinate = vector3(3285.3647460938, 5183.478515625, 17.415351867676),
@@ -474,7 +489,9 @@ Config = {
                 duration = 6000
             },
             minCountOfPlayer = 1,
-            minCountOfPlayerRange = 3.0
+            minCountOfPlayerRange = 3.0,
+            jobs = { -- jobs that can use this location, if empty all jobs can use this location
+            },
         },
         {
             coordinate = vector3(3333.1950683594, 5165.1694335938, 17.302536010742),
@@ -532,7 +549,9 @@ Config = {
                 duration = 6000
             },
             minCountOfPlayer = 1,
-            minCountOfPlayerRange = 3.0
+            minCountOfPlayerRange = 3.0,
+            jobs = { -- jobs that can use this location, if empty all jobs can use this location
+            },
         },
     },
 }

@@ -43,6 +43,15 @@ Config = {
     },
     vehicleRobbery = { -- Vehicle robber. Player get a car at point A and he must deliver to point B. A group of player can register for one rob.
         {
+            pedNeedWeaponToStart = true, -- if true, player need a weapon to start the robbery
+            neededWeapon = { -- if pedNeedWeaponToStart is true, player need one of this weapons to start the robbery, if empty all weapons are allowed
+                "WEAPON_RPG",
+                "WEAPON_COMBATPISTOL",
+                "WEAPON_RAILGUN",
+                "WEAPON_MINIGUN",
+                "WEAPON_SMG",
+                "WEAPON_SMG_MK2",
+            },
             category = 'small', -- category of rob. pay attention to "countOfRobsAtSameTime" config
             startPositionCoordinate = vector3(759.01373291016, -3195.1799316406, 5.1683627128601), -- Where players can start the action
             blip = { -- Blip for map
@@ -91,7 +100,8 @@ Config = {
                 youCanDeliverVehicle = '~g~ delivery point was marked.', -- if count down "timeBeforeVehicleCanDeliveredInSeconds" is over this message will be displayed to player
                 noRobberIsInNearOfVehicle = '~r~Go to the vehicle!', -- if player is to far from vehicle, he will get this message
                 robberIsInNearOfVehicle = '~g~Near enough to the vehicle.', -- if player is back to vehicle, he will get this message
-                locationToDeliverWillSearched = '~r~Delivery point is determined...' -- This message get the player when the rob starts
+                locationToDeliverWillSearched = '~r~Delivery point is determined...', -- This message get the player when the rob starts
+                youMissTheRequiredWeapons = '~r~You have not the required weapon to start !', -- This message get the player if he has not the required weapon to start the rob
             },
             endPositions = { -- if count down "timeBeforeVehicleCanDeliveredInSeconds" is over, one of this locations will taken as deliver point
                 vector3(781.57574462891,-3221.61328125,5.9008178710938),
@@ -181,6 +191,10 @@ Config = {
     },
     robberies = { -- A group of player can start the robber. They hav to go to different points and take the loot.
         {
+            pedNeedWeaponToStart = true, -- if true, player need a weapon to start the robbery
+            neededWeapon = { -- if pedNeedWeaponToStart is true, player need one of this weapons to start the robbery. if empty all weapons are allowed
+
+            },
             category = 'small', -- category of rob. pay attention to "countOfRobsAtSameTime" config
             startPositionCoordinate = vector3(1730.0705566406, 6416.8208007813, 34.137265777588), -- position of the start location
             blip = {
@@ -229,6 +243,7 @@ Config = {
                 robWasUnsuccessfulForYou = '~r~Robbery is aborted for you!',  -- This message will get the player if a rob was abort
                 stopRobLocation = 'Press ~r~X~w~ to cancel.', -- When a player lot
                 robHasStartedMessage = '~r~Rob has started ! Find the rob location.', -- When players has starts the robbery he got a confirmation message
+                youMissTheRequiredWeapons = '~r~You have not the required weapon to start !', -- This message get the player if he has not the required weapon to start the rob
             },
             objects = { -- objects that will placed on map. You can leave it empty, if not needed
                 {

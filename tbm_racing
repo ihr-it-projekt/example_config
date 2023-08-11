@@ -6,6 +6,7 @@ Config = {
     viewRangeForMarkers = 100, -- Player must be in this range that all markers will be rendered
     cititzenWaitTimeForMarkers = 5, -- enter here a lower value if markers flickering
     useESX_XP = false, -- if you use esx_esp mod you have to set this value to true
+    xperience = false, -- if you use xperience (https://github.com/Mobius1/xperience)  mod you have to set this value to true
     useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
     esxEventNames = { -- used esx events can here renamed, if you use a anti cheat tool
         setJob = 'esx:setJob',

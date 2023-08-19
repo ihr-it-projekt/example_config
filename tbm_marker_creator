@@ -15,6 +15,16 @@ Config = {
                 "police",
             },
             rgba = { 255, 0, 0, 155 }, -- color of marker
+            toggle = {
+                isEnabled = true, -- enable toggle for marker
+                rgba = { 0, 0, 0, 155 }, -- toggle color of the marker
+                actionRadius = 1.5, -- radius for toggle
+                message ="Press E to toggle", -- message for toggle
+                key = 38, -- key for toggle see https://docs.fivem.net/docs/game-references/controls/#controls
+                job = "", -- job that can execute the toggle, leave it blank if no job is required
+                jobBlacklist = {  -- thees jobs can not toggle the marker
+                },
+            },
             subMarker = {
                 customMarker= nil, -- enter the name of your custom marker, if you dont want to use is, let it blank
                 marker = 4, -- marker type see https://docs.fivem.net/docs/game-references/markers/
@@ -74,6 +84,16 @@ Config = {
             jobBlacklist = {  -- thees jobs can not see the markers
             },
             rgba = { 255, 0, 0, 155 }, -- color of marker
+            toggle = {
+                isEnabled = true, -- enable toggle for marker
+                rgba = { 0, 0, 0, 155 }, -- toggle color of the marker
+                actionRadius = 1.5, -- radius for toggle
+                message ="Press E to toggle", -- message for toggle
+                key = 38, -- key for toggle see https://docs.fivem.net/docs/game-references/controls/#controls
+                job = "", -- job that can execute the toggle, leave it blank if no job is required
+                jobBlacklist = {  -- thees jobs can not toggle the marker
+                },
+            },
             subMarker = {
                 marker = 4, -- marker type see https://docs.fivem.net/docs/game-references/markers/
                 posZ = 4.66, -- z position of the subMarker

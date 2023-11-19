@@ -16,6 +16,7 @@ Config = {
         name = 'unemployed',
         grade = 0,
     },
+    disableTabletInHand = false, -- Disable the Tablet in Hand, character will not hold the tablet in hand
     police = { -- On Duty configuration
         jobName = 'police', -- what is the name of the police job, default is police
         canOpenEverywhere = true, -- can open Authority Net from everywhere

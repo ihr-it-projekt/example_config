@@ -1,8 +1,13 @@
 Config = {
-    Locale = 'en',
+    Locale = 'de',
     esxExtendedName = 'es_extended', -- How you have named your es_extended mod, if you have renamed it.
     useLegacyFuel = false, -- if you are using Legacy fuel mod, you have to set this value to true
-    lobbyTimeInSec = 30,
+    useSNAFuel = false, -- if you are using SNA fuel mod, you have to set this value to true
+    checkPointSound = { -- sound that will be played if a player pass a checkpoint see: https://docs.fivem.net/natives/?_0x67C540AA08E4A6F5
+        soundId = 'HACK_SUCCESS',
+        audioName = 'DLC_HEIST_BIOLAB_PREP_HACKING_SOUNDS'
+    },
+    lobbyTimeInSec = 2,
     viewRangeForMarkers = 100, -- Player must be in this range that all markers will be rendered
     cititzenWaitTimeForMarkers = 5, -- enter here a lower value if markers flickering
     useESX_XP = false, -- if you use esx_esp mod you have to set this value to true
@@ -109,7 +114,7 @@ Config = {
             winRate = 0.8, -- How high is the percentage of collected raceFees that a player can win.
             playerGetMoneyWinIfIsSingleRace = false, -- Player get a win, if this race is a single player race- Multiplayer track get always a win
             maxRaceDurationInSeconds = 500, -- Max duration of an race. If the duration is reach. The race will for all left players stopped.
-            useOwnGameInstance = true, -- Use a separate game instance for the race. So race runs complete seperated!! No disturbing the other players
+            useOwnGameInstance = false, -- Use a separate game instance for the race. So race runs complete seperated!! No disturbing the other players
             xp = 1000, -- if you use esx_esp mod you will get xp when you finish the track, first place will become 100% second place get 50%, third place 33% ... depends on howManyPlayersGetWin config
             neededXP = 0, -- if you use esx_esp mod, players need this level of xp to can drive this track
             checkPoints = {
@@ -216,14 +221,14 @@ Config = {
         },
         {
             startRaceLocation = {
-                coordinate = vector3(151.42726135254, -984.93981933594, 29.69153213501), -- position of the location
+                coordinate = vector3(2537.0588, 2627.6096, 36.9448), -- position of the location
                 enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
                 display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
                 sprite = 127, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
                 scale = 0.7, -- scale of blip
                 color = 62, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
-                name = 'HellRace (für 8 Spieler)', -- the name of the track, if you change this value you also have to change it in tbm_race database table, otherwise it will create new database entries
-                radius = 2.0, -- Radius of the action to register
+                name = 'GRAND SENORA (1-8 Fahrer)', -- the name of the track, if you change this value you also have to change it in tbm_race database table, otherwise it will create new database entries
+                radius = 10.0, -- Radius of the action to register
                 marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
                 rgba = { 120, 255, 120, 155 }, -- color of marker
                 subMarker = {
@@ -234,16 +239,16 @@ Config = {
                 enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
                 pedModel = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
                 pedHash = 0xDB134533, -- see https://docs.fivem.net/docs/game-references/ped-models/
-                pedOrientation = 204.320  -- the orientation of the ped
+                pedOrientation = 96.1409  -- the orientation of the ped
             },
             highScore = {
-                coordinate = vector3(171.74676513672, -992.55511474609, 29.691486358643), -- position of the location
+                coordinate = vector3(2528.0640, 2639.0811, 36.9448), -- position of the location
                 enableBlip = false, -- enable Blip on map, if true, display, sprite, scale, color and name are required
                 display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
                 sprite = 304, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
                 scale = 1.0, -- scale of blip
                 color = 1, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
-                name = 'Leaderboard', -- The blip name on map
+                name = 'Rangliste', -- The blip name on map
                 radius = 2.0, -- Radius of the action to view the high score
                 viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
                 marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
@@ -255,51 +260,51 @@ Config = {
                 enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
                 pedModel = "a_m_y_juggalo_01", -- ped model, see https://docs.fivem.net/docs/game-references/ped-models/
                 pedHash = 0x91CA3E2C, -- ped hash, see https://docs.fivem.net/docs/game-references/ped-models/
-                pedOrientation = 108.904 -- orientation of the ped
+                pedOrientation = 183.1570 -- orientation of the pe
             },
             isSingleRace = false, -- if true only one player can do the race and you got an all time high score // if false so many player can do  multiple players can make the race. Player count depends on configured vehicle spawns
             isDriftRace = false, -- if the race is a drift race, the player withe the highest drift score win the race
-            playerMustUseTheirOwnCar = false, -- if true players need to be in a vehicle to register for that race
+            playerMustUseTheirOwnCar = true, -- if true players need to be in a vehicle to register for that race
             showRouteOnMap = true, -- Display the track on map
             roundCount = 1, -- how many rounds will have the race
-            raceStartCountdownLength = 5, -- length of countdown before race
-            raceFee = 1000, -- how mush the player must pay for the race
+            raceStartCountdownLength = 3, -- length of countdown before race
+            raceFee = 100, -- how mush the player must pay for the race
             howManyPlayersGetWin = 3, -- if multiplayer race they can get a price. if you enter 3, 3 player will get a price.
             itemsThatPlayerCanWin = { -- for single player races you need only one place to configure. Everybody that finish a track will get the configured items
                 { -- Place 1
                     {
-                        name = "gold_ingot",
+                        name = "",
                         isWeapon = false,
-                        amount = 1,
+                        amount = 0,
                     },
                     {
-                        name = "weapon_crowbar",
+                        name = "",
                         isWeapon = true,
-                        amount = 1,
+                        amount = 0,
                     }
                 },
                 { -- Place 2
                     {
-                        name = "gold_ingot",
+                        name = "",
                         isWeapon = false,
-                        amount = 1,
+                        amount = 0,
                     },
                     {
-                        name = "weapon_crowbar",
+                        name = "",
                         isWeapon = true,
-                        amount = 1,
+                        amount = 0,
                     }
                 },
                 { -- Place 3
                     {
-                        name = "gold_ingot",
+                        name = "",
                         isWeapon = false,
-                        amount = 1,
+                        amount = 0,
                     },
                     {
-                        name = "weapon_crowbar",
+                        name = "",
                         isWeapon = true,
-                        amount = 1,
+                        amount = 0,
                     }
                 },
             },
@@ -311,64 +316,26 @@ Config = {
             neededXP = 0, -- if you use esx_esp mod, players need this level of xp to can drive this track
             checkPoints = {
                 coords = { -- coordinates of checkPoints
-                    vector3(528.22973632812, 5628.0903320312, 779.35736083984),
-                    vector3(564.6044921875, 5658.1162109375, 766.18505859375),
-                    vector3(618.85095214844, 5682.3286132812, 744.91461181641),
-                    vector3(679.45300292969, 5697.7719726562, 725.43237304688),
-                    vector3(793.44488525391, 5691.3715820312, 696.08459472656),
-                    vector3(870.00622558594, 5656.9858398438, 676.89410400391),
-                    vector3(924.57189941406, 5639.4052734375, 652.55163574219),
-                    vector3(979.50933837891, 5634.3793945312, 624.86340332031),
-                    vector3(1022.0500488281, 5612.3969726562, 606.18634033203),
-                    vector3(1080.8878173828, 5591.6630859375, 581.06872558594),
-                    vector3(1250.9442138672, 5562.015625, 499.81396484375),
-                    vector3(1324.681640625, 5555.6655273438, 477.23696899414),
-                    vector3(1399.0314941406, 5552.4990234375, 462.63027954102),
-                    vector3(1471.5191650391, 5536.8056640625, 438.32678222656),
-                    vector3(1537.9658203125, 5515.7719726562, 399.11386108398),
-                    vector3(1641.4793701172, 5482.8657226562, 335.31091308594),
-                    vector3(1716.7484130859, 5455.8530273438, 302.35733032227),
-                    vector3(1836.9112548828, 5410.783203125, 238.78756713867),
-                    vector3(1958.4864501953, 5382.53125, 185.63520812988),
-                    vector3(2028.3616943359, 5379.8134765625, 174.51055908203),
-                    vector3(2147.9558105469, 5379.7807617188, 165.03715515137),
-                    vector3(2241.3056640625, 5382.544921875, 144.50688171387),
-                    vector3(2358.1062011719, 5338.4555664062, 116.35399627686),
-                    vector3(2496.65625, 5308.4975585938, 63.989463806152),
-                    vector3(2501.2082519531, 5332.3583984375, 56.548728942871),
-                    vector3(2454.556640625, 5415.0463867188, 51.726348876953),
-                    vector3(2371.72265625, 5494.4565429688, 51.258560180664),
-                    vector3(2259.3371582031, 5544.0390625, 50.594654083252),
-                    vector3(2260.6848144531, 5628.8583984375, 54.910205841064),
-                    vector3(2289.9721679688, 5633.7490234375, 65.684936523438),
-                    vector3(2344.5363769531, 5639.3232421875, 85.492797851562),
-                    vector3(2310.6398925781, 5677.5385742188, 107.6088104248),
-                    vector3(2246.0085449219, 5739.4555664062, 143.99142456055),
-                    vector3(2180.5205078125, 5765.3842773438, 174.3094329834),
-                    vector3(2131.0871582031, 5769.6079101562, 191.3856048584),
-                    vector3(2053.7053222656, 5789.09765625, 222.12442016602),
-                    vector3(1991.7877197266, 5786.7822265625, 241.55851745605),
-                    vector3(1971.8843994141, 5793.8989257812, 252.5510559082),
-                    vector3(1938.1585693359, 5826.98046875, 274.63494873047),
-                    vector3(1890.5036621094, 5829.4931640625, 296.16717529297),
-                    vector3(1790.2869873047, 5828.1489257812, 346.02993774414),
-                    vector3(1720.3070068359, 5826.353515625, 366.26971435547),
-                    vector3(1639.9328613281, 5806.732421875, 393.7712097168),
-                    vector3(1603.7661132812, 5791.13671875, 404.87490844727),
-                    vector3(1495.6243896484, 5796.28515625, 430.27297973633),
-                    vector3(1441.8908691406, 5796.6650390625, 449.89279174805),
-                    vector3(1304.5227050781, 5808.1801757812, 474.13507080078),
-                    vector3(1227.5614013672, 5786.0122070312, 509.37112426758),
-                    vector3(1130.5480957031, 5757.095703125, 539.46008300781),
-                    vector3(1054.0118408203, 5712.630859375, 575.73797607422),
-                    vector3(992.54663085938, 5661.5380859375, 614.54895019531),
-                    vector3(924.83905029297, 5639.9755859375, 652.53796386719),
-                    vector3(885.96881103516, 5649.85546875, 671.2685546875),
-                    vector3(806.46069335938, 5688.7016601562, 695.53765869141),
-                    vector3(685.45922851562, 5697.9951171875, 723.40063476562),
-                    vector3(619.19226074219, 5682.884765625, 744.78674316406),
-                    vector3(564.43432617188, 5658.060546875, 766.23101806641),
-                    vector3(523.78912353516, 5605.4619140625, 780.40991210938),
+                    vector3(2495.6882, 2797.1758, 46.7319),
+                    vector3(2295.0505, 3022.1665, 45.7233),
+                    vector3(2210.9275, 3248.6257, 47.4584),
+                    vector3(1893.7909, 3318.2273, 43.2573),
+                    vector3(1814.8823, 3306.6025, 42.0694),
+                    vector3(1682.9825, 3539.1140, 35.0813),
+                    vector3(1526.7346, 3745.3550, 33.9409),
+                    vector3(1339.8958, 3667.5969, 32.7091),
+                    vector3(1105.7434, 3629.4558, 33.3053),
+                    vector3(868.6804, 3636.7097, 32.3686),
+                    vector3(482.8524, 3585.2322, 32.7226),
+                    vector3(408.1782, 3525.7961, 33.6837),
+                    vector3(244.7406, 3352.1182, 38.6844),
+                    vector3(212.9884, 3206.5325, 42.0787),
+                    vector3(265.5760, 3133.7991, 41.9052),
+                    vector3(369.5041, 3107.9351, 43.2002),
+                    vector3(653.5441, 3074.5784, 43.6652),
+                    vector3(990.7162, 3067.1890, 41.6307),
+                    vector3(1497.6925, 3041.7158, 41.2454),
+                    vector3(1730.6167, 3153.8008, 43.3758),
                 },
                 radiusToPass = 10.0, -- Radius of the action to register
                 style = {
@@ -376,11 +343,11 @@ Config = {
                     scale = 10.0, -- scale of marker https://docs.fivem.net/docs/game-references/markers/
                     rgba = { 120, 255, 120, 155 }, -- color of blip
                 },
-                maxDistanceToTrack = 500 -- max radius in meter that a player can be, has player a greater distance, the race will stop for this player
+                maxDistanceToTrack =  800 -- max radius in meter that a player can be, has player a greater distance, the race will stop for this player
             },
             vehicles = {
                 {
-                    type = 'sanchez', -- vehicle type see https://wiki.rage.mp/index.php?title=Vehicles
+                    type = 'futo', -- vehicle type see https://wiki.rage.mp/index.php?title=Vehicles
                     fuelLevel = 1000.0, -- the fuel level will be set at every checkpoint to this value
                     mods = { -- Mods to apply to the racing vehicle.
                         engine = 2,
@@ -394,41 +361,234 @@ Config = {
             },
             vehicleSpawn = {  -- race starting position, if race is not a single race you can define so many you want
                 {
-                    coord = vector3(515.13092041016, 5581.0874023438, 781.63201904297), -- Coordinate of starting points, you can add so many as you want
-                    heading = 336.845,
+                    coord = vector3(2566.1030, 2639.3831, 37.6950), -- Coordinate of starting points, you can add so many as you want
+                    heading = 19.5369,
                 },
                 {
-                    coord = vector3(517.34576416016, 5579.8598632812, 781.57952880859),
-                    heading = 334.299,
+                    coord = vector3(2571.6750, 2641.5198, 37.8664),
+                    heading = 19.8927,
                 },
                 {
-                    coord = vector3(513.18481445312, 5576.947265625, 781.75671386719),
-                    heading = 327.748,
+                    coord = vector3(2568.1311, 2633.9644, 37.4906),
+                    heading = 19.7506,
                 },
                 {
-                    coord = vector3(515.0634765625, 5575.740234375, 781.72277832031),
-                    heading = 330.078,
+                    coord = vector3(2573.8003, 2635.9243, 37.4871),
+                    heading = 19.7901,
                 },
                 {
-                    coord = vector3(510.64846801758, 5573.13671875, 781.9677734375),
-                    heading = 321.914,
+                    coord = vector3(2575.7083, 2630.5520, 37.1180),
+                    heading = 19.9100,
                 },
                 {
-                    coord = vector3(512.63208007812, 5571.68359375, 781.83654785156),
-                    heading = 326.329,
+                    coord = vector3(2570.1821, 2628.4143, 37.1085),
+                    heading = 19.1515,
                 },
                 {
-                    coord = vector3(508.11431884766, 5569.4077148438, 782.07769775391),
-                    heading = 322.793,
+                    coord = vector3(2577.6982, 2624.8975, 36.7405),
+                    heading = 18.6047,
                 },
                 {
-                    coord = vector3(510.39352416992, 5567.9580078125, 781.92163085938),
-                    heading = 327.577,
+                    coord = vector3(2572.1023, 2623.1631, 36.7592),
+                    heading = 18.4868,
                 },
             },
             objectsToSpawn = { -- not required, if you want to spawn some objects only for the race
                 {
-                    coords = vector3(1057.5803222656, 103.69068908691, 81.261016845703),
+                    coords = vector3(1057.5803222656, 103.69068908691, 0.261016845703),
+                    pitch = 0.0, -- The pitch of the object should be normally 0.0
+                    roll = 0.0, -- The roll of the object should be normally 0.0
+                    yaw = 60.0, -- rotation of the object
+                    name = "lts_prop_lts_offroad_tyres01", -- the model name, can be taken from: https://gta-objects.xyz/objects
+                }
+            },
+            objectsToSpawnFile = 'example.xml', -- Put xml file into tracks folder. Change filename here, must be the same as you have in tracks folder. You can find tracks here. https://github.com/blattersturm/cfx-object-loader/tree/master/%5Bexamples%5D
+        },
+        {
+            startRaceLocation = {
+                coordinate = vector3(-1152.5894, 2665.2881, 17.0939), -- position of the location
+                enableBlip = true, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+                display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+                sprite = 127, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+                scale = 0.7, -- scale of blip
+                color = 62, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+                name = 'LS FOREST (1-8 Fahrer)', -- the name of the track, if you change this value you also have to change it in tbm_race database table, otherwise it will create new database entries
+                radius = 10.0, -- Radius of the action to register
+                marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                rgba = { 120, 255, 120, 155 }, -- color of marker
+                subMarker = {
+                    marker = 4, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+                    posZ = 4.66, -- z position of the subMarker
+                },
+                viewZone = true, -- view zone in game
+                enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
+                pedModel = "a_f_y_juggalo_01", -- see https://docs.fivem.net/docs/game-references/ped-models/
+                pedHash = 0xDB134533, -- see https://docs.fivem.net/docs/game-references/ped-models/
+                pedOrientation = 140.8792  -- the orientation of the ped
+            },
+            highScore = {
+                coordinate = vector3(-1132.8279, 2680.6799, 17.3999), -- position of the location
+                enableBlip = false, -- enable Blip on map, if true, display, sprite, scale, color and name are required
+                display = 4, -- see displayId on https://docs.fivem.net/natives/?_0x9029B2F3DA924928
+                sprite = 304, -- blip symbol on map, see: https://docs.fivem.net/docs/game-references/blips/
+                scale = 1.0, -- scale of blip
+                color = 1, -- color of blip, see https://docs.fivem.net/docs/game-references/blips/
+                name = 'Rangliste', -- The blip name on map
+                radius = 2.0, -- Radius of the action to view the high score
+                viewZone = true, -- view register register zone in game, if true marker, rgba and subMarker is needed
+                marker = 27, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                rgba = { 120, 255, 120, 155 }, -- color of marker
+                subMarker = {
+                    marker = 29, -- marker type see https://docs.fivem.net/docs/game-references/markers/
+                    posZ = 590.202, -- z position of the subMarker
+                },
+                enablePed = true, -- Enable the ped. pedModel, pedHash and pedOrientation is needed if you enable this options
+                pedModel = "a_m_y_juggalo_01", -- ped model, see https://docs.fivem.net/docs/game-references/ped-models/
+                pedHash = 0x91CA3E2C, -- ped hash, see https://docs.fivem.net/docs/game-references/ped-models/
+                pedOrientation = 127.7045 -- orientation of the ped
+            },
+            isSingleRace = true, -- if true only one player can do the race and you got an all time high score // if false so many player can do  multiple players can make the race. Player count depends on configured vehicle spawns
+            isDriftRace = false, -- if the race is a drift race, the player withe the highest drift score win the race
+            playerMustUseTheirOwnCar = false, -- if true players need to be in a vehicle to register for that race
+            showRouteOnMap = true, -- Display the track on map
+            roundCount = 2, -- how many rounds will have the race
+            raceStartCountdownLength = 3, -- length of countdown before race
+            raceFee = 100, -- how mush the player must pay for the race
+            howManyPlayersGetWin = 3, -- if multiplayer race they can get a price. if you enter 3, 3 player will get a price.
+            itemsThatPlayerCanWin = { -- for single player races you need only one place to configure. Everybody that finish a track will get the configured items
+                { -- Place 1
+                    {
+                        name = "",
+                        isWeapon = false,
+                        amount = 0,
+                    },
+                    {
+                        name = "",
+                        isWeapon = true,
+                        amount = 0,
+                    }
+                },
+                { -- Place 2
+                    {
+                        name = "",
+                        isWeapon = false,
+                        amount = 0,
+                    },
+                    {
+                        name = "",
+                        isWeapon = true,
+                        amount = 0,
+                    }
+                },
+                { -- Place 3
+                    {
+                        name = "",
+                        isWeapon = false,
+                        amount = 0,
+                    },
+                    {
+                        name = "",
+                        isWeapon = true,
+                        amount = 0,
+                    }
+                },
+            },
+            winRate = 0.8, -- How high is the percentage of collected raceFees that a player can win.
+            playerGetMoneyWinIfIsSingleRace = false, -- Player get a win, if this race is a single player race- Multiplayer track get always a win
+            maxRaceDurationInSeconds = 1000, -- Max duration of an race. If the duration is reach. The race will for all left players stopped.
+            useOwnGameInstance = false, -- Use a separate game instance for the race. So race runs complete seperated!! No disturbing the other players
+            xp = 1000, -- if you use esx_esp mod you will get xp when you finish the track, first place will become 100% second place get 50%, third place 33% ... depends on howManyPlayersGetWin config
+            neededXP = 0, -- if you use esx_esp mod, players need this level of xp to can drive this track
+            checkPoints = {
+                coords = { -- coordinates of checkPoints
+                    vector3(-1315.5658, 2476.2825, 23.5026),
+                    vector3(-1670.2634, 2393.4885, 32.7042),
+                    vector3(-1545.3358, 2251.9727, 54.0647),
+                    vector3(-1449.6172, 1972.4166, 69.5570),
+                    vector3(-1493.2960, 1620.0643, 106.5048),
+                    vector3(-1585.3190, 966.6385, 156.2378),
+                    vector3(-1265.3309, 855.9089, 190.1862),
+                    vector3(-1003.7438, 1175.1652, 217.3358),
+                    vector3(-749.2917, 974.7818, 237.11561),
+                    vector3(-128.1478, 1048.0385, 228.4961),
+                    vector3(272.9869, 1151.2489, 222.0737),
+                    vector3(175.3588, 1462.8229, 239.1330),
+                    vector3(201.8664, 1670.3234, 230.7056),
+                    vector3(667.0878, 1739.8218, 188.5069),
+                    vector3(1024.9119, 1560.3287, 171.0107),
+                    vector3(1190.6100, 1056.9319, 158.2899),
+                    vector3(1078.6034, 755.3008, 153.9629),
+                    vector3(1119.1833, 633.0485, 113.2486),
+                    vector3(1099.9310, 552.3494, 95.6828),
+                    vector3(1278.6970, 834.6385, 104.7487),
+                    vector3(1291.8903, 1335.8915, 105.1823),
+                    vector3(1153.0811, 1830.1243, 71.8989),
+                    vector3(757.2068, 2269.3149, 48.7467),
+                    vector3(372.2975, 2507.1963, 44.4463),
+                    vector3(107.3431, 2698.0083, 52.4350),
+                    vector3(-448.4038, 2856.2075, 34.9871),
+                    vector3(-731.8297, 2802.6138, 25.7770),
+                    vector3(-1091.3630, 2690.5256, 19.3022),
+                },
+                radiusToPass = 10.0, -- Radius of the action to register
+                style = {
+                    marker = 6, -- marker type see https://docs.fivem.net/docs/game-references/checkpoints/
+                    scale = 10.0, -- scale of marker https://docs.fivem.net/docs/game-references/markers/
+                    rgba = { 120, 255, 120, 155 }, -- color of blip
+                },
+                maxDistanceToTrack = 2000 -- max radius in meter that a player can be, has player a greater distance, the race will stop for this player
+            },
+            vehicles = {
+                {
+                    type = 'futo', -- vehicle type see https://wiki.rage.mp/index.php?title=Vehicles
+                    fuelLevel = 1000.0, -- the fuel level will be set at every checkpoint to this value
+                    mods = { -- Mods to apply to the racing vehicle.
+                        engine = 2,
+                        brakes = 2,
+                        transmission = 2,
+                        suspension = 3,
+                        turbo = true,
+                        livery = 0
+                    },
+                }
+            },
+            vehicleSpawn = {  -- race starting position, if race is not a single race you can define so many you want
+                {
+                    coord = vector3(-1144.0267, 2645.2151, 16.1876), -- Coordinate of starting points, you can add so many as you want
+                    heading = 132.4057,
+                },
+                {
+                    coord = vector3(-1146.5039, 2647.9360, 16.1816),
+                    heading = 130.3431,
+                },
+                {
+                    coord = vector3(-1141.7058, 2652.2090, 16.4434),
+                    heading = 130.9119,
+                },
+                {
+                    coord = vector3(-1139.3584, 2649.5818, 16.4499),
+                    heading = 132.2288,
+                },
+                {
+                    coord = vector3(-1134.7010, 2653.8564, 16.7235),
+                    heading = 131.7415,
+                },
+                {
+                    coord = vector3(-1137.0173, 2656.3953, 16.7128),
+                    heading = 130.8955,
+                },
+                {
+                    coord = vector3(-1132.5663, 2660.2783, 16.9750),
+                    heading = 130.7277,
+                },
+                {
+                    coord = vector3(-1130.3763, 2657.8784, 16.9838),
+                    heading = 132.0915,
+                },
+            },
+            objectsToSpawn = { -- not required, if you want to spawn some objects only for the race
+                {
+                    coords = vector3(1057.5803222656, 103.69068908691, 0.261016845703),
                     pitch = 0.0, -- The pitch of the object should be normally 0.0
                     roll = 0.0, -- The roll of the object should be normally 0.0
                     yaw = 60.0, -- rotation of the object

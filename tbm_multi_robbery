@@ -1,6 +1,9 @@
 Config = {
     esxExtendedName = 'es_extended', -- How you have named your es_extended mod, if you have renamed it.
     useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
+    qbCore = {
+		blackMoneyName = 'markedbills', // The name of the black money item in your qb-core database
+	},
     qbCoreExportName = 'qb-core', -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore
     esxEventNames = { -- used esx events can here renamed, if you use for example a anti cheat tool
         setJob = 'esx:setJob',

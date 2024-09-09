@@ -16,6 +16,7 @@ Config = {
     useESX_XP = false, -- if you use esx_esp mod you have to set this value to true
     useLegacyFuel = false, -- if you are using Legacy fuel mod, you have to set this value to true
     useLIFuel = false, -- if you are using lj-fuel mod, you have to set this value to true
+    useCDNFuel = false, -- if you are using CDN fuel mod, you have to set this value to true
     repairItemsCheckInSeconds = 30, -- how often repairKits will check, if they exist and new ones spawn
     useQbCore = false, -- if you are using ESX, change this value to false. If you are using QBCore, set value to true
     qbCoreExportName = 'qb-core', -- for security reasons you can customise the qb-core export name. Attention if you change it, be sure you have also change it in qbCore

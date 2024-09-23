@@ -134,7 +134,7 @@ Config.DynamicTraderItems = {
         maxPrice = 100, -- max price when storage is empty
         minPrice = 75, -- min price if storage is full
         maxItems = 1000, -- how big is the storage of the item
-        itemReducePerTick = -10, -- 0 = Items will never reduce
+        itemReducePerTick = -10, -- 0 = Items will never reduce, negative value means items will added, positive value means items will reduced
         tickInSeconds = 10, -- how long is one tick that item will reduced
         label = "Bread", -- Display name at the Dealer
         blackMoney = false, -- Dealer gives ore take black money form or to the player
